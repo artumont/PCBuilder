@@ -42,4 +42,4 @@ Handles server-side logic, database communication, and operations.
 - Authentication and authorization services
 
 ## Commit History
-[28c74f7](https://github.com/artumont/PCBuilder/commit/28c74f777dffc2237f818d4a02dafa69a8b21b8c) - Refactor backend application to implement logging and socket communication; remove unused frontend App class
+ - [2024-03-21T15:45:00Z] Refactor backend application to implement logging and socket communication
