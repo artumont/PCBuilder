@@ -42,4 +42,5 @@ Handles server-side logic, database communication, and operations.
 - Authentication and authorization services
 
 ## Commit History
- - [2024-03-21T15:45:00Z] Refactor backend application to implement logging and socket communication
+ - [2025-02-02T10:45:00Z] Refactor backend application to implement logging and socket communication
+ - [2025-02-02T15:25:00Z] Update INFO.md with recent commit details and enhance Sockets class documentation
