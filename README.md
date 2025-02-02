@@ -65,11 +65,21 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 👥 Team
 
-- Artu (@artumont) - Project Lead
-- Ultimateknight143 (@Ultimateknight143) - Frontend Developer
-- Jesus-Mendoza21 (@Jesus-Mendoza21) - Frontend Developer
-- [Team Member] - Backend Developer
-- [Team Member] - Database Engineer
+### Lead
+
+- Artu (@artumont) - Project Lead & Backend Developer
+
+### Backend Branch
+- Luis (@prodanyboy) - Database Engineer
+- Gerardo (@SONRIXMX) - Backend Developer
+
+### Frontend Branch
+- Emmanuel (@Ultimateknight143) - Frontend Developer
+- Jesus (@Jesus-Mendoza21) - Frontend Developer
+
+### Manager Branch
+- [Team Member] - [Role]
+- [Team Member] - [Role]
 
 ## 📫 Contact
 
