@@ -21,7 +21,6 @@ A comprehensive web application for building and customizing PC configurations w
 ## 📋 Prerequisites
 
 - Java JDK 17 or higher
-- Maven 3.8+ or Gradle 7.0+
 - SQL Server database
 - Node.js and npm (for frontend development)
 
