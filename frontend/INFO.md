@@ -3,10 +3,8 @@
 User-facing part of the application, including the website and user interface.
 
 ### Maintainers
-- [Name] - [Job]
-- [Name] - [Job]
-
-*(To be updated with actual maintainers)*
+- Emmanuel (@Ultimateknight143) - Frontend Developer
+- Jesus (@Jesus-Mendoza21) - Frontend Developer
 
 ### Objectives
 - Develop the user interface for the application
@@ -18,8 +16,8 @@ User-facing part of the application, including the website and user interface.
 
 ### Technology Stack
 - **Languages**: Java, HTML, JavaScript, CSS
-- **Frameworks**: Vite, Next.js (optional)
-- **Build Tool**: Webpack/Vite
+- **Frameworks**: Next.js
+- **Build Tool**: Webpack
 
 ### Project Scope
 - Web application with responsive design

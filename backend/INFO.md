@@ -3,10 +3,9 @@
 Handles server-side logic, database communication, and operations.
 
 ### Maintainers
-- [Name] - [Job]
-- [Name] - [Job]
-
-*(To be updated with actual maintainers)*
+- Luis (@prodanyboy) - Database
+- Gerardo (@SONRIXMX) - Server
+- Gilberto (@GilPeCa) - Server
 
 ### Objectives
 - Develop server-side logic and operations
@@ -18,12 +17,10 @@ Handles server-side logic, database communication, and operations.
 
 ### Technology Stack
 - **Languages**: Java, SQL
-- **Frameworks**: Spring Boot (optional)
-- **Database**: MySQL/PostgreSQL
-- **Build Tool**: Maven/Gradle
+- **Frameworks**: None
+- **Database**: SQL Server
 
 ### Project Scope
-- Server-side application with RESTful APIs
 - Database configuration and management
 - Data validation and security
 - Integration with frontend services
@@ -42,5 +39,5 @@ Handles server-side logic, database communication, and operations.
 - Authentication and authorization services
 
 ## Commit History
- - 2025-02-02 10:45 | Refactor backend application to implement logging and socket communication
- - 2025-02-02 15:25 | Update INFO.md with recent commit details and enhance Sockets class documentation
+ - _**2025-02-02 10:45**_ | Refactor backend application to implement logging and socket communication
+ - _**2025-02-02 15:25**_ | Update INFO.md with recent commit details and enhance Sockets class documentation
