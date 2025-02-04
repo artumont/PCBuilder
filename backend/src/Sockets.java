@@ -36,7 +36,7 @@ public class Sockets {
             return true;
         }
         catch (IOException e) {
-            logger.error(e.getMessage());
+            logger.error("Sockets.start", e.getMessage());
             return false;
         }
     }
@@ -48,19 +48,19 @@ public class Sockets {
      */
     public void startListening() {
         isListening = true;
-        logger.info("Listening for incoming connections");
+        logger.info("Sockets.startListening", "Listening for incoming connections");
         
         Thread listenThread = new Thread(() -> {
             while (isListening) {
                 try {
                     clientSocket = serverSocket.accept();
-                    logger.info("New client connected");
+                    logger.info("Sockets.startListening", "New client connected from " + clientSocket.getInetAddress());
                     out = new PrintWriter(clientSocket.getOutputStream(), true);
                     in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
                     while (isListening && clientSocket.isConnected()) {
                         String message = in.readLine();
                         if (message != null) {
-                            logger.info("Received message: " + message);
+                            logger.info("Sockets.startListening", "Received message: " + message);
                             String[] messageParts = message.split(" ");
                             String operation = messageParts[0];
                             if (operationMapping.get(operation) != null) {
@@ -68,13 +68,17 @@ public class Sockets {
                                     String response = operationMapping.get(operation).call();
                                     out.println(response);
                                 } catch (Exception e) {
-                                    logger.error("Error processing operation: " + e.getMessage());
+                                    logger.error("Sockets.startListening", "Error processing operation: " + e.getMessage());
                                 }
+                            }
+                            else {
+                                logger.error("Sockets.startListening", "Invalid operation: " + operation);
+                                out.println("Invalid operation: " + operation);
                             }
                         }
                     }
                 } catch (IOException e) {
-                    logger.error("Connection error: " + e.getMessage());
+                    logger.error("Sockets.startListening", "Connection error: " + e.getMessage());
                     cleanup();
                 }
             }
@@ -93,7 +97,7 @@ public class Sockets {
             if (out != null) out.close();
             if (clientSocket != null) clientSocket.close();
         } catch (IOException e) {
-            logger.error("Error during cleanup: " + e.getMessage());
+            logger.error("Sockets.cleanup", "Error during cleanup: " + e.getMessage());
         }
     }
 
@@ -119,7 +123,7 @@ public class Sockets {
             return true;
         }
         catch (IOException e) {
-            logger.error("Error during shutdown: " + e.getMessage());
+            logger.error("Sockets.stop", "Error during shutdown: " + e.getMessage());
             return false;
         }
     }

@@ -27,9 +27,8 @@ public class Logger {
         return minimumLevel;
     }
 
-    public void debug(String message) {
+    public void debug(String methodName, String message) {
         if (minimumLevel.getSeverity() <= LogLevel.DEBUG.getSeverity()) {
-            String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
             System.out.printf(LOG_FORMAT, 
                 java.time.LocalDateTime.now(),
                 LogLevel.DEBUG,
@@ -38,9 +37,8 @@ public class Logger {
         }
     }
 
-    public void info(String message) {
+    public void info(String methodName, String message) {
         if (minimumLevel.getSeverity() <= LogLevel.INFO.getSeverity()) {
-            String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
             System.out.printf(LOG_FORMAT, 
                 java.time.LocalDateTime.now(),
                 LogLevel.INFO,
@@ -49,9 +47,8 @@ public class Logger {
         }
     }
 
-    public void warning(String message) {
+    public void warning(String methodName, String message) {
         if (minimumLevel.getSeverity() <= LogLevel.WARNING.getSeverity()) {
-            String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
             System.out.printf(LOG_FORMAT, 
                 java.time.LocalDateTime.now(),
                 LogLevel.WARNING,
@@ -60,9 +57,8 @@ public class Logger {
         }
     }
 
-    public void error(String message) {
+    public void error(String methodName, String message) {
         if (minimumLevel.getSeverity() <= LogLevel.ERROR.getSeverity()) {
-            String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
             System.out.printf(LOG_FORMAT, 
                 java.time.LocalDateTime.now(),
                 LogLevel.ERROR,
