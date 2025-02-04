@@ -13,10 +13,9 @@ A comprehensive web application for building and customizing PC configurations w
 
 ## 🛠️ Tech Stack
 
-- **Backend**: Java, Spring Boot
-- **Frontend**: Java, HTML, CSS, JavaScript
-- **Database**: MySQL/PostgreSQL
-- **Build Tools**: Maven/Gradle
+- **Backend**: Java
+- **Frontend**: Node.js
+- **Database**: SQL Server
 
 ## 📋 Prerequisites
 
@@ -71,7 +70,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ### Backend Branch
 - Luis (@prodanyboy) - Database Engineer
 - Gerardo (@SONRIXMX) - Backend Developer
-- Gilberto (GilPeCa) - Backend Developer
+- Gilberto (@GilPeCa) - Backend Developer
 
 ### Frontend Branch
 - Emmanuel (@Ultimateknight143) - Frontend Developer
