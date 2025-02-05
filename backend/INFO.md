@@ -43,3 +43,4 @@ Handles server-side logic, database communication, and operations.
 - _**2025-02-02 03:25 PM**_ | Update INFO.md with recent commit details and enhance Sockets class documentation - (@artu)
 - _**2025-02-03 11:30 PM**_ | Refactor logging implementation to include method names and enhance database connection handling - (@artu)
 - _**2025-02-04 09:38 PM**_ | Update migrated to Maven build system & improved all helpers and utilities - (@artu)
+- _**2025-02-04 09:54 PM**_ | Update configuration handling to create a detailed config file and adjust logger settings - (@artu)
