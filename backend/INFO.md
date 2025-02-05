@@ -40,5 +40,6 @@ Handles server-side logic, database communication, and operations.
 
 ## Commit History
 - _**2025-02-02 10:45 AM**_ | Refactor backend application to implement logging and socket communication
-- _**2025-02-02 3:25 PM**_ | Update INFO.md with recent commit details and enhance Sockets class documentation
+- _**2025-02-02 03:25 PM**_ | Update INFO.md with recent commit details and enhance Sockets class documentation
 - _**2025-02-03 11:30 PM**_ | Refactor logging implementation to include method names and enhance database connection handling
+- _**2025-02-04 09:38 PM**_ | Update migrated to Maven build system & improved all helpers and utilities
