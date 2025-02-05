@@ -1,3 +1,5 @@
+package com.pcbuilder.helpers;
+
 public class Logger {
     private LogLevel minimumLevel;
     private static final String LOG_FORMAT = "[%s] %s - %s: %s%n";
@@ -6,7 +8,8 @@ public class Logger {
         DEBUG(1),
         INFO(2),
         WARNING(3),
-        ERROR(4);
+        CRITICAL(4),
+        ERROR(5);
 
         private final int severity;
 
@@ -16,6 +19,23 @@ public class Logger {
 
         public int getSeverity() {
             return severity;
+        }
+
+        public static LogLevel getLevel(String level) {
+            switch (level.toLowerCase()) {
+                case "debug":
+                    return LogLevel.DEBUG;
+                case "info":
+                    return LogLevel.INFO;
+                case "warning":
+                    return LogLevel.WARNING;
+                case "critical":
+                    return LogLevel.CRITICAL;
+                case "error":
+                    return LogLevel.ERROR;
+                default:
+                    return LogLevel.INFO;
+            }
         }
     }
 
@@ -62,6 +82,16 @@ public class Logger {
             System.out.printf(LOG_FORMAT, 
                 java.time.LocalDateTime.now(),
                 LogLevel.ERROR,
+                methodName,
+                message);
+        }
+    }
+    
+    public void critical(String methodName, String message) {
+        if (minimumLevel.getSeverity() <= LogLevel.CRITICAL.getSeverity()) {
+            System.out.printf(LOG_FORMAT, 
+                java.time.LocalDateTime.now(),
+                LogLevel.CRITICAL,
                 methodName,
                 message);
         }

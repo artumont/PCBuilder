@@ -25,7 +25,7 @@ public class SocketTestTool {
         JPanel connectionPanel = new JPanel(new GridLayout(2, 2, 5, 5));
         connectionPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         hostField = new JTextField("localhost");
-        portField = new JTextField("8080");
+        portField = new JTextField("9854");
         connectionPanel.add(new JLabel("Host:"));
         connectionPanel.add(hostField);
         connectionPanel.add(new JLabel("Port:"));
