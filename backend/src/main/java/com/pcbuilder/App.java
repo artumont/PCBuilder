@@ -10,7 +10,7 @@ public class App {
 
     public static void main(String[] args) throws Exception {
         logger.setLevel(Logger.LogLevel.INFO);
-        Config config = new Config(logger, "./config.ini");
+        Config config = new Config(logger, getCWDString() + "\\config.ini");
 
         if (Boolean.getBoolean("debug.enabled")) {
             logger.setLevel(Logger.LogLevel.DEBUG);
@@ -21,6 +21,7 @@ public class App {
         Sockets server = new Sockets(logger);
         Database database = new Database(logger, config);
         
+        logger.info("App.main", String.format("Starting server on port %s with log level %s", config.getSetting("Server", "Port"), logger.getLevel().toString()));
         if (server.start(Integer.parseInt(config.getSetting("Server", "Port")))) {
             logger.info("App.main", "Socket server started successfully, attempting to start critical services.");
 
@@ -48,5 +49,10 @@ public class App {
         else {
             logger.info("App.main", String.format("Service '%s' started successfully", serviceName));
         }
+    }
+
+    private static String getCWDString() {
+        String currentPath = System.getProperty("user.dir");
+        return currentPath;
     }
 }

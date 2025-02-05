@@ -70,18 +70,20 @@ public class Config {
             newIni.put("Logging", "LogPath", "./logs");
             
             // Server section
-            newIni.put("Server", "Port", "8080");
+            newIni.put("Server", "Port", "9312");
             newIni.put("Server", "MaxConnections", "10");
             newIni.put("Server", "SocketTimeout", "30000");
             
             // Database section
             newIni.put("Database", "ServerName", "localhost");
-            newIni.put("Database", "DatabaseName", "PCBuilder");
-            newIni.put("Database", "Username", "sa");
-            newIni.put("Database", "Password", "YourStrongPassword");
             newIni.put("Database", "Port", "1433");
+            newIni.put("Database", "DatabaseName", "PCBuilder");
             newIni.put("Database", "Encrypt", "true");
             newIni.put("Database", "TrustServerCertificate", "true");
+            newIni.put("Database", "Username", "sa");
+            newIni.put("Database", "Password", "pcbuilder");
+            newIni.put("Database", "MaxRetryCount", "3");
+            newIni.put("Database", "RetryDelay", "1000");
             
             // Save to file
             newIni.store(new File(path));
@@ -91,5 +93,10 @@ public class Config {
             logger.error("Config.create", String.format("Failed to create config file: %s", e.getMessage()));
             return false;
         }
+    }
+
+    public static String getCWDString() {
+        String currentPath = System.getProperty("user.dir");
+        return currentPath;
     }
 }
