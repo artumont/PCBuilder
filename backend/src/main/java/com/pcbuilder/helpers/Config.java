@@ -21,9 +21,12 @@ public class Config {
             }
             else if (!configFile.exists()) {
                 logger.error("Config", "Config file does not exist.");
-                if (!create()) {
+                if (!create(path)) {
                     logger.error("Config", "Failed to create config file.");
                     return;
+                }
+                else {
+                    configFile = new File(path);
                 }
             }
 
@@ -58,15 +61,31 @@ public class Config {
         }
     }
 
-    private boolean create() {
+    private boolean create(String path) {
         try {
-            ini.put("Socket", "port", "9854");
-            ini.put("Database", "connectionUrl", "jdbc:mysql://localhost:3306/pcbuilder");
-            ini.put("Database", "username", "root");
-            ini.put("Database", "password", "password");
-            ini.put("Logging", "minimumLevel", "INFO");
-            Ini newIni = new Ini(new File("./config.ini"));
-            newIni.store();
+            Ini newIni = new Ini();
+
+            // Logging section
+            newIni.put("Logging", "LogLevel", "INFO");
+            newIni.put("Logging", "LogPath", "./logs");
+            
+            // Server section
+            newIni.put("Server", "Port", "8080");
+            newIni.put("Server", "MaxConnections", "10");
+            newIni.put("Server", "SocketTimeout", "30000");
+            
+            // Database section
+            newIni.put("Database", "ServerName", "localhost");
+            newIni.put("Database", "DatabaseName", "PCBuilder");
+            newIni.put("Database", "Username", "sa");
+            newIni.put("Database", "Password", "YourStrongPassword");
+            newIni.put("Database", "Port", "1433");
+            newIni.put("Database", "Encrypt", "true");
+            newIni.put("Database", "TrustServerCertificate", "true");
+            
+            // Save to file
+            newIni.store(new File(path));
+            logger.info("Config.create", "Config file created successfully.");
             return true;
         } catch (IOException e) {
             logger.error("Config.create", String.format("Failed to create config file: %s", e.getMessage()));

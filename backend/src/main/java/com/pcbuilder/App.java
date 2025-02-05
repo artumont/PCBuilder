@@ -9,8 +9,8 @@ public class App {
     private static Logger logger = new Logger();
 
     public static void main(String[] args) throws Exception {
-        Config config = new Config(logger, "config.ini");
-        logger.info("App.main", "Application started.");
+        logger.setLevel(Logger.LogLevel.INFO);
+        Config config = new Config(logger, "./config.ini");
 
         if (Boolean.getBoolean("debug.enabled")) {
             logger.setLevel(Logger.LogLevel.DEBUG);
