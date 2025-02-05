@@ -41,7 +41,6 @@ public class App {
     }
 
     private static void serviceStartupAssurance(boolean serviceStatus, String serviceName) {
-        logger.info("App.main", "Starting service: " + serviceName);
         if (!serviceStatus) {
             logger.critical("App.main", String.format("Service '%s' initialization failed. Exiting application.", serviceName));
             System.exit(1);
