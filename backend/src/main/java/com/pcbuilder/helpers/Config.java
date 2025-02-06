@@ -1,9 +1,8 @@
 package com.pcbuilder.helpers;
 
 import java.io.File;
-import java.io.IOException;
-
 import org.ini4j.Ini;
+import java.io.IOException;
 import org.ini4j.InvalidFileFormatException;
 
 public class Config {

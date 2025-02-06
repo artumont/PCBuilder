@@ -3,6 +3,7 @@ package com.pcbuilder;
 import com.pcbuilder.helpers.Logger;
 import com.pcbuilder.helpers.Config;
 import com.pcbuilder.utilities.Database;
+import com.pcbuilder.utilities.Resolver;
 import com.pcbuilder.utilities.Sockets;
 
 public class App {
@@ -18,14 +19,16 @@ public class App {
             logger.setLevel(Logger.LogLevel.getLevel(config.getSetting("Logging", "LogLevel")));
         }
 
-        Sockets server = new Sockets(logger);
         Database database = new Database(logger, config);
+        Resolver resolver = new Resolver(logger);
+        Sockets server = new Sockets(logger, resolver);
         
         logger.info("App.main", String.format("Starting server on port %s with log level %s", config.getSetting("Server", "Port"), logger.getLevel().toString()));
         if (server.start(Integer.parseInt(config.getSetting("Server", "Port")))) {
             logger.info("App.main", "Socket server started successfully, attempting to start critical services.");
 
             serviceStartupAssurance(database.connect(), "Database");
+            serviceStartupAssurance(resolver.updateDatabaseConnection(database.getConnection()), "Resolver");
 
             logger.info("App.main", "All critical services started successfully, listening for incoming connections.");
             server.startListening();

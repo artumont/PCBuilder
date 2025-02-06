@@ -61,6 +61,10 @@ public class Database {
         }
     }
 
+    public Connection getConnection() {
+        return connection;
+    }
+
     private String getConnectionString() {
         return String.format(
             "jdbc:sqlserver://%s:%s;databaseName=%s;encrypt=%s;trustServerCertificate=%s;",

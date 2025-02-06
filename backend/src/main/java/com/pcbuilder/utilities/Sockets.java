@@ -12,9 +12,11 @@ public class Sockets {
     private BufferedReader in;
     private static Logger logger;
     private volatile boolean isListening = false;
+    private static Resolver resolver;
     
-    public Sockets(Logger givenLogger) {
+    public Sockets(Logger givenLogger, Resolver givenResolver) {
         logger = givenLogger;
+        resolver = givenResolver;
     }
 
     public boolean start(int port) {
@@ -64,7 +66,18 @@ public class Sockets {
                     while (isListening && clientSocket.isConnected()) {
                         String message = in.readLine();
                         if (message != null) {
-                            //@todo Implement message processing (resolver)
+                            String[] messageParts = message.split(" ");
+                            if (messageParts.length == 2) {
+                                Resolver.Operation operation = Resolver.Operation.fromValue(messageParts[0]);
+                                String args = messageParts[1];
+                                String result = resolver.resolveOperation(operation, args);
+                                logger.info("Sockets.startListening", String.format("Operation '%s' resolved with args '%s'", operation.getValue(), args));
+                                out.println(result);
+                            }
+                            else {
+                                logger.warning("Sockets.startListening", String.format("Invalid message format: %s", message));
+                                out.println("Invalid message format");
+                            }
                         }
                     }
                     logger.warning("Sockets.startListening", "Client disconnected or connection lost. Performing cleanup.");
