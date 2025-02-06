@@ -55,7 +55,7 @@ After that you should be good to go!
 - `/backend` - Server-side logic and API endpoints
 - `/frontend` - User interface and client-side code
 - `/manager` - Internal management tools
-- `/.dev` - Development guidelines and documentation
+- `/.dev` - Development tools, guidelines and documentation
 
 ## 🤝 Contributing
 
