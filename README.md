@@ -32,7 +32,7 @@ cd PCBuilder
 ```
 
 2. Set up the database
-```bash
+```
 Download: https://www.microsoft.com/es-mx/sql-server/sql-server-downloads (Express & SSMS)
 Execute 'SQL Server 2022 Configuration Manager' then go to 'Protocols for (MSSQLSERVER)'
 Enable and configure 'Shared Memory' and 'TCP/IP' (TCP should have all ips active not enabled, the port should also be the same as in your config)
