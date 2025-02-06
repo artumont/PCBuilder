@@ -14,37 +14,13 @@ public class Resolver {
     private static ComponentOperation componentOperation;
     private static UserOperation userOperation;
 
-    public enum Operation {
-        UserOperation("UserOperation"),
-        ComponentOperation("ComponentOperation");
-        
-        private final String value;
-
-        Operation(String value) {
-            this.value = value;
-        }
-
-        public String getValue() {
-            return value;
-        }
-
-        public static Operation fromValue(String value) {
-            for (Operation operation : Operation.values()) {
-                if (operation.value.equals(value)) {
-                    return operation;
-                }
-            }
-            throw new IllegalArgumentException("Unknown operation: " + value);
-        }
-    }
-
     public Resolver(Logger givenLogger) {
         logger = givenLogger;
         componentOperation = new ComponentOperation(logger);
         userOperation = new UserOperation(logger);
     }
 
-    public String resolveOperation(Operation operation, String args) {
+    public String resolveOperation(String operation, String args) {
         if (connection == null) {
             logger.error("Resolver.resolveOperation", "Database connection is null. Cannot resolve operation.");
             return "Database connection is null";
@@ -53,14 +29,12 @@ public class Resolver {
         try {
             JSONObject jsonArgs = new JSONObject(args);
             switch (operation) {
-                case UserOperation:
+                case "UserOperation":
                     logger.info("Resolver.resolveOperation", String.format("User operation resolved with args: %s", args));
-                    //@todo: Implement user operation & replace return statement
-                    return "User operation resolved";
-                case ComponentOperation:
+                    return userOperation.interpretOperationType(jsonArgs, connection);
+                case "ComponentOperation":
                     logger.info("Resolver.resolveOperation", String.format("Component operation resolved with args: %s", args));
-                    //@todo: Implement components operation & replace return statement
-                    return "Component operation resolved";
+                    return componentOperation.interpretOperationType(jsonArgs, connection);
                 default:
                     return "Unknown operation";
             }

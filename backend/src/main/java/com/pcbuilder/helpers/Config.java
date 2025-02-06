@@ -66,7 +66,6 @@ public class Config {
 
             // Logging section
             newIni.put("Logging", "LogLevel", "INFO");
-            newIni.put("Logging", "LogPath", "./logs");
             
             // Server section
             newIni.put("Server", "Port", "9312");
