@@ -80,7 +80,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - Jesus (@Jesus-Mendoza21) - Frontend Developer
 
 ### Manager Branch
-- Guajardo - Developer
+- Guajardo (@IngGuajardo) - Developer
 - Gilberto (@GilPeCa) - Developer
 
 ## 📫 Contact
