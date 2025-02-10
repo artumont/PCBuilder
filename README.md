@@ -74,15 +74,14 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ### Backend Branch
 - Luis (@prodanyboy) - Database Engineer
 - Gerardo (@SONRIXMX) - Backend Developer
-- Gilberto (@GilPeCa) - Backend Developer
 
 ### Frontend Branch
 - Emmanuel (@Ultimateknight143) - Frontend Developer
 - Jesus (@Jesus-Mendoza21) - Frontend Developer
 
 ### Manager Branch
-- [Team Member] - [Role]
-- [Team Member] - [Role]
+- Guajardo - Developer
+- Gilberto (@GilPeCa) - Developer
 
 ## 📫 Contact
 
