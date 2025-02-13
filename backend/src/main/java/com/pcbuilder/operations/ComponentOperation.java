@@ -30,10 +30,10 @@ public class ComponentOperation {
             switch (args.optString("type", "NotProvided")) {
                 case "Get":
                     logger.info("ComponentOperation.interpretOperationType", "Get operation identified.");
-                    return "";
+                    return ""; // @todo: implement
                 case "Add":
                     logger.info("ComponentOperation.interpretOperationType", "Add operation identified.");
-                    return "";
+                    return ""; // @todo: implement
                 default: 
                     logger.error("ComponentOperation.interpretOperationType", String.format("Unknown operation type: %s", args.optString("type")));
                     response.clear();
