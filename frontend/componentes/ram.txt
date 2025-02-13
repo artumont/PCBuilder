@@ -1,0 +1,11 @@
+Corsair Vengeance LPX DDR4-2400: Frecuencia de 2400 MHz.
+G.Skill Ripjaws V DDR4-3200: Frecuencia de 3200 MHz.
+Kingston HyperX Fury DDR4-2666: Frecuencia de 2666 MHz.
+Crucial Ballistix Sport LT DDR4-3000: Frecuencia de 3000 MHz.
+TeamGroup T-Force Vulcan DDR4-3600: Frecuencia de 3600 MHz.
+Corsair Dominator Platinum RGB DDR5-6200: Frecuencia de 6200 MHz.
+G.Skill Trident Z5 RGB DDR5-8000: Frecuencia de 8000 MHz.
+Kingston Fury Renegade DDR5-7200: Frecuencia de 7200 MHz.
+TeamGroup T-Force Delta RGB DDR5-7600: Frecuencia de 7600 MHz.
+Corsair Vengeance DDR5-6000: Frecuencia de 6000 MHz.
+Kingston Fury Beast DDR5-6000: Frecuencia de 6000 MHz.

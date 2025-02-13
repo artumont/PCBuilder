@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elige Componentes</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+</head>
+<body class="bg-gray-900 text-white">
+    <header class="bg-gray-800 py-4">
+        <div class="container mx-auto flex justify-between items-center px-4">
+            <h1 class="text-3xl font-bold">Elige Componentes</h1>
+            <nav>
+                <a class="hover:text-white" href="../../index.html">Volver a Inicio</a>
+            </nav>
+        </div>
+    </header>
+    <main class="container mx-auto py-8 px-4">
+        <h2 class="text-2xl font-bold mb-4">Selecciona los Componentes</h2>
+        <div class="bg-gray-800 p-6 rounded-lg shadow-lg mb-8">
+            <h3 class="text-xl font-bold mb-4">Introduce tu Presupuesto</h3>
+            <form id="budget-form">
+                <div class="mb-4">
+                    <label for="budget" class="block text-gray-300">Presupuesto (en pesos)</label>
+                    <input type="number" id="budget" class="w-full p-2 rounded bg-gray-700 text-white" required>
+                </div>
+                <button type="submit" class="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Filtrar Componentes</button>
+            </form>
+        </div>
+        <div id="components-container"></div>
+        <h3 class="text-xl font-bold mt-6">Carrito</h3>
+        <ul id="cart-items" class="bg-gray-800 p-4 rounded-lg shadow-lg mb-4"></ul>
+        <button id="go-to-cart" class="w-full bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mt-4" style="display: none;">Ver Carrito</button>
+    </main>
+    <script>
+        const components = {
+            "Tarjetas Gráficas": [
+                { name: "RTX 4060 Ti", price: 8000 },
+                { name: "RX 6700 XT", price: 7500 }
+            ],
+            "Procesadores": [
+                { name: "Intel i7-12700K", price: 9000, type: "Intel" },
+                { name: "AMD Ryzen 7 5800X", price: 8500, type: "AMD" }
+            ],
+            "Fuentes de Poder": [
+                { name: "Corsair RM750x 750W", price: 2500 },
+                { name: "EVGA 650W 80 Plus Gold", price: 2000 }
+            ],
+            "Memoria RAM": [
+                { name: "Corsair Vengeance 16GB 3200MHz", price: 1800 },
+                { name: "G.Skill Trident Z 32GB 3600MHz", price: 3600 }
+            ],
+            "Placas Madre": [
+                { name: "ASUS ROG Strix B550-F", price: 4000, type: "AMD" },
+                { name: "MSI Z690-A PRO", price: 5000, type: "Intel" }
+            ]
+        };
+
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        updateCart();
+
+        document.getElementById('budget-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const budget = document.getElementById('budget').value;
+            displayComponents(budget);
+        });
+
+        function displayComponents(budget) {
+            const container = document.getElementById('components-container');
+            container.innerHTML = '';
+            for (const section in components) {
+                const sectionDiv = document.createElement('div');
+                sectionDiv.className = 'bg-gray-800 p-6 rounded-lg shadow-lg mb-8';
+                sectionDiv.innerHTML = `<h3 class='text-xl font-bold mb-4'>${section}</h3>`;
+                components[section].forEach(component => {
+                    if (component.price <= budget) {
+                        const componentDiv = document.createElement('div');
+                        componentDiv.className = 'mb-4 flex justify-between items-center';
+                        componentDiv.innerHTML = `
+                            <span>${component.name} (${component.type || "General"})</span>
+                            <span>$${component.price}</span>
+                            <button class='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' onclick='addToCart(${JSON.stringify(component)})'>Agregar</button>
+                        `;
+                        sectionDiv.appendChild(componentDiv);
+                    }
+                });
+                container.appendChild(sectionDiv);
+            }
+            document.getElementById('go-to-cart').style.display = 'block';
+        }
+
+        function addToCart(component) {
+            cart.push(component);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateCart();
+        }
+
+        function updateCart() {
+            const cartContainer = document.getElementById('cart-items');
+            cartContainer.innerHTML = '';
+            cart.forEach((component, index) => {
+                const item = document.createElement('li');
+                item.className = 'flex justify-between items-center py-2';
+                item.innerHTML = `
+                    <span>${component.name} - $${component.price}</span>
+                    <button class='bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded' onclick='removeFromCart(${index})'>Eliminar</button>
+                `;
+                cartContainer.appendChild(item);
+            });
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateCart();
+        }
+
+        document.getElementById('go-to-cart').addEventListener('click', function() {
+            localStorage.setItem('cart', JSON.stringify(cart));
+            window.location.href = "/componentes/carrito.html";
+
+        });
+    </script>
+</body>
+</html>

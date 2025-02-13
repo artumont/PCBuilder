@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recibo de Pago</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-900 text-white">
+
+    <!-- Encabezado y Menú -->
+    <header class="bg-gray-800 py-4">
+        <div class="container mx-auto flex justify-between items-center px-4">
+            <h1 class="text-3xl font-bold">Recibo de Pago</h1>
+            <nav>
+                <a class="hover:text-white" href="../index.html">Volver a Inicio</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Menú de Navegación -->
+    <div class="container mx-auto flex justify-between items-center px-4">
+        <div class="flex space-x-4">
+            <div class="relative group">
+                <a class="hover:text-white" href="../componentes.html">Componentes</a>
+                <div class="dropdown-menu absolute left-0 hidden bg-gray-800 text-white shadow-lg group-hover:block w-48">
+                    <a href="componentes/procesadores.html" class="flex items-center space-x-2 p-2 hover:bg-gray-700">
+                        <img src="https://storage.googleapis.com/a1aa/image/rfLZdEOfau_9p6f3sRlzgWXMvPuDrACjZAc1-kT2sKM.jpg" alt="Procesadores" class="w-8 h-8">
+                        <span>Procesadores</span>
+                    </a>
+                    <a href="componentes/graficas.html" class="flex items-center space-x-2 p-2 hover:bg-gray-700">
+                        <img src="https://storage.googleapis.com/a1aa/image/tFIGZIhToD0EOmH7KFBbvO8FGQRAH22kce5-7Nycojo.jpg" alt="Tarjetas de Video" class="w-8 h-8">
+                        <span>Tarjetas de Video</span>
+                    </a>
+                    <a href="componentes/ram.html" class="flex items-center space-x-2 p-2 hover:bg-gray-700">
+                        <img src="https://storage.googleapis.com/a1aa/image/JXBUDXHTmfpJKr3V7aLEnui1rgNZ5VMl5D-aSx6_umM.jpg" alt="Memoria RAM" class="w-8 h-8">
+                        <span>Memoria RAM</span>
+                    </a>
+                    <a href="componentes/fuentes.html" class="flex items-center space-x-2 p-2 hover:bg-gray-700">
+                        <img src="https://storage.googleapis.com/a1aa/image/DV0bj6uHVoK1N_3We5-PBJo59XSEUjnnXk-t_Aevtzw.jpg" alt="Fuentes de Poder" class="w-8 h-8">
+                        <span>Fuentes de Poder</span>
+                    </a>
+                </div>
+            </div>
+            <a class="hover:text-white" href="../ayuda.html">Ayuda</a>
+            <a id="create-computer-link" class="hover:text-white hidden" href="../crea-tu-computadora.html">Crea tu Computadora</a>
+        </div>
+        <div class="flex space-x-4">
+            <a id="login-link" class="hover:text-white" href="../iniciar-sesion.html">Iniciar Sesión</a>
+            <a id="logout-link" class="hover:text-white hidden" href="#">Cerrar Sesión</a>
+            <a class="hover:text-white" href="../componentes/carrito.html">Carrito</a>
+            <a class="hover:text-white" href="../monto-total.html">Monto Total</a>
+            <div id="user-info" class="hidden text-gray-300"></div>
+        </div>
+    </div>
+
+    <!-- Contenido Principal -->
+    <main class="container mx-auto py-8 px-4">
+        <h2 class="text-2xl font-bold mb-4">Detalles del Recibo</h2>
+        <div class="bg-gray-800 p-6 rounded-lg shadow-lg">
+            <p><strong>Nombre Completo:</strong> <span id="name">Cargando...</span></p>
+            <p><strong>Correo Electrónico:</strong> <span id="email">Cargando...</span></p>
+            <p><strong>Dirección:</strong> <span id="address">Cargando...</span></p>
+            <p><strong>Número de Tarjeta:</strong> <span id="card-number">**** **** **** 1234</span></p>
+            <p><strong>Fecha de Expiración:</strong> <span id="expiry-date">MM/AA</span></p>
+            <p><strong>Fecha de Pago:</strong> <span id="payment-date">Cargando...</span></p>
+            <h3 class="text-xl font-bold mb-2">Artículos del Carrito</h3>
+            <ul id="cart-items" class="list-disc pl-5 text-gray-300">Cargando...</ul>
+        </div>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Recuperar y asignar datos desde localStorage
+            const name = localStorage.getItem('name');
+            const email = localStorage.getItem('email');
+            const address = localStorage.getItem('address');
+            const cardNumber = localStorage.getItem('cardNumber');
+            const expiryDate = localStorage.getItem('expiryDate');
+            const cartItems = JSON.parse(localStorage.getItem('cart'));
+            const paymentDate = new Date().toLocaleDateString();
+
+            // Asignar datos a los elementos del recibo
+            document.getElementById('name').textContent = name;
+            document.getElementById('email').textContent = email;
+            document.getElementById('address').textContent = address;
+            document.getElementById('card-number').textContent = `**** **** **** ${cardNumber.slice(-4)}`;
+            document.getElementById('expiry-date').textContent = expiryDate;
+            document.getElementById('payment-date').textContent = paymentDate;
+
+            // Mostrar artículos del carrito en el recibo
+            const cartItemsList = document.getElementById('cart-items');
+            cartItems.forEach(item => {
+                const listItem = document.createElement('li');
+                listItem.textContent = `${item.name} - $${item.price}`;
+                cartItemsList.appendChild(listItem);
+            });
+        });
+    </script>
+</body>
+</html>

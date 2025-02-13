@@ -1,0 +1,63 @@
+Gigabyte GeForce GTX 1050 Ti
+Gigabyte GeForce GTX 1060 WINDFORCE OC 6G
+NVIDIA GeForce GTX 1070 8GB
+EVGA GeForce GTX 1070 Ti SC Gaming
+Nvidia GeForce GTX 1080 8GB
+Tarjeta Gráfica Asus Nvidia GeForce RTX 3060
+EVGA GeForce RTX 3070 XC3 Ultra Gaming
+ASUS TUF Gaming NVIDIA GeForce RTX 3070 Ti OC
+EVGA 10G-P5-3885-KR GeForce RTX 3080 XC3 ULTRA GAMING
+Tarjeta de Video ASUS GeForce RTX 3080 TI
+Zotac Gaming GeForce RTX 3090 Trinity OC 24 GB
+ASUS Dual GeForce RTX™ 4060
+GIGABYTE Tarjeta de Video Eagle GeForce RTX 4060 Ti OC
+MSI Gaming GeForce RTX 4070 Ventus 3X
+ZOTAC Gaming GeForce RTX 4070 Ti
+Zotac GeForce RTX 5080 Solid OC
+ZOTAC Gaming GeForce RTX 4080 Super
+Asus Tarjeta gráfica ROG Strix GeForce RTX 4090 OC
+EVGA GeForce GTX 1060 SC Gaming
+MSI GeForce GTX 1060 Gaming X 6GB
+Gigabyte GeForce GTX 1080 G1 Gaming 8GB
+ASUS GeForce GTX 1070 Turbo OC
+Zotac GeForce GTX 1080 Mini 8GB
+Gigabyte GeForce GTX 1070 G1 Gaming 8GB
+EVGA GeForce GTX 1080 SC2 Gaming
+MSI GeForce RTX 3060 Ti Gaming X Trio
+ASUS ROG Strix GeForce GTX 1660 Ti OC Edition
+Zotac Gaming GeForce GTX 1660 Super Twin Fan
+Gigabyte AORUS GeForce GTX 1650
+EVGA GeForce GTX 1650 SC Ultra Gaming
+MSI GeForce GTX 1650 SUPER GAMING X
+ASUS TUF Gaming GeForce GTX 1650
+Gigabyte GeForce RTX 3060 Gaming OC 12GB
+MSI GeForce RTX 3070 Ti Gaming X Trio
+Zotac GeForce RTX 3070 Twin Edge OC
+ASUS GeForce RTX 3070 TUF Gaming
+Gigabyte GeForce RTX 3070 Eagle OC
+MSI GeForce RTX 3060 Ti Ventus 2X OC
+Gigabyte GeForce RTX 3080 GAMING OC 10GB
+EVGA GeForce RTX 3080 FTW3 Ultra Gaming
+Zotac Gaming GeForce RTX 3080 AMP Holo
+ASUS TUF Gaming GeForce RTX 3080 OC Edition
+MSI GeForce RTX 3090 Suprim X
+Gigabyte GeForce RTX 3090 AORUS XTREME WATERFORCE
+EVGA GeForce RTX 3090 FTW3 Ultra Gaming
+ZOTAC Gaming GeForce RTX 3090 Trinity
+MSI GeForce RTX 4080 SUPRIM X
+Gigabyte GeForce RTX 4080 GAMING OC 16GB
+ASUS GeForce RTX 4080 TUF Gaming OC Edition
+EVGA GeForce RTX 4080 FTW3 Ultra Gaming
+Zotac Gaming GeForce RTX 4070 Trinity OC
+ASUS ROG Strix GeForce RTX 4070 Ti OC
+MSI GeForce RTX 4070 Ti Gaming X Trio
+Gigabyte GeForce RTX 4070 Eagle OC
+EVGA GeForce RTX 4060 Ti XC Gaming
+MSI GeForce RTX 4060 Ti Ventus 3X
+Zotac GeForce RTX 4060 Ti Twin Edge OC
+Gigabyte GeForce RTX 4060 Eagle OC
+ASUS TUF Gaming GeForce RTX 4060 Ti OC
+EVGA GeForce GTX 1660 Ti SC Ultra Gaming
+
+
+

@@ -1,0 +1,45 @@
+Corsair RM650x
+EVGA SuperNOVA 650 G5
+Seasonic Focus GX-650
+Cooler Master MWE Gold 650
+Thermaltake Toughpower GF1 650W
+Corsair RM750x
+EVGA SuperNOVA 750 G5
+Seasonic Focus GX-750
+Cooler Master MWE Gold 750
+Thermaltake Toughpower GF1 750W
+ASUS ROG Strix 750W Gold
+MSI MPG A750GF
+Gigabyte AORUS P750W
+NZXT C750
+Antec Earthwatts Gold Pro 750W
+Corsair RM850x
+EVGA SuperNOVA 850 G5
+Seasonic Focus GX-850
+Cooler Master MWE Gold 850
+Thermaltake Toughpower GF1 850W
+ASUS ROG Strix 850W Gold
+MSI MPG A850GF
+Gigabyte AORUS P850W
+NZXT C850
+Antec Earthwatts Gold Pro 850W
+Corsair RM1000x
+EVGA SuperNOVA 1000 G5
+Seasonic Focus GX-1000
+Cooler Master MWE Gold 1000
+Thermaltake Toughpower GF1 1000W
+ASUS ROG Strix 1000W Gold
+MSI MPG A1000GF
+Gigabyte AORUS P1000W
+NZXT C1000
+Antec High Current Gamer Gold 1000W
+Corsair AX1200i
+EVGA SuperNOVA 1200 P2
+Seasonic Prime Gold 1200W
+Cooler Master V1200 Platinum
+Thermaltake Toughpower Grand RGB 1200W
+ASUS TUF Gaming 1200W Gold
+MSI MPG A1200GF
+Gigabyte AORUS P1200W
+NZXT C1200 Gold
+Antec High Current Pro 1200W

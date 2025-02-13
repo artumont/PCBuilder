@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartRig Builder</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+</head>
+<style>
+    .night-pumpkind-font-f8699 {
+        font-size: 4rem; /* Ajusta el tamaño de la fuente según tus necesidades */
+        font-weight: 700;
+        font-family: 'Poppins', sans-serif;
+        color: #ffffff; /* Puedes cambiar el color si lo deseas */
+        text-shadow: 2px 2px 6px #000000; /* Efecto de sombra para darle un toque especial */
+    }
+</style>
+<body class="bg-gray-900 text-white">
+    <div class="relative">
+        <img alt="A detailed close-up of a computer motherboard with various components, including fans, capacitors, and heat sinks, all illuminated with red and orange lights." class="w-full h-screen object-cover" height="1080" src="https://storage.googleapis.com/a1aa/image/fvDhWxxCvlipuM5tDXEH6foqPS5qDO37Ebx1TtLX4iE.jpg" width="1920"/>
+        <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+            <h1 class="text-7xl night-pumpkind-font-f8699">SMARTRIG BUILDER</h1>
+        </div>
+        
+        <nav class="absolute top-0 w-full bg-gray-800 bg-opacity-90 py-4 text-lg">
+            <div class="container mx-auto flex justify-between items-center px-6">
+                <div class="flex space-x-6">
+                    <a class="hover:text-white text-2xl font-semibold" href="index.html">Inicio</a>
+                    <div class="relative group hover:text-white text-2xl font-semibold">
+                        <a class="hover:text-white" href="componentes.html">Componentes</a>
+                        <div class="dropdown-menu absolute left-0 hidden bg-gray-800 text-white shadow-lg group-hover:block w-48">
+                            <a href="componentes/procesadores.html" class="flex items-center space-x-2 p-2 hover:bg-gray-200">
+                                <img src="https://storage.googleapis.com/a1aa/image/rfLZdEOfau_9p6f3sRlzgWXMvPuDrACjZAc1-kT2sKM.jpg" alt="Icon of a computer processor with intricate details and pins." class="w-8 h-8">
+                                <span>Procesadores</span>
+                            </a>
+                            <a href="componentes/graficas.html" class="flex items-center space-x-2 p-2 hover:bg-gray-200">
+                                <img src="https://storage.googleapis.com/a1aa/image/tFIGZIhToD0EOmH7KFBbvO8FGQRAH22kce5-7Nycojo.jpg" alt="Icon of a graphics card with cooling fans and connectors." class="w-8 h-8">
+                                <span>Tarjetas de Video</span>
+                            </a>
+                            <a href="componentes/ram.html" class="flex items-center space-x-2 p-2 hover:bg-gray-200">
+                                <img src="https://storage.googleapis.com/a1aa/image/JXBUDXHTmfpJKr3V7aLEnui1rgNZ5VMl5D-aSx6_umM.jpg" alt="Icon of a RAM module with memory chips and connectors." class="w-8 h-8">
+                                <span>Memoria RAM</span>
+                            </a>
+                            <a href="componentes/fuentes.html" class="flex items-center space-x-2 p-2 hover:bg-gray-200">
+                                <img src="https://storage.googleapis.com/a1aa/image/DV0bj6uHVoK1N_3We5-PBJo59XSEUjnnXk-t_Aevtzw.jpg" alt="Icon of a power supply unit with cables and connectors." class="w-8 h-8">
+                                <span>Fuentes de Poder</span>
+                            </a>
+                            <a href="componentes/gabinetes.html" class="flex items-center space-x-2 p-2 hover:bg-gray-200">
+                                <img src="https://storage.googleapis.com/a1aa/image/EWFRDP0PfoGNRwU_E1aJQpbpcDbbklWg5sz5FpO1JfU.jpg" alt="Icon of a computer case with front panel and side window." class="w-8 h-8">
+                                <span>Gabinetes</span>
+                            </a>
+                            <a href="componentes/almacenamiento.html" class="flex items-center space-x-2 p-2 hover:bg-gray-200">
+                                <img src="https://storage.googleapis.com/a1aa/image/RmUpvNl2L29GKmK-AVG98Dl6wcN-B7X12fHxz5cHw1U.jpg" alt="Icon of a storage drive with connectors and label." class="w-8 h-8">
+                                <span>Almacenamiento</span>
+                            </a>
+                            <a href="componentes/placa-madre.html" class="flex items-center space-x-2 p-2 hover:bg-gray-200">
+                                <img src="https://m.media-amazon.com/images/I/81S9D7bqEzL._AC_SL1500_.jpg" alt="Icon of a motherboard with various slots and connectors." class="w-8 h-8">
+                                <span>Placa Madre</span>
+                            </a>
+                        </div>
+                    </div>
+                    <a class="hover:text-white text-2xl font-semibold" href="ayuda.html">Ayuda</a>
+                    <a id="create-computer-link" class="hover:text-white text-2xl font-semibold hidden" href="crea-tu-computadora.html">Crea tu Computadora</a>
+                </div>
+                <div class="flex space-x-7">
+                    <a id="login-link" class="hover:text-white text-2xl font-semibold" href="iniciar-sesion.html">Iniciar Sesión</a>
+                    <a id="logout-link" class="hover:text-white text-2xl font-semibold hidden" href="#">Cerrar Sesión</a>
+                    <a class="hover:text-white text-2xl font-semibold" href="componentes/carrito.html">Carrito</a>
+                    <a class="hover:text-white text-2xl font-semibold" href="monto-total.html">Monto Total</a>
+                    <div id="user-info" class="hidden text-gray-300 hover:text-white text-2xl font-semibold"></div>
+                </div>
+            </div>
+        </nav>
+    </div>
+</body>
+</html>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const username = localStorage.getItem('username');
+        const userElement = document.getElementById('user-info');
+        const createComputerLink = document.getElementById('create-computer-link');
+        const loginLink = document.getElementById('login-link');
+        const logoutLink = document.getElementById('logout-link');
+
+        if (username) {
+            userElement.innerHTML = `<i class="fas fa-robot"></i> ${username}`;
+            userElement.classList.remove('hidden');
+            createComputerLink.classList.remove('hidden');
+            loginLink.classList.add('hidden');
+            logoutLink.classList.remove('hidden');
+        }
+
+        logoutLink.addEventListener('click', function() {
+            localStorage.removeItem('username');
+            window.location.reload();
+        });
+    });
+</script>

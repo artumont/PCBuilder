@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagar</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+</head>
+<body class="bg-gray-900 text-white">
+    <header class="bg-gray-800 py-4">
+        <div class="container mx-auto flex justify-between items-center px-4">
+            <h1 class="text-3xl font-bold">Pagar</h1>
+            <nav>
+                <a class="hover:text-white" href="../index.html">Volver a Inicio</a>
+            </nav>
+        </div>
+    </header>
+    
+    <nav class="bg-gray-800 py-4">
+        <div class="container mx-auto flex justify-between items-center px-4">
+            <div class="flex space-x-4">
+                <div class="relative group">
+                    <a class="hover:text-white" href="../componentes.html">Componentes</a>
+                    <div class="dropdown-menu absolute left-0 hidden bg-gray-800 text-white shadow-lg group-hover:block w-48">
+                        <a href="componentes/procesadores.html" class="flex items-center space-x-2 p-2 hover:bg-gray-200">
+                            <img src="https://storage.googleapis.com/a1aa/image/rfLZdEOfau_9p6f3sRlzgWXMvPuDrACjZAc1-kT2sKM.jpg" alt="Procesadores" class="w-8 h-8">
+                            <span>Procesadores</span>
+                        </a>
+                        <a href="componentes/graficas.html" class="flex items-center space-x-2 p-2 hover:bg-gray-200">
+                            <img src="https://storage.googleapis.com/a1aa/image/tFIGZIhToD0EOmH7KFBbvO8FGQRAH22kce5-7Nycojo.jpg" alt="Tarjetas de Video" class="w-8 h-8">
+                            <span>Tarjetas de Video</span>
+                        </a>
+                        <a href="componentes/ram.html" class="flex items-center space-x-2 p-2 hover:bg-gray-200">
+                            <img src="https://storage.googleapis.com/a1aa/image/JXBUDXHTmfpJKr3V7aLEnui1rgNZ5VMl5D-aSx6_umM.jpg" alt="Memoria RAM" class="w-8 h-8">
+                            <span>Memoria RAM</span>
+                        </a>
+                        <a href="componentes/fuentes.html" class="flex items-center space-x-2 p-2 hover:bg-gray-200">
+                            <img src="https://storage.googleapis.com/a1aa/image/DV0bj6uHVoK1N_3We5-PBJo59XSEUjnnXk-t_Aevtzw.jpg" alt="Fuentes de Poder" class="w-8 h-8">
+                            <span>Fuentes de Poder</span>
+                        </a>
+                        <a href="componentes/gabinetes.html" class="flex items-center space-x-2 p-2 hover:bg-gray-200">
+                            <img src="https://storage.googleapis.com/a1aa/image/EWFRDP0PfoGNRwU_E1aJQpbpcDbbklWg5sz5FpO1JfU.jpg" alt="Gabinetes" class="w-8 h-8">
+                            <span>Gabinetes</span>
+                        </a>
+                        <a href="componentes/almacenamiento.html" class="flex items-center space-x-2 p-2 hover:bg-gray-200">
+                            <img src="https://storage.googleapis.com/a1aa/image/RmUpvNl2L29GKmK-AVG98Dl6wcN-B7X12fHxz5cHw1U.jpg" alt="Almacenamiento" class="w-8 h-8">
+                            <span>Almacenamiento</span>
+                        </a>
+                        <a href="componentes/placa-madre.html" class="flex items-center space-x-2 p-2 hover:bg-gray-200">
+                            <img src="https://m.media-amazon.com/images/I/81S9D7bqEzL._AC_SL1500_.jpg" alt="Placa Madre" class="w-8 h-8">
+                            <span>Placa Madre</span>
+                        </a>
+                    </div>
+                </div>
+                <a class="hover:text-white" href="../ayuda.html">Ayuda</a>
+                <a id="create-computer-link" class="hover:text-white hidden" href="../crea-tu-computadora.html">Crea tu Computadora</a>
+            </div>
+            <div class="flex space-x-4">
+                <a id="login-link" class="hover:text-white" href="../iniciar-sesion.html">Iniciar Sesión</a>
+                <a id="logout-link" class="hover:text-white hidden" href="#">Cerrar Sesión</a>
+                <a class="hover:text-white" href="../componentes/carrito.html">Carrito</a>
+                <a class="hover:text-white" href="../monto-total.html">Monto Total</a>
+                <div id="user-info" class="hidden text-gray-300"></div>
+            </div>
+        </div>
+    </nav>
+    
+    <main class="container mx-auto py-8 px-4">
+        <h2 class="text-2xl font-bold mb-4">Detalles de Pago</h2>
+        <form id="payment-form" class="bg-gray-800 p-6 rounded-lg shadow-lg">
+            <div class="mb-4">
+                <label for="name" class="block text-gray-300">Nombre Completo</label>
+                <input type="text" id="name" class="w-full p-2 rounded bg-gray-700 text-white" required>
+            </div>
+            <div class="mb-4">
+                <label for="email" class="block text-gray-300">Correo Electrónico</label>
+                <input type="email" id="email" class="w-full p-2 rounded bg-gray-700 text-white" required>
+            </div>
+            <div class="mb-4">
+                <label for="address" class="block text-gray-300">Dirección</label>
+                <input type="text" id="address" class="w-full p-2 rounded bg-gray-700 text-white" required>
+            </div>
+            <div class="mb-4">
+                <label for="card-number" class="block text-gray-300">Número de Tarjeta</label>
+                <input type="text" id="card-number" class="w-full p-2 rounded bg-gray-700 text-white" required>
+            </div>
+            <div class="mb-4">
+                <label for="expiry-date" class="block text-gray-300">Fecha de Expiración</label>
+                <input type="text" id="expiry-date" class="w-full p-2 rounded bg-gray-700 text-white" placeholder="MM/AA" required>
+            </div>
+            <div class="mb-4">
+                <label for="cvv" class="block text-gray-300">CVV</label>
+                <input type="text" id="cvv" class="w-full p-2 rounded bg-gray-700 text-white" required>
+            </div>
+            <button type="submit" class="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Pagar</button>
+        </form>
+    </main>
+
+
+
+    <script>
+        document.getElementById('payment-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const address = document.getElementById('address').value;
+            const cardNumber = document.getElementById('card-number').value;
+            const expiryDate = document.getElementById('expiry-date').value;
+            const cvv = document.getElementById('cvv').value;
+
+            // Guardar datos de pago en localStorage
+            localStorage.setItem('name', name);
+            localStorage.setItem('email', email);
+            localStorage.setItem('address', address);
+            localStorage.setItem('cardNumber', cardNumber);
+            localStorage.setItem('expiryDate', expiryDate);
+
+            alert('Pago realizado con éxito');
+            window.location.href = 'recibo.html';
+        });
+    </script>
+</body>
+</html>

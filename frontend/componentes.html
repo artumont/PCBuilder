@@ -1,0 +1,165 @@
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Componentes - SmartRig Builder</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <style>
+        .sticky-nav {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+        .background-image {
+            background-image: url('https://storage.googleapis.com/a1aa/image/fvDhWxxCvlipuM5tDXEH6foqPS5qDO37Ebx1TtLX4iE.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        
+        .dropdown-menu a img {
+            width: 30px;
+            height: 30px;
+            margin-right: 10px;
+        }
+        .dropdown-menu a:hover {
+            background-color: #4a5568;
+        }
+        .component-button {
+            background-color: #1a202c;
+            border: 2px solid #2d3748;
+            color: #a0aec0;
+            font-weight: bold;
+            padding: 16px 24px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .component-button img {
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+        }
+        .component-button:hover {
+            background-color: #2d3748;
+            color: #edf2f7;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white">
+    <nav class="sticky-nav w-full bg-gray-800 bg-opacity-90 text-gray-300 py-4">
+        <div class="container mx-auto flex justify-between items-center px-4">
+            <div class="flex space-x-4">
+                <a class="hover:text-white" href="index.html">Inicio</a>
+                <div class="relative group">
+                    <a class="hover:text-white" href="componentes.html">Componentes</a>
+                    <div class="dropdown-menu absolute left-0 hidden bg-gray-800 text-white shadow-lg group-hover:block w-48">
+                        <a href="componentes/procesadores.html" class="flex items-center space-x-2 p-2 hover:bg-gray-200">
+                            <img src="https://storage.googleapis.com/a1aa/image/rfLZdEOfau_9p6f3sRlzgWXMvPuDrACjZAc1-kT2sKM.jpg" alt="Icon of a computer processor with intricate details and pins." class="w-8 h-8">
+                            <span>Procesadores</span>
+                        </a>
+                        <a href="componentes/graficas.html" class="flex items-center space-x-2 p-2 hover:bg-gray-200">
+                            <img src="https://storage.googleapis.com/a1aa/image/tFIGZIhToD0EOmH7KFBbvO8FGQRAH22kce5-7Nycojo.jpg" alt="Icon of a graphics card with cooling fans and connectors." class="w-8 h-8">
+                            <span>Tarjetas de Video</span>
+                        </a>
+                        <a href="componentes/ram.html" class="flex items-center space-x-2 p-2 hover:bg-gray-200">
+                            <img src="https://storage.googleapis.com/a1aa/image/JXBUDXHTmfpJKr3V7aLEnui1rgNZ5VMl5D-aSx6_umM.jpg" alt="Icon of a RAM module with memory chips and connectors." class="w-8 h-8">
+                            <span>Memoria RAM</span>
+                        </a>
+                        <a href="componentes/fuentes.html" class="flex items-center space-x-2 p-2 hover:bg-gray-200">
+                            <img src="https://storage.googleapis.com/a1aa/image/DV0bj6uHVoK1N_3We5-PBJo59XSEUjnnXk-t_Aevtzw.jpg" alt="Icon of a power supply unit with cables and connectors." class="w-8 h-8">
+                            <span>Fuentes de Poder</span>
+                        </a>
+                        <a href="componentes/gabinetes.html" class="flex items-center space-x-2 p-2 hover:bg-gray-200">
+                            <img src="https://storage.googleapis.com/a1aa/image/EWFRDP0PfoGNRwU_E1aJQpbpcDbbklWg5sz5FpO1JfU.jpg" alt="Icon of a computer case with front panel and side window." class="w-8 h-8">
+                            <span>Gabinetes</span>
+                        </a>
+                        <a href="componentes/almacenamiento.html" class="flex items-center space-x-2 p-2 hover:bg-gray-200">
+                            <img src="https://storage.googleapis.com/a1aa/image/RmUpvNl2L29GKmK-AVG98Dl6wcN-B7X12fHxz5cHw1U.jpg" alt="Icon of a storage drive with connectors and label." class="w-8 h-8">
+                            <span>Almacenamiento</span>
+                        </a>
+                        <a href="componentes/placa-madre.html" class="flex items-center space-x-2 p-2 hover:bg-gray-200">
+                            <img src="https://m.media-amazon.com/images/I/81S9D7bqEzL._AC_SL1500_.jpg" alt="Icon of a motherboard with various slots and connectors." class="w-8 h-8">
+                            <span>Placa Madre</span>
+                        </a>
+                    </div>
+                </div>
+                <a class="hover:text-white" href="ayuda.html">Ayuda</a>
+                <a id="create-computer-link" class="hover:text-white hidden" href="crea-tu-computadora.html">Crea tu Computadora</a>
+            </div>
+            <div class="flex space-x-4">
+                <a id="login-link" class="hover:text-white" href="iniciar-sesion.html">Iniciar Sesión</a>
+                <a id="logout-link" class="hover:text-white hidden" href="#">Cerrar Sesión</a>
+                <a class="hover:text-white" href="componentes/carrito.html">Carrito</a>
+                <a class="hover:text-white" href="monto-total.html">Monto Total</a>
+                <div id="user-info" class="hidden text-gray-300"></div>
+            </div>
+        </div>
+    </nav>
+    <div class="relative min-h-screen pt-20 background-image">
+        <div class="absolute inset-0 bg-black bg-opacity-50 flex flex-col items-center justify-center space-y-4 overflow-auto">
+            <div class="bg-gray-800 bg-opacity-90 p-8 rounded-lg shadow-lg w-full max-w-4xl mb-20">
+                <h1 class="text-4xl font-bold mb-8 text-center text-gray-200">Selecciona el tipo de componente</h1>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <button class="component-button" onclick="window.location.href='componentes/graficas.html'">
+                        <img src="https://dlcdnwebimgs.asus.com/gain/EFF9D6D8-2F6C-4E76-989F-E5DB594052BA/w717/h525" alt="Tarjetas de Video">
+                        Tarjeta de video
+                    </button>
+                    <button class="component-button" onclick="window.location.href='componentes/procesadores.html'">
+                        <img src="https://m.media-amazon.com/images/I/71aHvYUgX1L._AC_SL1500_.jpg" alt="Procesadores">
+                        procesadores
+                    </button>
+                    <button class="component-button" onclick="window.location.href='componentes/ram.html'">
+                        <img src="https://m.media-amazon.com/images/I/61C3Tb0xf5L.jpg" alt="Memoria RAM">
+                        Memoria RAM
+                    </button>
+                    <button class="component-button" onclick="window.location.href='componentes/fuentes.html'">
+                        <img src="https://ddtech.mx/assets/uploads/355b13f9fce6b0fd1661d330c327fffd.png" alt="Fuentes de Poder">
+                        Fuentes de Poder
+                    </button>
+                    <button class="component-button" onclick="window.location.href='componentes/gabinetes.html'">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8lESG_4PEsHnuE6bNZ80jM02hQcn8qAGoZQ&s" alt="Gabinetes">
+                        Gabinetes
+                    </button>
+                    <button class="component-button" onclick="window.location.href='componentes/almacenamiento.html'">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZPGFO3hynnkJDvzGuTGX6o_HVSEDx2orNBg&s" alt="Almacenamiento">
+                        Almacenamiento
+                    </button>
+                    <button class="component-button" onclick="window.location.href='componentes/placa-madre.html'">
+                        <img src="https://m.media-amazon.com/images/I/81S9D7bqEzL._AC_SL1500_.jpg" alt="Placa Madre">
+                        Almacenamiento
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+<script>
+    // Después de un login exitoso
+    localStorage.setItem("usuario", "nombreUsuario");
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const username = localStorage.getItem('username');
+        const userElement = document.getElementById('user-info');
+        const createComputerLink = document.getElementById('create-computer-link');
+        const loginLink = document.getElementById('login-link');
+        const logoutLink = document.getElementById('logout-link');
+
+        if (username) {
+            userElement.innerHTML = `<i class="fas fa-robot"></i> ${username}`;
+            userElement.classList.remove('hidden');
+            createComputerLink.classList.remove('hidden');
+            loginLink.classList.add('hidden');
+            logoutLink.classList.remove('hidden');
+        }
+
+        logoutLink.addEventListener('click', function() {
+            localStorage.removeItem('username');
+            window.location.reload();
+        });
+    });

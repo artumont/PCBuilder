@@ -1,24 +1,17 @@
 {
-  "name": "com.pcbuilder.frontend",
-  "version": "0.1.0",
-  "private": true,
+  "name": "avance-de-proyecto",
+  "version": "1.0.0",
+  "main": "script.js",
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
   "dependencies": {
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "next": "15.1.7"
+    "express": "^4.21.2",
+    "xlsx": "^0.18.5"
   },
-  "devDependencies": {
-    "typescript": "^5",
-    "@types/node": "^20",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
-    "postcss": "^8",
-    "tailwindcss": "^3.4.1"
-  }
+  "description": ""
 }

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrito de Compras</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
+    <script>
+        let cart = [];
+    
+        function loadCart() {
+            cart = JSON.parse(localStorage.getItem('cart')) || [];
+            displayCart();
+            addItemFromURL();
+        }
+    
+        function displayCart() {
+            const cartList = document.getElementById('cart-list');
+            cartList.innerHTML = '';
+    
+            if (cart.length === 0) {
+                cartList.innerHTML = '<li class="text-gray-300">El carrito está vacío.</li>';
+                return;
+            }
+    
+            cart.forEach((item, index) => {
+                const li = document.createElement('li');
+                li.className = "flex items-center justify-between border-b border-gray-700 py-2";
+                li.innerHTML = `
+                    <span>${item.name} - $${item.price}</span>
+                    <button class="bg-red-500 text-white px-2 py-1 rounded" onclick="removeFromCart(${index})">Eliminar</button>
+                `;
+                cartList.appendChild(li);
+            });
+        }
+    
+        function addToCart(name, price) {
+            const item = { name, price };
+            cart.push(item);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            displayCart();
+        }
+    
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            displayCart();
+        }
+    
+        function clearCart() {
+            cart = [];
+            localStorage.removeItem('cart');
+            displayCart();
+        }
+    
+        function addItemFromURL() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const name = urlParams.get('name');
+            const price = urlParams.get('price');
+            if (name && price) {
+                addToCart(decodeURIComponent(name), parseFloat(price));
+            }
+        }
+    
+        window.onload = loadCart;
+        // Después de un login exitoso
+    localStorage.setItem("usuario", "nombreUsuario");
+
+document.addEventListener('DOMContentLoaded', function() {
+    const username = localStorage.getItem('username');
+    const userElement = document.getElementById('user-info');
+    const createComputerLink = document.getElementById('create-computer-link');
+    const loginLink = document.getElementById('login-link');
+    const logoutLink = document.getElementById('logout-link');
+
+    if (username) {
+        userElement.innerHTML = `<i class="fas fa-robot"></i> ${username}`;
+        userElement.classList.remove('hidden');
+        createComputerLink.classList.remove('hidden');
+        loginLink.classList.add('hidden');
+        logoutLink.classList.remove('hidden');
+    }
+
+    logoutLink.addEventListener('click', function() {
+        localStorage.removeItem('username');
+        window.location.reload();
+    });
+});
+    </script>
+    
+</head>
+<body class="bg-gray-900 text-white">
+    <nav class="sticky-nav w-full bg-gray-800 bg-opacity-90 text-gray-300 py-4">
+        <div class="container mx-auto flex justify-between items-center px-4">
+            <div class="flex space-x-4">
+                <a class="hover:text-white" href="../index.html">Inicio</a>
+                <div class="relative group">
+                    <a class="hover:text-white" href="../componentes.html">Componentes</a>
+                    <div class="dropdown-menu absolute left-0 hidden bg-gray-800 text-white shadow-lg group-hover:block w-48">
+                        <a href="procesadores.html" class="flex items-center space-x-2 p-2 hover:bg-gray-200">
+                            <img src="https://storage.googleapis.com/a1aa/image/rfLZdEOfau_9p6f3sRlzgWXMvPuDrACjZAc1-kT2sKM.jpg" alt="Icon of a computer processor with intricate details and pins." class="w-8 h-8">
+                            <span>Procesadores</span>
+                        </a>
+                        <a href="graficas.html" class="flex items-center space-x-2 p-2 hover:bg-gray-200">
+                            <img src="https://storage.googleapis.com/a1aa/image/tFIGZIhToD0EOmH7KFBbvO8FGQRAH22kce5-7Nycojo.jpg" alt="Icon of a graphics card with cooling fans and connectors." class="w-8 h-8">
+                            <span>Tarjetas de Video</span>
+                        </a>
+                        <a href="ram.html" class="flex items-center space-x-2 p-2 hover:bg-gray-200">
+                            <img src="https://storage.googleapis.com/a1aa/image/JXBUDXHTmfpJKr3V7aLEnui1rgNZ5VMl5D-aSx6_umM.jpg" alt="Icon of a RAM module with memory chips and connectors." class="w-8 h-8">
+                            <span>Memoria RAM</span>
+                        </a>
+                        <a href="fuentes.html" class="flex items-center space-x-2 p-2 hover:bg-gray-200">
+                            <img src="https://storage.googleapis.com/a1aa/image/DV0bj6uHVoK1N_3We5-PBJo59XSEUjnnXk-t_Aevtzw.jpg" alt="Icon of a power supply unit with cables and connectors." class="w-8 h-8">
+                            <span>Fuentes de Poder</span>
+                        </a>
+                        <a href="gabinetes.html" class="flex items-center space-x-2 p-2 hover:bg-gray-200">
+                            <img src="https://storage.googleapis.com/a1aa/image/EWFRDP0PfoGNRwU_E1aJQpbpcDbbklWg5sz5FpO1JfU.jpg" alt="Icon of a computer case with front panel and side window." class="w-8 h-8">
+                            <span>Gabinetes</span>
+                        </a>
+                        <a href="almacenamiento.html" class="flex items-center space-x-2 p-2 hover:bg-gray-200">
+                            <img src="https://storage.googleapis.com/a1aa/image/RmUpvNl2L29GKmK-AVG98Dl6wcN-B7X12fHxz5cHw1U.jpg" alt="Icon of a storage drive with connectors and label." class="w-8 h-8">
+                            <span>Almacenamiento</span>
+                        </a>
+                        <a href="placa-madre.html" class="flex items-center space-x-2 p-2 hover:bg-gray-200">
+                            <img src="https://m.media-amazon.com/images/I/81S9D7bqEzL._AC_SL1500_.jpg" alt="Icon of a motherboard with various slots and connectors." class="w-8 h-8">
+                            <span>Placa Madre</span>
+                        </a>
+                    </div>
+                </div>
+                <a class="hover:text-white" href="../ayuda.html">Ayuda</a>
+                <a id="create-computer-link" class="hover:text-white hidden" href="../crea-tu-computadora.html">Crea tu Computadora</a>
+            </div>
+            <div class="flex space-x-4">
+                <a id="login-link" class="hover:text-white" href="../iniciar-sesion.html">Iniciar Sesión</a>
+                <a id="logout-link" class="hover:text-white hidden" href="#">Cerrar Sesión</a>
+                <a class="hover:text-white" href="../componentes/carrito.html">Carrito</a>
+                <a class="hover:text-white" href="../monto-total.html">Monto Total</a>
+                <div id="user-info" class="hidden text-gray-300"></div>
+            </div>
+        </div>
+    </nav>
+    <div class="relative min-h-screen pt-20 background-image">
+        <div class="absolute inset-0 bg-black bg-opacity-50 flex flex-col items-center justify-center space-y-4 overflow-auto">
+            <div class="bg-gray-800 bg-opacity-90 p-8 rounded-lg shadow-lg w-full max-w-4xl mb-20">
+                <h1 class="text-4xl font-bold mb-8 text-center text-gray-200">Carrito de Compras</h1>
+                <ul id="cart-list" class="list-disc pl-5"></ul>
+                <div class="flex justify-center mt-4">
+                    <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" onclick="clearCart()">Vaciar Carrito</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

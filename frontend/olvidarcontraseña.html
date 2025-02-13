@@ -1,0 +1,76 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Olvidar Contraseña - SmartRig Builder</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <script>
+        function handleSubmit(event) {
+            event.preventDefault();
+            if (confirm('Correo enviado. Presiona "Aceptar" para continuar.')) {
+                window.location.href = 'iniciar-sesion.html';
+            }
+        }
+        
+    // Después de un login exitoso
+    localStorage.setItem("usuario", "nombreUsuario");
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const username = localStorage.getItem('username');
+        const userElement = document.getElementById('user-info');
+        const createComputerLink = document.getElementById('create-computer-link');
+        const loginLink = document.getElementById('login-link');
+        const logoutLink = document.getElementById('logout-link');
+
+        if (username) {
+            userElement.innerHTML = `<i class="fas fa-robot"></i> ${username}`;
+            userElement.classList.remove('hidden');
+            createComputerLink.classList.remove('hidden');
+            loginLink.classList.add('hidden');
+            logoutLink.classList.remove('hidden');
+        }
+
+        logoutLink.addEventListener('click', function() {
+            localStorage.removeItem('username');
+            window.location.reload();
+        });
+    });
+    </script>
+</head>
+<body class="bg-gray-900 text-white">
+    <div class="relative">
+        <img alt="A detailed close-up of a computer motherboard with various components, including fans, capacitors, and heat sinks, all illuminated with red and orange lights." class="w-full h-screen object-cover" height="1080" src="https://storage.googleapis.com/a1aa/image/fvDhWxxCvlipuM5tDXEH6foqPS5qDO37Ebx1TtLX4iE.jpg" width="1920"/>
+        <div class="absolute inset-0 bg-black bg-opacity-50 flex flex-col items-center justify-center space-y-4">
+            <h1 class="text-6xl font-bold">OLVIDAR CONTRASEÑA</h1>
+            <div class="bg-gray-800 bg-opacity-90 p-8 rounded-lg shadow-lg w-full max-w-md">
+                <form onsubmit="handleSubmit(event)">
+                    <div class="mb-4">
+                        <label class="block text-gray-300 text-sm font-bold mb-2" for="email">Correo Electrónico</label>
+                        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="email" type="email" placeholder="Correo Electrónico" required>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+                            Enviar Enlace de Recuperación
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <nav class="absolute bottom-0 w-full bg-gray-800 bg-opacity-90 text-gray-300 py-4">
+            <div class="container mx-auto flex justify-between items-center px-4">
+                <div class="flex space-x-4">
+                    <a class="hover:text-white" href="index.html">Inicio</a>
+                    <a class="hover:text-white" href="componentes.html">Componentes</a>
+                    <a class="hover:text-white" href="ayuda.html">Ayuda</a>
+                </div>
+                <div class="flex space-x-4">
+                    <a class="hover:text-white" href="iniciar-sesion.html">Iniciar Sesión</a>
+                    <a class="hover:text-white" href="componentes/carrito.html">Carrito</a>
+                    <a class="hover:text-white" href="monto-total.html">Monto Total</a>
+                </div>
+            </div>
+        </nav>
+    </div>
+</body>
+</html>
