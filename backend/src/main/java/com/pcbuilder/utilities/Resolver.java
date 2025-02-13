@@ -26,6 +26,7 @@ public class Resolver {
             return "Database connection is null";
         }
 
+        JSONObject response = new JSONObject();
         try {
             JSONObject jsonArgs = new JSONObject(args);
             switch (operation) {
@@ -36,12 +37,19 @@ public class Resolver {
                     logger.info("Resolver.resolveOperation", String.format("Component operation resolved with args: %s", args));
                     return componentOperation.interpretOperationType(jsonArgs, connection);
                 default:
-                    return "Unknown operation";
+                    logger.error("Resolver.resolveOperation", String.format("Unknown operation: %s", operation));
+                    response.clear();
+                    response.put("status", "error");
+                    response.put("message", "Unknown operation");
+                    return response.toString();
             }
         }
         catch (Exception e) {
             logger.error("Resolver.resolveOperation", String.format("Error parsing args: %s", e.getMessage()));
-            return "Error parsing args";
+            response.clear();
+            response.put("status", "error");
+            response.put("message", "Error parsing args");
+            return response.toString();
         }
     }
     

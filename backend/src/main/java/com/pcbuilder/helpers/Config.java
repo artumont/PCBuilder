@@ -70,7 +70,7 @@ public class Config {
             newIni.put("Logging", "LogLevel", "INFO");
             
             // Server section
-            newIni.put("Server", "Port", "9312");
+            newIni.put("Server", "Port", "9854");
             newIni.put("Server", "MaxConnections", "10");
             newIni.put("Server", "SocketTimeout", "30000");
             newIni.put("Server", "SecureKey", Base64.getUrlEncoder().encodeToString(SecureRandom.getInstanceStrong().generateSeed(24)));

@@ -29,26 +29,27 @@ public class UserOperation {
 
         connection = givenConnection;
         try {
-            switch (args.optString("type", "NotProvided")) {
+            logger.info("UserOperation.interpretOperationType", String.format("Interpreting operation type: %s", args.optString("operationType", "NotProvided")));
+            switch (args.optString("operationType", "NotProvided")) {
                 case "Login":
                     logger.info("UserOperation.interpretOperationType", "Login operation identified.");
                     return LoginOperation(
-                        args.optString("username").replaceAll("[^A-Za-z0-9]", ""), 
-                        args.optString("password").replaceAll("[^A-Za-z0-9@#$%^&+=]", "")
+                        args.optString("username", "").replaceAll("[^A-Za-z0-9]", ""), 
+                        args.optString("password", "").replaceAll("[^A-Za-z0-9@#$%^&+=]", "")
                     );
                 case "Register":
                     logger.info("UserOperation.interpretOperationType", "Register operation identified.");
                     return RegisterOperation(
-                        args.optString("email").replaceAll("[^A-Za-z0-9+_.@-]", ""),
-                        args.optString("username").replaceAll("[^A-Za-z0-9]", ""), 
-                        args.optString("password").replaceAll("[^A-Za-z0-9@#$%^&+=]", "")
+                        args.optString("email", "").replaceAll("[^A-Za-z0-9+_.@-]", ""),
+                        args.optString("username", "").replaceAll("[^A-Za-z0-9]", ""), 
+                        args.optString("password", "").replaceAll("[^A-Za-z0-9@#$%^&+=]", "")
                     );
                 case "RegenAuthToken":
                     logger.info("UserOperation.interpretOperationType", "Regen auth token operation identified.");
-                    return RegenAuthToken(args.optString("regen-token"));
+                    return RegenAuthToken(args.optString("regen-token", ""));
                 case "ReplaceRegenToken":
                     logger.info("UserOperation.interpretOperationType", "Replace regen token operation identified.");
-                    return ReplaceRegenToken(args.optString("regen-token"));
+                    return ReplaceRegenToken(args.optString("regen-token", ""));
                 default: 
                     logger.error("UserOperation.interpretOperationType", String.format("Unknown operation type: %s", args.optString("type")));
                     response.clear();
@@ -75,18 +76,21 @@ public class UserOperation {
     private String LoginOperation(String username, String password) {
         JSONObject response = new JSONObject();
 
-        if (username == null || password == null) {
+        if (username == "" || password == "") {
             response.clear();
             response.put("status", "error");
             response.put("message", "Username or password not provided");
+            logger.error("UserOperation.LoginOperation", "Username or password not provided");
             return response.toString();
         }
 
         try {
+            logger.info("UserOperation.LoginOperation", String.format("Attempting login with username: %s", username));
             PreparedStatement statement = connection.prepareStatement("SELECT * FROM Users WHERE Username = ? AND Password = ?");
             statement.setString(1, username);
             statement.setString(2, password);
             if (statement.executeQuery().next()) {
+                logger.info("UserOperation.LoginOperation", "Login successful");
                 response.clear();
                 response.put("status", "success");
                 response.put("message", "Login successful");
@@ -95,6 +99,7 @@ public class UserOperation {
                 return response.toString();
             }
             else {
+                logger.error("UserOperation.LoginOperation", "Invalid username or password");
                 response.clear();
                 response.put("status", "error");
                 response.put("message", "Invalid username or password");
@@ -106,6 +111,7 @@ public class UserOperation {
             response.clear();
             response.put("status", "error");
             response.put("message", "Error during login operation");
+            logger.error("UserOperation.LoginOperation", "Error during login operation");
             return response.toString();
         }
     }
@@ -114,6 +120,7 @@ public class UserOperation {
         JSONObject response = new JSONObject();
 
         if (username == null || password == null) {
+            logger.error("UserOperation.RegisterOperation", "Username or password not provided");
             response.clear();
             response.put("status", "error");
             response.put("message", "Username or password not provided");
@@ -121,17 +128,20 @@ public class UserOperation {
         }
 
         try {
+            logger.info("UserOperation.RegisterOperation", String.format("Attempting registration with username: %s", username));
             PreparedStatement statement = connection.prepareStatement("INSERT INTO Users (Email, Username, Password) VALUES (?, ?, ?)");
             statement.setString(1, email);
             statement.setString(2, username);
             statement.setString(3, password);
             if (statement.executeUpdate() > 0) {
+                logger.info("UserOperation.RegisterOperation", "Registration successful");
                 response.clear();
                 response.put("status", "success");
                 response.put("message", "Registration successful");
                 return response.toString();
             }
             else {
+                logger.error("UserOperation.RegisterOperation", "Error during registration");
                 response.clear();
                 response.put("status", "error");
                 response.put("message", "Error during registration");
@@ -151,6 +161,7 @@ public class UserOperation {
         JSONObject response = new JSONObject();
 
         if (regenToken == null) {
+            logger.error("UserOperation.RegenAuthToken", "Regen token not provided");
             response.clear();
             response.put("status", "error");
             response.put("message", "Regen token not provided");
@@ -158,8 +169,10 @@ public class UserOperation {
         }
 
         try {
+            logger.info("UserOperation.RegenAuthToken", "Attempting to regen auth token");
             Claims claims = Crypto.verifyToken(regenToken, "regen");
             if (claims != null) {
+                logger.info("UserOperation.RegenAuthToken", "Regen token verified");
                 response.clear();
                 response.put("status", "success");
                 response.put("message", "Regen token verified");
@@ -167,6 +180,7 @@ public class UserOperation {
                 return response.toString();
             }
             else {
+                logger.error("UserOperation.RegenAuthToken", "Invalid regen token");
                 response.clear();
                 response.put("status", "error");
                 response.put("message", "Invalid regen token");
@@ -186,6 +200,7 @@ public class UserOperation {
         JSONObject response = new JSONObject();
 
         if (regenToken == null) {
+            logger.error("UserOperation.ReplaceRegenToken", "Regen token not provided");
             response.clear();
             response.put("status", "error");
             response.put("message", "Regen token not provided");
@@ -193,8 +208,10 @@ public class UserOperation {
         }
 
         try {
+            logger.info("UserOperation.ReplaceRegenToken", "Attempting to replace regen token");
             Claims claims = Crypto.verifyToken(regenToken, "regen");
             if (claims != null) {
+                logger.info("UserOperation.ReplaceRegenToken", "Regen token verified");
                 response.clear();
                 response.put("status", "success");
                 response.put("message", "Regen token verified");
@@ -202,6 +219,7 @@ public class UserOperation {
                 return response.toString();
             }
             else {
+                logger.error("UserOperation.ReplaceRegenToken", "Invalid regen token");
                 response.clear();
                 response.put("status", "error");
                 response.put("message", "Invalid regen token");

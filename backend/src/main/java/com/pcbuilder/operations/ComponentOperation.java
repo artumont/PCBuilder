@@ -27,7 +27,7 @@ public class ComponentOperation {
 
         connection = givenConnection;
         try {
-            switch (args.optString("type", "NotProvided")) {
+            switch (args.optString("operationType", "NotProvided")) {
                 case "Get":
                     logger.info("ComponentOperation.interpretOperationType", "Get operation identified.");
                     return ""; // @todo: implement
