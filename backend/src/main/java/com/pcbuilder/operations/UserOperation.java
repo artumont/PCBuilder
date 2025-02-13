@@ -171,6 +171,7 @@ public class UserOperation {
             response.put("status", "error");
             response.put("message", "Error during replace regen token operation");
             return response.toString();
+        }
     }
 
     private String RegisterOperation(String email, String username, String password) {
