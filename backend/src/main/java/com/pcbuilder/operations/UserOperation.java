@@ -1,10 +1,10 @@
 package com.pcbuilder.operations;
 
+import org.json.JSONObject;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 
-import org.json.JSONObject;
-
+import com.pcbuilder.helpers.Crypto;
 import com.pcbuilder.helpers.Logger;
 
 public class UserOperation {
@@ -83,7 +83,7 @@ public class UserOperation {
                 response.clear();
                 response.put("status", "success");
                 response.put("message", "Login successful");
-                response.put("auth", "PlaceHolder"); // @todo: Implement JWT token generation
+                response.put("auth-token", Crypto.generateAuthToken(username, password, 5000 * 60));
                 return response.toString();
             }
             else {
