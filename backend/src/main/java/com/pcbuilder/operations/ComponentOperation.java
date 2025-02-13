@@ -15,26 +15,42 @@ public class ComponentOperation {
     }
 
     public String interpretOperationType(JSONObject args, Connection givenConnection) {
+        JSONObject response = new JSONObject();
+
         if (givenConnection == null) {
             logger.error("ComponentOperation.interpretOperationType", "Database connection is null. Cannot interpret operation type.");
-            return "Database connection is null";
+            response.clear();
+            response.put("status", "error");
+            response.put("message", "Database connection is null");
+            return response.toString();
         }
 
         connection = givenConnection;
         try {
             switch (args.optString("type", "NotProvided")) {
-                //@todo: Implement the operation types
+                case "GetOfType":
+                    logger.info("ComponentOperation.interpretOperationType", "Login operation identified.");
+                    return "";
                 default: 
                     logger.error("ComponentOperation.interpretOperationType", String.format("Unknown operation type: %s", args.optString("type")));
-                    return "Unknown operation type";
+                    response.clear();
+                    response.put("status", "error");
+                    response.put("message", "Unknown operation type");
+                    return response.toString();
                 case "NotProvided":
                     logger.error("ComponentOperation.interpretOperationType", "Operation type not provided");
-                    return "Operation type not provided";
+                    response.clear();
+                    response.put("status", "error");
+                    response.put("message", "Operation type not provided");
+                    return response.toString();
             }
         }
         catch (Exception e) {
             logger.error("ComponentOperation.interpretOperationType", String.format("Error interpreting operation type: %s", e.getMessage()));
-            return "Error interpreting operation type";
+            response.clear();
+            response.put("status", "error");
+            response.put("message", "Error interpreting operation type");
+            return response.toString();
         }
     }
 }

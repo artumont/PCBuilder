@@ -54,13 +54,13 @@ public class Sockets {
                                 }
                                 catch (IllegalArgumentException e) {
                                     logger.warning("Sockets.startListening", String.format("Invalid operation: %s", messageParts[0]));
-                                    out.println("Invalid operation");
+                                    out.println("{'status':'error', 'message':'Invalid operation'}");
                                     continue;
                                 }
                             }
                             else {
                                 logger.warning("Sockets.startListening", String.format("Invalid message format: %s", message));
-                                out.println("Invalid message format");
+                                out.println("{'status':'error', 'message':'Invalid message format'}");
                             }
                         }
                     }
