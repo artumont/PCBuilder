@@ -15,6 +15,11 @@ public class UserOperation {
     }
 
     public String interpretOperationType(JSONObject args, Connection givenConnection) {
+        if (givenConnection == null) {
+            logger.error("UserOperation.interpretOperationType", "Database connection is null. Cannot interpret operation type.");
+            return "Database connection is null";
+        }
+
         connection = givenConnection;
         try {
             switch (args.optString("type", "NotProvided")) {

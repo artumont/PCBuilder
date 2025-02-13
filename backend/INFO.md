@@ -47,3 +47,4 @@ Handles server-side logic, database communication, and operations.
 - _**2025-02-05 11:44 AM**_ | Refactor database connection handling to include retry logic and update configuration settings - (@artu)
 - _**2025-02-05 10:37 PM**_ | Add Resolver and update Sockets to handle operations; enhance database connection management - (@artu)
 - _**2025-02-06 09:15 AM**_ | Refactor operation handling in ComponentOperation and UserOperation; update Resolver to use string-based operation types and enhance Sockets with improved error handling and shutdown logic - (@artu)
+- _**2025-02-10 08:37 PM**_ | Add null check for database connection in ComponentOperation and UserOperation - (@artu)

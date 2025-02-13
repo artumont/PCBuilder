@@ -32,8 +32,12 @@ cd PCBuilder
 ```
 
 2. Set up the database
-```bash
-// Database setup instructions here
+```
+Download: https://www.microsoft.com/es-mx/sql-server/sql-server-downloads (Express & SSMS)
+Execute 'SQL Server 2022 Configuration Manager' then go to 'Protocols for (MSSQLSERVER)'
+Enable and configure 'Shared Memory' and 'TCP/IP' (TCP should have all ips active not enabled, the port should also be the same as in your config)
+Go to 'SQL Server Services' and restart 'SQL Server (MSSQLSERVER)'
+After that you should be good to go!
 ```
 
 3. Configure application properties
@@ -51,7 +55,7 @@ cd PCBuilder
 - `/backend` - Server-side logic and API endpoints
 - `/frontend` - User interface and client-side code
 - `/manager` - Internal management tools
-- `/.dev` - Development guidelines and documentation
+- `/.dev` - Development tools, guidelines and documentation
 
 ## 🤝 Contributing
 
@@ -70,15 +74,14 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ### Backend Branch
 - Luis (@prodanyboy) - Database Engineer
 - Gerardo (@SONRIXMX) - Backend Developer
-- Gilberto (@GilPeCa) - Backend Developer
 
 ### Frontend Branch
 - Emmanuel (@Ultimateknight143) - Frontend Developer
 - Jesus (@Jesus-Mendoza21) - Frontend Developer
 
 ### Manager Branch
-- [Team Member] - [Role]
-- [Team Member] - [Role]
+- Guajardo (@IngGuajardo) - Developer
+- Gilberto (@GilPeCa) - Developer
 
 ## 📫 Contact
 
