@@ -5,7 +5,6 @@ Handles server-side logic, database communication, and operations.
 ### Maintainers
 - Luis (@prodanyboy) - Database
 - Gerardo (@SONRIXMX) - Server
-- Gilberto (@GilPeCa) - Server
 
 ### Objectives
 - Develop server-side logic and operations
