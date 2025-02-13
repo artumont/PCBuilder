@@ -50,3 +50,4 @@ Handles server-side logic, database communication, and operations.
 - _**2025-02-13 10:45 AM**_ | Add JWT authentication support and user operations in UserOperation; update pom.xml for dependencies - (@artu)
 - _**2025-02-13 11:30 AM**_ | Implement JWT token generation in UserOperation for successful login response - (@artu)
 - _**2025-02-13 12:00 PM**_ | Refactor token generation and verification methods in Crypto; add RegenAuthToken and ReplaceRegenToken methods in UserOperation for enhanced JWT handling - (@artu)
+- _**2025-02-13 12:30 PM**_ | Update server port and enhance logging in operations for better error handling and operation identification - (@artu)
