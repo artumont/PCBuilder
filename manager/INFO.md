@@ -3,8 +3,7 @@
 Internal management application for monitoring server status and providing IT administration tools.
 
 ### Maintainers
-- [Name] - [Job]
-- [Name] - [Job]
+- Gilberto (@GilPeCa) - Manager
 
 *(To be updated with actual maintainers)*
 
