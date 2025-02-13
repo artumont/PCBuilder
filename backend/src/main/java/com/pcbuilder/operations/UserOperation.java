@@ -43,6 +43,12 @@ public class UserOperation {
                         args.optString("username").replaceAll("[^A-Za-z0-9]", ""), 
                         args.optString("password").replaceAll("[^A-Za-z0-9@#$%^&+=]", "")
                     );
+                case "RegenAuthToken":
+                    logger.info("UserOperation.interpretOperationType", "Regen auth token operation identified.");
+                    return RegenAuthToken(args.optString("regen-token"));
+                case "ReplaceRegenToken":
+                    logger.info("UserOperation.interpretOperationType", "Replace regen token operation identified.");
+                    return ReplaceRegenToken(args.optString("regen-token"));
                 default: 
                     logger.error("UserOperation.interpretOperationType", String.format("Unknown operation type: %s", args.optString("type")));
                     response.clear();
@@ -100,6 +106,43 @@ public class UserOperation {
             response.clear();
             response.put("status", "error");
             response.put("message", "Error during login operation");
+            return response.toString();
+        }
+    }
+
+    private String RegisterOperation(String email, String username, String password) {
+        JSONObject response = new JSONObject();
+
+        if (username == null || password == null) {
+            response.clear();
+            response.put("status", "error");
+            response.put("message", "Username or password not provided");
+            return response.toString();
+        }
+
+        try {
+            PreparedStatement statement = connection.prepareStatement("INSERT INTO Users (Email, Username, Password) VALUES (?, ?, ?)");
+            statement.setString(1, email);
+            statement.setString(2, username);
+            statement.setString(3, password);
+            if (statement.executeUpdate() > 0) {
+                response.clear();
+                response.put("status", "success");
+                response.put("message", "Registration successful");
+                return response.toString();
+            }
+            else {
+                response.clear();
+                response.put("status", "error");
+                response.put("message", "Error during registration");
+                return response.toString();
+            }
+        }
+        catch (Exception e) {
+            logger.error("UserOperation.RegisterOperation", String.format("Error during register operation: %s", e.getMessage()));
+            response.clear();
+            response.put("status", "error");
+            response.put("message", "Error during register operation");
             return response.toString();
         }
     }
@@ -170,43 +213,6 @@ public class UserOperation {
             response.clear();
             response.put("status", "error");
             response.put("message", "Error during replace regen token operation");
-            return response.toString();
-        }
-    }
-
-    private String RegisterOperation(String email, String username, String password) {
-        JSONObject response = new JSONObject();
-
-        if (username == null || password == null) {
-            response.clear();
-            response.put("status", "error");
-            response.put("message", "Username or password not provided");
-            return response.toString();
-        }
-
-        try {
-            PreparedStatement statement = connection.prepareStatement("INSERT INTO Users (Email, Username, Password) VALUES (?, ?, ?)");
-            statement.setString(1, email);
-            statement.setString(2, username);
-            statement.setString(3, password);
-            if (statement.executeUpdate() > 0) {
-                response.clear();
-                response.put("status", "success");
-                response.put("message", "Registration successful");
-                return response.toString();
-            }
-            else {
-                response.clear();
-                response.put("status", "error");
-                response.put("message", "Error during registration");
-                return response.toString();
-            }
-        }
-        catch (Exception e) {
-            logger.error("UserOperation.RegisterOperation", String.format("Error during register operation: %s", e.getMessage()));
-            response.clear();
-            response.put("status", "error");
-            response.put("message", "Error during register operation");
             return response.toString();
         }
     }

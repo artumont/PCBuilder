@@ -28,8 +28,11 @@ public class ComponentOperation {
         connection = givenConnection;
         try {
             switch (args.optString("type", "NotProvided")) {
-                case "GetOfType":
-                    logger.info("ComponentOperation.interpretOperationType", "Login operation identified.");
+                case "Get":
+                    logger.info("ComponentOperation.interpretOperationType", "Get operation identified.");
+                    return "";
+                case "Add":
+                    logger.info("ComponentOperation.interpretOperationType", "Add operation identified.");
                     return "";
                 default: 
                     logger.error("ComponentOperation.interpretOperationType", String.format("Unknown operation type: %s", args.optString("type")));
