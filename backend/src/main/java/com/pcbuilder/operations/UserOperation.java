@@ -1,6 +1,7 @@
 package com.pcbuilder.operations;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 
 import org.json.JSONObject;
 
@@ -30,9 +31,17 @@ public class UserOperation {
             switch (args.optString("type", "NotProvided")) {
                 case "Login":
                     logger.info("UserOperation.interpretOperationType", "Login operation identified.");
-                    String username = args.optString("username");
-                    String password = args.optString("password");
-                    return LoginOperation(username, password);
+                    return LoginOperation(
+                        args.optString("username").replaceAll("[^A-Za-z0-9]", ""), 
+                        args.optString("password").replaceAll("[^A-Za-z0-9@#$%^&+=]", "")
+                    );
+                case "Register":
+                    logger.info("UserOperation.interpretOperationType", "Register operation identified.");
+                    return RegisterOperation(
+                        args.optString("email").replaceAll("[^A-Za-z0-9+_.@-]", ""),
+                        args.optString("username").replaceAll("[^A-Za-z0-9]", ""), 
+                        args.optString("password").replaceAll("[^A-Za-z0-9@#$%^&+=]", "")
+                    );
                 default: 
                     logger.error("UserOperation.interpretOperationType", String.format("Unknown operation type: %s", args.optString("type")));
                     response.clear();
@@ -67,7 +76,22 @@ public class UserOperation {
         }
 
         try {
-            return "PlaceHolder";
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM Users WHERE Username = ? AND Password = ?");
+            statement.setString(1, username);
+            statement.setString(2, password);
+            if (statement.executeQuery().next()) {
+                response.clear();
+                response.put("status", "success");
+                response.put("message", "Login successful");
+                response.put("auth", "PlaceHolder"); // @todo: Implement JWT token generation
+                return response.toString();
+            }
+            else {
+                response.clear();
+                response.put("status", "error");
+                response.put("message", "Invalid username or password");
+                return response.toString();
+            }
         }
         catch (Exception e) {
             logger.error("UserOperation.LoginOperation", String.format("Error during login operation: %s", e.getMessage()));
@@ -89,7 +113,22 @@ public class UserOperation {
         }
 
         try {
-            return "PlaceHolder";
+            PreparedStatement statement = connection.prepareStatement("INSERT INTO Users (Email, Username, Password) VALUES (?, ?, ?)");
+            statement.setString(1, email);
+            statement.setString(2, username);
+            statement.setString(3, password);
+            if (statement.executeUpdate() > 0) {
+                response.clear();
+                response.put("status", "success");
+                response.put("message", "Registration successful");
+                return response.toString();
+            }
+            else {
+                response.clear();
+                response.put("status", "error");
+                response.put("message", "Error during registration");
+                return response.toString();
+            }
         }
         catch (Exception e) {
             logger.error("UserOperation.RegisterOperation", String.format("Error during register operation: %s", e.getMessage()));

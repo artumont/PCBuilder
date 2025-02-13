@@ -2,8 +2,11 @@ package com.pcbuilder.helpers;
 
 import java.io.File;
 import org.ini4j.Ini;
+import java.util.Base64;
 import java.io.IOException;
+import java.security.SecureRandom;
 import org.ini4j.InvalidFileFormatException;
+
 
 public class Config {
     private Ini ini;
@@ -71,6 +74,7 @@ public class Config {
             newIni.put("Server", "Port", "9312");
             newIni.put("Server", "MaxConnections", "10");
             newIni.put("Server", "SocketTimeout", "30000");
+            newIni.put("Server", "SecureKey", Base64.getUrlEncoder().encodeToString(SecureRandom.getInstanceStrong().generateSeed(24)));
             
             // Database section
             newIni.put("Database", "ServerName", "localhost");
@@ -87,7 +91,7 @@ public class Config {
             newIni.store(new File(path));
             logger.info("Config.create", "Config file created successfully.");
             return true;
-        } catch (IOException e) {
+        } catch (Exception e) {
             logger.error("Config.create", String.format("Failed to create config file: %s", e.getMessage()));
             return false;
         }
