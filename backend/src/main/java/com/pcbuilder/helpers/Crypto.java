@@ -20,7 +20,7 @@ public class Crypto {
         logger.info("Crypto", "Crypto initialized.");
     }
 
-    public static String generateAuthToken(String id, String issuer, long ttlMillis) {
+    public static String generateToken(String id, String issuer, String subject, long ttlMillis) {
         try {
             long nowMillis = System.currentTimeMillis();
             Date now = new Date(nowMillis);
@@ -31,6 +31,7 @@ public class Crypto {
             JwtBuilder builder = Jwts.builder().setId(id)
                 .setIssuedAt(now)
                 .setIssuer(issuer)
+                .setSubject(subject)
                 .signWith(signatureAlgorithm, signingKey);
 
             if (ttlMillis > 0) {
@@ -42,21 +43,26 @@ public class Crypto {
             return builder.compact();
         }
         catch (Exception e) {
-            logger.error("Crypto.generateAuthToken", "Error creating JWT token.");
+            logger.error("Crypto.generateToken", "Error creating JWT token.");
             return null;
         }
     }
 
-    public static boolean verifyAuthToken(String token) {
+    public static Claims verifyToken(String token, String expectedSubject) {
         try {
             SignatureAlgorithm signatureAlgorithm = SignatureAlgorithm.HS256;
             byte[] keySecretBytes = DatatypeConverter.parseBase64Binary(config.getSetting("Server", "SecureKey"));
             Key signingKey = new SecretKeySpec(keySecretBytes, signatureAlgorithm.getJcaName());
 
-            return Jwts.parser().setSigningKey(signingKey).parseClaimsJws(token).getBody() != null;
+            Claims claims = Jwts.parser().setSigningKey(signingKey).parseClaimsJws(token).getBody();
+            if (claims.getSubject().equals(expectedSubject)) {
+                return claims;
+            }
+            return null;
+
         } catch (Exception e) {
-            logger.error("Crypto.verifyAuthToken", "Error verifying JWT token.");
-            return false;
+            logger.error("Crypto.verifyToken", "Error verifying JWT token.");
+            return null;
         }
     }
 }

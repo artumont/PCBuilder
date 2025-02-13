@@ -2,6 +2,7 @@ package com.pcbuilder.operations;
 
 import org.json.JSONObject;
 import java.sql.Connection;
+import io.jsonwebtoken.Claims;
 import java.sql.PreparedStatement;
 
 import com.pcbuilder.helpers.Crypto;
@@ -83,7 +84,8 @@ public class UserOperation {
                 response.clear();
                 response.put("status", "success");
                 response.put("message", "Login successful");
-                response.put("auth-token", Crypto.generateAuthToken(username, password, 5000 * 60));
+                response.put("auth-token", Crypto.generateToken(username, password, "auth", 5000 * 60));
+                response.put("regen-token" , Crypto.generateToken(username, password, "regen", 24000 * 60 * 60 * 60));
                 return response.toString();
             }
             else {
@@ -100,6 +102,75 @@ public class UserOperation {
             response.put("message", "Error during login operation");
             return response.toString();
         }
+    }
+
+    private String RegenAuthToken(String regenToken) {
+        JSONObject response = new JSONObject();
+
+        if (regenToken == null) {
+            response.clear();
+            response.put("status", "error");
+            response.put("message", "Regen token not provided");
+            return response.toString();
+        }
+
+        try {
+            Claims claims = Crypto.verifyToken(regenToken, "regen");
+            if (claims != null) {
+                response.clear();
+                response.put("status", "success");
+                response.put("message", "Regen token verified");
+                response.put("auth-token", Crypto.generateToken(claims.getSubject(), claims.getIssuer(), "auth", 5000 * 60));
+                return response.toString();
+            }
+            else {
+                response.clear();
+                response.put("status", "error");
+                response.put("message", "Invalid regen token");
+                return response.toString();
+            }
+        }
+        catch (Exception e) {
+            logger.error("UserOperation.RegenAuthToken", String.format("Error during regen token operation: %s", e.getMessage()));
+            response.clear();
+            response.put("status", "error");
+            response.put("message", "Error during regen token operation");
+            return response.toString();
+        }
+    }
+
+    private String ReplaceRegenToken(String regenToken) {
+        JSONObject response = new JSONObject();
+
+        if (regenToken == null) {
+            response.clear();
+            response.put("status", "error");
+            response.put("message", "Regen token not provided");
+            return response.toString();
+        }
+
+        try {
+            Claims claims = Crypto.verifyToken(regenToken, "regen");
+            if (claims != null) {
+                response.clear();
+                response.put("status", "success");
+                response.put("message", "Regen token verified");
+                response.put("regen-token", Crypto.generateToken(claims.getSubject(), claims.getIssuer(), "regen", 24000 * 60 * 60 * 60));
+                return response.toString();
+            }
+            else {
+                response.clear();
+                response.put("status", "error");
+                response.put("message", "Invalid regen token");
+                return response.toString();
+            }
+        }
+        catch (Exception e) {
+            logger.error("UserOperation.ReplaceRegenToken", String.format("Error during replace regen token operation: %s", e.getMessage()));
+            response.clear();
+            response.put("status", "error");
+            response.put("message", "Error during replace regen token operation");
+            return response.toString();
     }
 
     private String RegisterOperation(String email, String username, String password) {

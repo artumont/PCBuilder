@@ -7,7 +7,6 @@ import java.io.IOException;
 import java.security.SecureRandom;
 import org.ini4j.InvalidFileFormatException;
 
-
 public class Config {
     private Ini ini;
     private static Logger logger;
