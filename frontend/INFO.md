@@ -42,3 +42,4 @@ User-facing part of the application, including the website and user interface.
 ## Commit History
 - _**2025-02-13 11:30 PM**_ | Add new og-image and update layout and homepage structure for PCBuilder - (@artu)
 - _**2025-02-14 02:29 AM**_ | Add theme toggle functionality and update dependencies for improved styling - (@artu)
+- _**2025-02-14 10:22 PM**_ | Add dark and light logo assets, enhance navbar component, and update global styles - (@artu)
