@@ -7,7 +7,7 @@ export default function Home() {
         <main className="flex flex-col items-center w-screen h-screen bg-light dark:bg-dark">
             <NavBar />
             <div>
-                {}
+                
             </div>
         </main>
     );
