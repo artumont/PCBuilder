@@ -46,6 +46,12 @@ export default function NavBar() {
             width: "100%",
             left: "50%",
             x: "-50%"
+        },
+        tap: {
+            width: "110%",
+            transition: {
+                duration: 0.1
+            }
         }
     };
 
@@ -88,7 +94,8 @@ export default function NavBar() {
                             animate={activeButton === 'home' ? 'active' : 'initial'}
                             onClick={() => setActiveButton(activeButton === 'home' ? null : 'home')}
                             initial="initial"
-                            whileHover="hover"
+                            whileHover={activeButton === 'home' ? undefined : "initial"}
+                            whileTap="tap"
                             className='relative p-5 py-1 pt-5 mx-5 text-left text-lg md:text-xl lg:text-xl'
                         >
                             <span>Home</span>
@@ -109,7 +116,8 @@ export default function NavBar() {
                             animate={activeButton === 'builder' ? 'active' : 'initial'}
                             onClick={() => setActiveButton(activeButton === 'builder' ? null : 'builder')}
                             initial="initial"
-                            whileHover="hover"
+                            whileHover={activeButton === 'builder' ? undefined : "initial"}
+                            whileTap="tap"
                             className='relative p-5 py-1 pt-5 mx-5 text-left text-lg md:text-xl lg:text-xl'
                         >
                             <span>Builder</span>
@@ -130,7 +138,8 @@ export default function NavBar() {
                             animate={activeButton === 'help' ? 'active' : 'initial'}
                             onClick={() => setActiveButton(activeButton === 'help' ? null : 'help')}
                             initial="initial"
-                            whileHover="hover"
+                            whileHover={activeButton === 'help' ? undefined : "initial"}
+                            whileTap="tap"
                             className='relative p-5 py-1 pt-5 mx-5 text-left text-lg md:text-xl lg:text-xl'
                         >
                             <span>Help</span>
@@ -152,7 +161,8 @@ export default function NavBar() {
                             animate={activeButton === 'account' ? 'active' : 'initial'}
                             onClick={() => setActiveButton(activeButton === 'account' ? null : 'account')}
                             initial="initial"
-                            whileHover="hover"
+                            whileHover={activeButton === 'account' ? undefined : "initial"}
+                            whileTap="tap"
                             className='relative p-5 py-1 pt-5 mx-5 text-left text-lg md:text-xl lg:text-xl'
                         >
                             <span>Account</span>
@@ -175,7 +185,8 @@ export default function NavBar() {
                         animate={activeButton === 'account' ? 'active' : 'initial'}
                         onClick={() => setActiveButton(activeButton === 'account' ? null : 'account')}
                         initial="initial"
-                        whileHover="hover"
+                        whileHover={activeButton === 'account' ? undefined : "initial"}
+                        whileTap="tap"
                         className='relative p-5 mx-5 text-left text-lg md:text-xl lg:text-xl'
                     >
                         <span>Account</span>
