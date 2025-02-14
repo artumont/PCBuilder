@@ -12,11 +12,13 @@ export default {
       colors: {
         dark: {
           DEFAULT: '#090909',
-          secondary: '#222222'
+          secondary: '#222222',
+          terciary: '#1a1a1a'
         },
         light: {
-          DEFAULT: '#c0c0c0',
-          secondary: '#929292'
+          DEFAULT: '#f9f9f9',
+          secondary: '#c4c4c4',
+          terciary: '#ababab'
         }
       },
     },
