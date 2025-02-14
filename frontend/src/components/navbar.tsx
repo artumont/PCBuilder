@@ -2,12 +2,50 @@
 
 import { useState } from 'react'
 import Image from 'next/image'
+import { motion } from "motion/react"
 
 export default function NavBar() {
     const [isOpen, setIsOpen] = useState(false);
+    const [activeButton, setActiveButton] = useState<string | null>(null);
 
     const toggleMenu = () => {
         setIsOpen(!isOpen);
+    };
+
+    const buttonVariants = {
+        initial: {
+            scale: 1,
+            opacity: 1
+        },
+        hover: {
+            opacity: 0.8,
+            transition: {
+                duration: 0.2
+            }
+        },
+        active: {
+            opacity: 0.8
+        }
+    };
+
+    const underlineVariants = {
+        initial: {
+            width: "0%",
+            left: "50%",
+            x: "-50%"
+        },
+        hover: {
+            width: "100%",
+            transition: {
+                duration: 0.3,
+                ease: "easeInOut"
+            }
+        },
+        active: {
+            width: "100%",
+            left: "50%",
+            x: "-50%"
+        }
     };
 
     return (
@@ -15,14 +53,14 @@ export default function NavBar() {
             <div className="flex flex-col lg:flex-row lg:items-center">
                 <div className="flex items-center justify-between lg:w-auto">
                     <div className="flex items-center">
-                        <Image 
+                        <Image
                             className='dark:hidden mr-5'
                             src="/assets/transparent-logo-light.svg"
                             alt="PCBuilder Logo"
                             width={65}
                             height={65}
                         />
-                        <Image 
+                        <Image
                             className='hidden dark:block mr-5'
                             src="/assets/transparent-logo-dark.svg"
                             alt="PCBuilder Logo"
@@ -31,8 +69,8 @@ export default function NavBar() {
                         />
                         <h1 className='text-lg md:text-xl lg:text-xl min-w-[100%]'>PC Builder</h1>
                     </div>
-                    <button 
-                        className="lg:hidden p-2" 
+                    <button
+                        className="lg:hidden p-2"
                         onClick={toggleMenu}
                         aria-label="Toggle menu"
                     >
@@ -44,16 +82,113 @@ export default function NavBar() {
 
                 <div className={`${isOpen ? 'flex' : 'hidden'} lg:flex flex-col lg:flex-row w-screen lg:absolute lg:left-0 lg:top-7 lg:justify-center`}>
                     <div className="flex flex-col lg:flex-row">
-                        <button className='p-5 mx-5 text-left text-lg md:text-xl lg:text-xl hover:opacity-80 transition-opacity'>Home</button>
-                        <button className='p-5 mx-5 text-left text-lg md:text-xl lg:text-xl hover:opacity-80 transition-opacity'>Builder</button>
-                        <button className='p-5 mx-5 text-left text-lg md:text-xl lg:text-xl hover:opacity-80 transition-opacity'>Help</button>
+                        <motion.button
+                            variants={buttonVariants}
+                            animate={activeButton === 'home' ? 'active' : 'initial'}
+                            onClick={() => setActiveButton(activeButton === 'home' ? null : 'home')}
+                            initial="initial"
+                            whileHover="hover"
+                            className='relative p-5 py-1 pt-5 mx-5 text-left text-lg md:text-xl lg:text-xl'
+                        >
+                            <span>Home</span>
+                            <motion.div
+                                variants={underlineVariants}
+                                className='hidden lg:block'
+                                style={{
+                                    position: 'absolute',
+                                    bottom: '-2px',
+                                    height: '2px',
+                                    backgroundColor: 'currentColor',
+                                }}
+                            />
+                        </motion.button>
+                        
+                        <motion.button
+                            variants={buttonVariants}
+                            animate={activeButton === 'builder' ? 'active' : 'initial'}
+                            onClick={() => setActiveButton(activeButton === 'builder' ? null : 'builder')}
+                            initial="initial"
+                            whileHover="hover"
+                            className='relative p-5 py-1 pt-5 mx-5 text-left text-lg md:text-xl lg:text-xl'
+                        >
+                            <span>Builder</span>
+                            <motion.div
+                                variants={underlineVariants}
+                                className='hidden lg:block'
+                                style={{
+                                    position: 'absolute',
+                                    bottom: '-2px',
+                                    height: '2px',
+                                    backgroundColor: 'currentColor',
+                                }}
+                            />
+                        </motion.button>
+
+                        <motion.button
+                            variants={buttonVariants}
+                            animate={activeButton === 'help' ? 'active' : 'initial'}
+                            onClick={() => setActiveButton(activeButton === 'help' ? null : 'help')}
+                            initial="initial"
+                            whileHover="hover"
+                            className='relative p-5 py-1 pt-5 mx-5 text-left text-lg md:text-xl lg:text-xl'
+                        >
+                            <span>Help</span>
+                            <motion.div
+                                variants={underlineVariants}
+                                className='hidden lg:block'
+                                style={{
+                                    position: 'absolute',
+                                    bottom: '-2px',
+                                    height: '2px',
+                                    backgroundColor: 'currentColor',
+                                }}
+                            />
+                        </motion.button>
                     </div>
                     <div className='flex lg:hidden'>
-                        <button className='p-5 mx-4 text-left text-lg md:text-xl lg:text-xl hover:opacity-80 transition-opacity'>Account</button>
+                        <motion.button
+                            variants={buttonVariants}
+                            animate={activeButton === 'account' ? 'active' : 'initial'}
+                            onClick={() => setActiveButton(activeButton === 'account' ? null : 'account')}
+                            initial="initial"
+                            whileHover="hover"
+                            className='relative p-5 py-1 pt-5 mx-5 text-left text-lg md:text-xl lg:text-xl'
+                        >
+                            <span>Account</span>
+                            <motion.div
+                                variants={underlineVariants}
+                                className='hidden lg:block'
+                                style={{
+                                    position: 'absolute',
+                                    bottom: '-2px',
+                                    height: '2px',
+                                    backgroundColor: 'currentColor',
+                                }}
+                            />
+                        </motion.button>
                     </div>
                 </div>
-                <div className='hidden lg:flex lg:ml-auto'>
-                    <button className='p-5 text-lg md:text-xl lg:text-xl hover:opacity-80 transition-opacity'>Account</button>
+                <div className='hidden lg:flex lg:ml-auto z-[1]'>
+                    <motion.button
+                        variants={buttonVariants}
+                        animate={activeButton === 'account' ? 'active' : 'initial'}
+                        onClick={() => setActiveButton(activeButton === 'account' ? null : 'account')}
+                        initial="initial"
+                        whileHover="hover"
+                        className='relative p-5 mx-5 text-left text-lg md:text-xl lg:text-xl'
+                    >
+                        <span>Account</span>
+                        <motion.div
+                            variants={underlineVariants}
+                            className='hidden lg:block'
+                            style={{
+                                position: 'absolute',
+                                bottom: '12px',
+                                height: '2px',
+                                backgroundColor: 'currentColor',
+                            }}
+                        />
+                    </motion.button>
                 </div>
             </div>
         </nav>

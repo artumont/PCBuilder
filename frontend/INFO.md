@@ -44,3 +44,4 @@ User-facing part of the application, including the website and user interface.
 - _**2025-02-14 02:29 AM**_ | Add theme toggle functionality and update dependencies for improved styling - (@artu)
 - _**2025-02-14 10:22 PM**_ | Add dark and light logo assets, enhance navbar component, and update global styles - (@artu)
 - _**2025-02-14 11:45 AM**_ | Enhance layout metadata, add multiple authors, and improve navbar structure and styling - (@artu)
+- _**2025-02-14 03:27 AM**_ | Enhance navbar with animated buttons and underline effects using framer-motion - (@artu)
