@@ -40,4 +40,4 @@ User-facing part of the application, including the website and user interface.
 - Data fetching and state management
 
 ## Commit History
-*(To be updated with project commits)*
+- _**2025-02-13 11:30 PM**_ | Add new og-image and update layout and homepage structure for PCBuilder - (@artu)
