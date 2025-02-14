@@ -3,10 +3,11 @@
 import { useState } from 'react'
 import Image from 'next/image'
 import { motion } from "motion/react"
+import { useNavigation } from '@/context/navcontext';
 
 export default function NavBar() {
     const [isOpen, setIsOpen] = useState(false);
-    const [activeButton, setActiveButton] = useState<string | null>(null);
+    const { activeButton, setActiveButton } = useNavigation();
 
     const toggleMenu = () => {
         setIsOpen(!isOpen);

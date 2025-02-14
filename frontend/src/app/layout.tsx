@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import { ThemeProvider } from 'next-themes';
-import ThemeToggle from '@/components/theme';
+import ThemeToggle from '@/components/misc/theme';
+import { NavigationProvider } from '@/context/navcontext';
 import "./globals.css";
 
 const poppins = Poppins({
@@ -48,17 +49,19 @@ export default function RootLayout({
             <body
                 className={`${poppins.variable} antialiased`}
             >
-                <ThemeProvider 
-                    attribute="class"
-                    defaultTheme="system"
-                    enableSystem={true}
-                    storageKey="theme"
-                    enableColorScheme
-                    disableTransitionOnChange
-                >
-                    {children}
-                    <ThemeToggle />
-                </ThemeProvider>
+                <NavigationProvider>
+                    <ThemeProvider 
+                        attribute="class"
+                        defaultTheme="system"
+                        enableSystem={true}
+                        storageKey="theme"
+                        enableColorScheme
+                        disableTransitionOnChange
+                    >
+                        {children}
+                        <ThemeToggle />
+                    </ThemeProvider>
+                </NavigationProvider>
             </body>
         </html>
     );
