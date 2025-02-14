@@ -10,7 +10,7 @@ type NavigationContextType = {
 const NavigationContext = createContext<NavigationContextType | undefined>(undefined);
 
 export function NavigationProvider({ children }: { children: ReactNode }) {
-    const [activeButton, setActiveButton] = useState<string | null>(null);
+    const [activeButton, setActiveButton] = useState<string | null>("home");
 
     return (
         <NavigationContext.Provider value={{ activeButton, setActiveButton }}>

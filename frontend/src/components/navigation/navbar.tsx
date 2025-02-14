@@ -35,13 +35,6 @@ export default function NavBar() {
             left: "50%",
             x: "-50%"
         },
-        hover: {
-            width: "100%",
-            transition: {
-                duration: 0.3,
-                ease: "easeInOut"
-            }
-        },
         active: {
             width: "100%",
             left: "50%",
@@ -92,9 +85,13 @@ export default function NavBar() {
                         <motion.button
                             variants={buttonVariants}
                             animate={activeButton === 'home' ? 'active' : 'initial'}
-                            onClick={() => setActiveButton(activeButton === 'home' ? null : 'home')}
+                            onClick={() => {
+                                if (activeButton !== 'home') {
+                                    setActiveButton('home');
+                                }
+                            }}
                             initial="initial"
-                            whileHover={activeButton === 'home' ? undefined : "initial"}
+                            whileHover={activeButton === 'home' ? undefined : 'initial'}
                             whileTap="tap"
                             className='relative p-5 py-1 pt-5 mx-5 text-left text-lg md:text-xl lg:text-xl'
                         >
@@ -114,9 +111,12 @@ export default function NavBar() {
                         <motion.button
                             variants={buttonVariants}
                             animate={activeButton === 'builder' ? 'active' : 'initial'}
-                            onClick={() => setActiveButton(activeButton === 'builder' ? null : 'builder')}
+                            onClick={() => {
+                                if (activeButton !== 'builder') {
+                                    setActiveButton('builder');
+                                }
+                            }}
                             initial="initial"
-                            whileHover={activeButton === 'builder' ? undefined : "initial"}
                             whileTap="tap"
                             className='relative p-5 py-1 pt-5 mx-5 text-left text-lg md:text-xl lg:text-xl'
                         >
@@ -136,9 +136,13 @@ export default function NavBar() {
                         <motion.button
                             variants={buttonVariants}
                             animate={activeButton === 'help' ? 'active' : 'initial'}
-                            onClick={() => setActiveButton(activeButton === 'help' ? null : 'help')}
+                            onClick={() => {
+                                if (activeButton !== 'help') {
+                                    setActiveButton('help');
+                                }
+                            }}
                             initial="initial"
-                            whileHover={activeButton === 'help' ? undefined : "initial"}
+                            whileHover={activeButton === 'help' ? undefined : 'initial'}
                             whileTap="tap"
                             className='relative p-5 py-1 pt-5 mx-5 text-left text-lg md:text-xl lg:text-xl'
                         >
@@ -159,9 +163,13 @@ export default function NavBar() {
                         <motion.button
                             variants={buttonVariants}
                             animate={activeButton === 'account' ? 'active' : 'initial'}
-                            onClick={() => setActiveButton(activeButton === 'account' ? null : 'account')}
+                            onClick={() => {
+                                if (activeButton !== 'account') {
+                                    setActiveButton('account');
+                                }
+                            }}
                             initial="initial"
-                            whileHover={activeButton === 'account' ? undefined : "initial"}
+                            whileHover={activeButton === 'account' ? undefined : 'initial'}
                             whileTap="tap"
                             className='relative p-5 py-1 pt-5 mx-5 text-left text-lg md:text-xl lg:text-xl'
                         >
@@ -183,9 +191,13 @@ export default function NavBar() {
                     <motion.button
                         variants={buttonVariants}
                         animate={activeButton === 'account' ? 'active' : 'initial'}
-                        onClick={() => setActiveButton(activeButton === 'account' ? null : 'account')}
+                        onClick={() => {
+                            if (activeButton !== 'account') {
+                                setActiveButton('account');
+                            }
+                        }}
                         initial="initial"
-                        whileHover={activeButton === 'account' ? undefined : "initial"}
+                        whileHover={activeButton === 'account' ? undefined : 'initial'}
                         whileTap="tap"
                         className='relative p-5 mx-5 text-left text-lg md:text-xl lg:text-xl'
                     >
