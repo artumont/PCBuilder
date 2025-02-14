@@ -199,7 +199,7 @@ export default function NavBar() {
                         initial="initial"
                         whileHover={activeButton === 'account' ? undefined : 'initial'}
                         whileTap="tap"
-                        className='relative p-5 mx-5 text-left text-lg md:text-xl lg:text-xl'
+                        className='relative px-2 py-5 mx-0 text-left text-lg md:text-xl lg:text-xl'
                     >
                         <span>Account</span>
                         <motion.div

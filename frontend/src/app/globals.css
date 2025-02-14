@@ -2,6 +2,34 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+    --default-cursor: url('/assets/cursors/default.cur'), default;
+    --pointer-cursor: url('/assets/cursors/pointer.cur'), pointer;
+    --text-cursor: url('/assets/cursors/text.cur'), text;
+}
+
+button,
+a,
+[role="button"],
+select,
+input[type="submit"],
+input[type="button"]
+motion.button {
+    cursor: var(--pointer-cursor) !important;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+textarea {
+    cursor: var(--text-cursor) !important;
+}
+
+body {
+    font-family: var(--font-poppins);
+    cursor: var(--default-cursor);
+}
+
 .gl-1 {
     box-shadow: 0 0 10px 3px rgba(255, 255, 255, 0.241);
 }
@@ -12,8 +40,4 @@
 
 .text-xxl {
     font-size: 1.3rem;
-}
-
-body {
-    font-family: var(--font-poppins);
 }
