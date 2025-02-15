@@ -25,7 +25,7 @@ export default function NavBar() {
             }
         },
         active: {
-            opacity: 0.7
+            opacity: 0.8
         }
     };
 
