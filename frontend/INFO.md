@@ -49,3 +49,5 @@ User-facing part of the application, including the website and user interface.
 - _**2025-02-14 03:55 PM**_ | Enhance navbar button interactions with tap effects and conditional hover states - (@artu)
 - _**2025-02-14 04:36 PM**_ | Set default active button to 'home' and simplify button click handlers in NavBar - (@artu)
 - _**2025-02-14 05:24 PM**_ | Add custom cursor styles and update navbar button padding - (@artu)
+- _**2025-02-15 03:45 PM**_ | Refactor navigation and theme components; add authentication utility functions - (@artu)
+- _**2025-02-15 03:47 PM**_ | Enhance token management in Account component; add token refresh logic and cleanup function - (@artu)
