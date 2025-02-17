@@ -1,4 +1,4 @@
-package com.pcbuilder.helpers;
+package com.pcbuilder.backend.utils;
 
 import javax.crypto.spec.SecretKeySpec;
 import javax.xml.bind.DatatypeConverter;

@@ -1,10 +1,8 @@
-package com.pcbuilder.helpers;
+package com.pcbuilder.backend.utils;
 
 import java.io.File;
 import org.ini4j.Ini;
-import java.util.Base64;
 import java.io.IOException;
-import java.security.SecureRandom;
 import org.ini4j.InvalidFileFormatException;
 
 public class Config {
@@ -68,12 +66,6 @@ public class Config {
 
             // Logging section
             newIni.put("Logging", "LogLevel", "INFO");
-            
-            // Server section
-            newIni.put("Server", "Port", "9854");
-            newIni.put("Server", "MaxConnections", "10");
-            newIni.put("Server", "SocketTimeout", "30000");
-            newIni.put("Server", "SecureKey", Base64.getUrlEncoder().encodeToString(SecureRandom.getInstanceStrong().generateSeed(24)));
             
             // Database section
             newIni.put("Database", "ServerName", "localhost");

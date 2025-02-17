@@ -1,4 +1,4 @@
-package com.pcbuilder.helpers;
+package com.pcbuilder.backend.utils;
 
 public class Logger {
     private LogLevel minimumLevel;
