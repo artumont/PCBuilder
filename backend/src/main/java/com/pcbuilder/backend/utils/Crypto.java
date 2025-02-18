@@ -2,6 +2,9 @@ package com.pcbuilder.backend.utils;
 
 import javax.crypto.spec.SecretKeySpec;
 import javax.xml.bind.DatatypeConverter;
+
+import com.pcbuilder.backend.helpers.Logger;
+
 import java.security.Key;
 import io.jsonwebtoken.*;
 import java.util.Date;
