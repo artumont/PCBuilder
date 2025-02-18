@@ -5,9 +5,12 @@ import org.ini4j.Ini;
 import java.io.IOException;
 import org.ini4j.InvalidFileFormatException;
 
+import com.pcbuilder.backend.helpers.Logger;
+
 public class Config {
     private Ini ini;
     private static Logger logger;
+    public static Config currentInstance;
 
     public Config (Logger givenLogger, String path) {
         try {
@@ -30,6 +33,7 @@ public class Config {
             }
 
             ini = new Ini(configFile);
+            currentInstance = this;
             logger.info("Config", "Config file loaded successfully.");
         } catch (InvalidFileFormatException e) {
             givenLogger.error("Config", e.getMessage());

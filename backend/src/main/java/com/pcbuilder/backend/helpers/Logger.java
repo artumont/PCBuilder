@@ -1,7 +1,15 @@
-package com.pcbuilder.backend.utils;
+package com.pcbuilder.backend.helpers;
+
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 public class Logger {
+    private File logFile;
+    public Logger currentInstance;
     private LogLevel minimumLevel;
+    private static boolean logToFile;
     private static final String LOG_FORMAT = "[%s] %s - %s: %s%n";
 
     public enum LogLevel {
@@ -39,6 +47,17 @@ public class Logger {
         }
     }
 
+    public Logger(LogLevel level, boolean fileLogging) {
+        minimumLevel = level;
+        logToFile = fileLogging;
+
+        if (logToFile) {
+            logFile = new File(String.format("log-%s.log", java.time.LocalDateTime.now()));
+        }
+
+        currentInstance = this;
+    }
+
     public void setLevel(LogLevel level) {
         minimumLevel = level;
     }
@@ -47,53 +66,73 @@ public class Logger {
         return minimumLevel;
     }
 
+    private void fileLoggingHandler(String message) {
+        if (logToFile && logFile != null) {
+            try (PrintWriter writer = new PrintWriter(new FileWriter(logFile, true))) {
+                writer.println(message);
+            } catch (IOException e) {
+                System.err.printf("Failed to write to log file: %s%n", e.getMessage());
+            }
+        }
+    }
+
     public void debug(String methodName, String message) {
         if (minimumLevel.getSeverity() <= LogLevel.DEBUG.getSeverity()) {
-            System.out.printf(LOG_FORMAT, 
+            String logMessage = String.format(LOG_FORMAT, 
                 java.time.LocalDateTime.now(),
                 LogLevel.DEBUG,
                 methodName,
                 message);
+            System.out.print(logMessage);
+            fileLoggingHandler(logMessage);
         }
     }
 
     public void info(String methodName, String message) {
         if (minimumLevel.getSeverity() <= LogLevel.INFO.getSeverity()) {
-            System.out.printf(LOG_FORMAT, 
+            String logMessage = String.format(LOG_FORMAT, 
                 java.time.LocalDateTime.now(),
                 LogLevel.INFO,
                 methodName,
                 message);
+            System.out.print(logMessage);
+            fileLoggingHandler(logMessage);
         }
     }
 
     public void warning(String methodName, String message) {
         if (minimumLevel.getSeverity() <= LogLevel.WARNING.getSeverity()) {
-            System.out.printf(LOG_FORMAT, 
+            String logMessage = String.format(LOG_FORMAT, 
                 java.time.LocalDateTime.now(),
                 LogLevel.WARNING,
                 methodName,
                 message);
+            System.out.print(logMessage);
+            fileLoggingHandler(logMessage);
         }
     }
 
     public void error(String methodName, String message) {
         if (minimumLevel.getSeverity() <= LogLevel.ERROR.getSeverity()) {
-            System.out.printf(LOG_FORMAT, 
+            String logMessage = String.format(LOG_FORMAT, 
                 java.time.LocalDateTime.now(),
                 LogLevel.ERROR,
                 methodName,
                 message);
+            System.out.print(logMessage);
+            fileLoggingHandler(logMessage);
         }
     }
     
     public void critical(String methodName, String message) {
         if (minimumLevel.getSeverity() <= LogLevel.CRITICAL.getSeverity()) {
-            System.out.printf(LOG_FORMAT, 
+            String logMessage = String.format(LOG_FORMAT, 
                 java.time.LocalDateTime.now(),
                 LogLevel.CRITICAL,
                 methodName,
                 message);
+            System.out.print(logMessage);
+            fileLoggingHandler(logMessage);
         }
     }
 }
