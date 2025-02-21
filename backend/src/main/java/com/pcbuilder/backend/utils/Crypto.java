@@ -2,13 +2,13 @@ package com.pcbuilder.backend.utils;
 
 import javax.crypto.spec.SecretKeySpec;
 import javax.xml.bind.DatatypeConverter;
-
-import com.pcbuilder.backend.helpers.Logger;
-
-import java.security.Key;
 import io.jsonwebtoken.*;
 import java.util.Date;
+import java.nio.charset.StandardCharsets;
+import java.security.Key;
+import java.security.MessageDigest;
 
+import com.pcbuilder.backend.helpers.Logger;
 
 public class Crypto {
     private static Logger logger;
@@ -54,7 +54,7 @@ public class Crypto {
     public static Claims verifyToken(String token, String expectedSubject) {
         try {
             SignatureAlgorithm signatureAlgorithm = SignatureAlgorithm.HS256;
-            byte[] keySecretBytes = DatatypeConverter.parseBase64Binary(config.getSetting("Server", "SecureKey"));
+            byte[] keySecretBytes = DatatypeConverter.parseBase64Binary(config.getSetting("Security", "SecureKey"));
             Key signingKey = new SecretKeySpec(keySecretBytes, signatureAlgorithm.getJcaName());
 
             Claims claims = Jwts.parser().setSigningKey(signingKey).parseClaimsJws(token).getBody();
@@ -65,6 +65,27 @@ public class Crypto {
 
         } catch (Exception e) {
             logger.error("Crypto.verifyToken", "Error verifying JWT token.");
+            return null;
+        }
+    }
+
+    public static String getHashedString(String input) {
+        try {
+            MessageDigest digest = MessageDigest.getInstance("SHA-256");
+            byte[] hash = digest.digest(input.getBytes(StandardCharsets.UTF_8));
+            
+            StringBuilder hexString = new StringBuilder();
+            for (byte b : hash) {
+                String hex = Integer.toHexString(0xff & b);
+                if (hex.length() == 1) {
+                    hexString.append('0');
+                }
+                hexString.append(hex);
+            }
+            return hexString.toString();
+        }
+        catch (Exception e) {
+            logger.error("Crypto.getHashedString", "Error hashing string: " + e.getMessage());
             return null;
         }
     }

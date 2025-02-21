@@ -9,7 +9,7 @@ import com.pcbuilder.backend.utils.Config;
 public class Database {
     private final int maxRetryCount;
     private final int retryDelay;
-    public static Connection connection;
+    private static Connection connection;
     
     private static Logger logger;
     private static Config config;
@@ -58,6 +58,15 @@ public class Database {
             logger.error("Database.close", String.format("Error closing database connection: %s", e.getMessage()));
             return false;
         }
+    }
+
+    public Connection getConnection() {
+        if (connection == null) {
+            logger.error("Database.getConnection", "Connection is null.");
+            throw new IllegalStateException("Connection is null.");
+        }
+
+        return connection;
     }
 
     private String getConnectionString() {

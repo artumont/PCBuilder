@@ -71,6 +71,12 @@ public class Config {
             // Logging section
             newIni.put("Logging", "LogLevel", "INFO");
             
+            // Security section
+            newIni.put("Security", "SecureKey", String.valueOf(
+                    java.util.Base64.getEncoder().encode(java.util.UUID.randomUUID().toString().getBytes()
+                ))
+            );
+
             // Database section
             newIni.put("Database", "ServerName", "localhost");
             newIni.put("Database", "Port", "1433");

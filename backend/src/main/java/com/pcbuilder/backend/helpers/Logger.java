@@ -7,7 +7,6 @@ import java.io.PrintWriter;
 
 public class Logger {
     private File logFile;
-    public Logger currentInstance;
     private LogLevel minimumLevel;
     private static boolean logToFile;
     private static final String LOG_FORMAT = "[%s] %s - %s: %s%n";
@@ -52,10 +51,16 @@ public class Logger {
         logToFile = fileLogging;
 
         if (logToFile) {
-            logFile = new File(String.format("log-%s.log", java.time.LocalDateTime.now()));
+            // Create file and dir if not exists
+            logFile = new File(String.format("log-%s.log", java.time.LocalDate.now()));
+            if (!logFile.exists()) {
+                try {
+                    logFile.createNewFile();
+                } catch (IOException e) {
+                    System.err.printf("Failed to create log file: %s%n", e.getMessage());
+                }
+            }
         }
-
-        currentInstance = this;
     }
 
     public void setLevel(LogLevel level) {
@@ -69,7 +74,7 @@ public class Logger {
     private void fileLoggingHandler(String message) {
         if (logToFile && logFile != null) {
             try (PrintWriter writer = new PrintWriter(new FileWriter(logFile, true))) {
-                writer.println(message);
+                writer.print(message);
             } catch (IOException e) {
                 System.err.printf("Failed to write to log file: %s%n", e.getMessage());
             }
