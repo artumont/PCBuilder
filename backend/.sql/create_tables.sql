@@ -1,23 +1,23 @@
 CREATE TABLE Users (
-   id INT PRIMARY KEY,
-   username VARCHAR(200),
-   email VARCHAR(200),
-   hash_password VARCHAR(200),
-   phone_number VARCHAR(10),
+   id INT IDENTITY(1,1) PRIMARY KEY,
+   username VARCHAR(200) NOT NULL UNIQUE,
+   email VARCHAR(200) NOT NULL UNIQUE,
+   hash_password VARCHAR(200) NOT NULL,
+   phone_number VARCHAR(20),
    preferences VARCHAR(300),
    INDEX idx_email (email),
    INDEX idx_username (username)
 );
 
 CREATE TABLE Payment_Methods (
-   id INT PRIMARY KEY,
+   id INT IDENTITY(1,1) PRIMARY KEY,
    user_id INT,
    payment_method VARCHAR(100),
    FOREIGN KEY (user_id) REFERENCES Users(id)
 );
 
 CREATE TABLE Hardware (
-   id INT PRIMARY KEY,
+   id INT IDENTITY(1,1) PRIMARY KEY,
    title VARCHAR(200),
    class VARCHAR(100),
    specs VARCHAR(3000),
@@ -29,7 +29,7 @@ CREATE TABLE Hardware (
 );
 
 CREATE TABLE Orders (
-   id INT PRIMARY KEY,
+   id INT IDENTITY(1,1) PRIMARY KEY,
    id_client INT,
    order_status VARCHAR(50),
    order_date DATETIME DEFAULT CURRENT_TIMESTAMP,
@@ -41,7 +41,7 @@ CREATE TABLE Orders (
 );
 
 CREATE TABLE Purchase_History (
-   id INT PRIMARY KEY,
+   id INT IDENTITY(1,1) PRIMARY KEY,
    user_id INT,
    order_id INT,
    purchase_date DATETIME DEFAULT CURRENT_TIMESTAMP,
@@ -50,7 +50,7 @@ CREATE TABLE Purchase_History (
 );
 
 CREATE TABLE Shippings (
-   id INT PRIMARY KEY,
+   id INT IDENTITY(1,1) PRIMARY KEY,
    id_order INT,
    tracking_number VARCHAR(200),
    shipping_status VARCHAR(200),
@@ -62,7 +62,7 @@ CREATE TABLE Shippings (
 );
 
 CREATE TABLE Payments (
-   id INT PRIMARY KEY,
+   id INT IDENTITY(1,1) PRIMARY KEY,
    id_order INT,
    price FLOAT,
    payment_date DATETIME DEFAULT CURRENT_TIMESTAMP,
@@ -83,7 +83,7 @@ CREATE TABLE Stock (
 );
 
 CREATE TABLE Stock_History (
-   id INT PRIMARY KEY,
+   id INT IDENTITY(1,1) PRIMARY KEY,
    SKU INT,
    quantity INT,
    change_date DATETIME DEFAULT CURRENT_TIMESTAMP,

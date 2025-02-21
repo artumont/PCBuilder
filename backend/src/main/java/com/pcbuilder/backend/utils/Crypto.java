@@ -16,14 +16,14 @@ public class Crypto {
     private static SignatureAlgorithm signatureAlgorithm;
 
 
-    Crypto(Logger givenLogger, Config givenConfig) {
+    public Crypto(Logger givenLogger, Config givenConfig) {
         logger = givenLogger;
         config = givenConfig;
         signatureAlgorithm = SignatureAlgorithm.HS256;
         logger.info("Crypto", "Crypto initialized.");
     }
 
-    public static String generateToken(String id, String issuer, String subject, long ttlMillis) {
+    public String generateToken(String id, String issuer, String subject, long ttlMillis) {
         try {
             long nowMillis = System.currentTimeMillis();
             Date now = new Date(nowMillis);
@@ -46,12 +46,12 @@ public class Crypto {
             return builder.compact();
         }
         catch (Exception e) {
-            logger.error("Crypto.generateToken", "Error creating JWT token.");
+            logger.error("Crypto.generateToken", "Error creating JWT token. " + e.getMessage());
             return null;
         }
     }
 
-    public static Claims verifyToken(String token, String expectedSubject) {
+    public Claims verifyToken(String token, String expectedSubject) {
         try {
             SignatureAlgorithm signatureAlgorithm = SignatureAlgorithm.HS256;
             byte[] keySecretBytes = DatatypeConverter.parseBase64Binary(config.getSetting("Security", "SecureKey"));
@@ -64,12 +64,12 @@ public class Crypto {
             return null;
 
         } catch (Exception e) {
-            logger.error("Crypto.verifyToken", "Error verifying JWT token.");
+            logger.error("Crypto.verifyToken", "Error verifying JWT token. " + e.getMessage());
             return null;
         }
     }
 
-    public static String getHashedString(String input) {
+    public String getHashedString(String input) {
         try {
             MessageDigest digest = MessageDigest.getInstance("SHA-256");
             byte[] hash = digest.digest(input.getBytes(StandardCharsets.UTF_8));

@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Configuration;
 import com.pcbuilder.backend.helpers.Database;
 import com.pcbuilder.backend.helpers.Logger;
 import com.pcbuilder.backend.utils.Config;
+import com.pcbuilder.backend.utils.Crypto;
 
 @Configuration
 public class AppConfig {
@@ -30,6 +31,12 @@ public class AppConfig {
         boolean connectionStatus = database.connect();
         serviceStartupAssurance(logger, connectionStatus, "Database");
         return database.getConnection();
+    }
+
+    @Bean
+    public Crypto crypto(Logger logger, Config config) {
+        Crypto crypto = new Crypto(logger, config);
+        return crypto;
     }
 
     private static String getCWDString() {
