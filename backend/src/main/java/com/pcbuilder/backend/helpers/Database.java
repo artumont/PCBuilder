@@ -1,16 +1,15 @@
-package com.pcbuilder.utilities;
+package com.pcbuilder.backend.helpers;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-import com.pcbuilder.helpers.Config;
-import com.pcbuilder.helpers.Logger;
+import com.pcbuilder.backend.utils.Config;
 
 public class Database {
-    private Connection connection;
     private final int maxRetryCount;
     private final int retryDelay;
+    private static Connection connection;
     
     private static Logger logger;
     private static Config config;
@@ -62,6 +61,11 @@ public class Database {
     }
 
     public Connection getConnection() {
+        if (connection == null) {
+            logger.error("Database.getConnection", "Connection is null.");
+            throw new IllegalStateException("Connection is null.");
+        }
+
         return connection;
     }
 

@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import Image from 'next/image'
 import { motion } from "motion/react"
-import { useNavigation } from '@/context/navContext';
+import { useNavigation } from '@/context/NavContext';
 
 export default function NavBar() {
     const [isOpen, setIsOpen] = useState(false);

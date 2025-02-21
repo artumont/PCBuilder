@@ -1,15 +1,16 @@
-package com.pcbuilder.helpers;
+package com.pcbuilder.backend.utils;
 
 import java.io.File;
 import org.ini4j.Ini;
-import java.util.Base64;
 import java.io.IOException;
-import java.security.SecureRandom;
 import org.ini4j.InvalidFileFormatException;
+
+import com.pcbuilder.backend.helpers.Logger;
 
 public class Config {
     private Ini ini;
     private static Logger logger;
+    public static Config currentInstance;
 
     public Config (Logger givenLogger, String path) {
         try {
@@ -32,6 +33,7 @@ public class Config {
             }
 
             ini = new Ini(configFile);
+            currentInstance = this;
             logger.info("Config", "Config file loaded successfully.");
         } catch (InvalidFileFormatException e) {
             givenLogger.error("Config", e.getMessage());
@@ -69,12 +71,12 @@ public class Config {
             // Logging section
             newIni.put("Logging", "LogLevel", "INFO");
             
-            // Server section
-            newIni.put("Server", "Port", "9854");
-            newIni.put("Server", "MaxConnections", "10");
-            newIni.put("Server", "SocketTimeout", "30000");
-            newIni.put("Server", "SecureKey", Base64.getUrlEncoder().encodeToString(SecureRandom.getInstanceStrong().generateSeed(24)));
-            
+            // Security section
+            newIni.put("Security", "SecureKey", String.valueOf(
+                    java.util.Base64.getEncoder().encode(java.util.UUID.randomUUID().toString().getBytes()
+                ))
+            );
+
             // Database section
             newIni.put("Database", "ServerName", "localhost");
             newIni.put("Database", "Port", "1433");

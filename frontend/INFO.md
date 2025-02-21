@@ -51,3 +51,4 @@ User-facing part of the application, including the website and user interface.
 - _**2025-02-14 05:24 PM**_ | Add custom cursor styles and update navbar button padding - (@artu)
 - _**2025-02-15 03:45 PM**_ | Refactor navigation and theme components; add authentication utility functions - (@artu)
 - _**2025-02-15 03:47 PM**_ | Enhance token management in Account component; add token refresh logic and cleanup function - (@artu)
+- _**2025-02-15 03:16 AM**_ | Implement authentication routes and logging middleware; enhance API structure and logging functionality - (@artu)

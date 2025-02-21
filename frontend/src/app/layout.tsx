@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import { ThemeProvider } from 'next-themes';
-import ThemeToggle from '@/components/theme';
-import { NavigationProvider } from '@/context/navContext';
+import ThemeToggle from '@/components/ThemeToggle';
+import { NavigationProvider } from '@/context/NavContext';
 import "./globals.css";
 
 const poppins = Poppins({
