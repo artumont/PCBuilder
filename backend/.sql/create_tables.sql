@@ -16,7 +16,7 @@ CREATE TABLE Payment_Methods (
    FOREIGN KEY (user_id) REFERENCES Users(id)
 );
 
-CREATE TABLE Component (
+CREATE TABLE Hardware (
    id INT PRIMARY KEY,
    title VARCHAR(200),
    class VARCHAR(100),
