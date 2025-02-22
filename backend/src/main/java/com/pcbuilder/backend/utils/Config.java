@@ -73,8 +73,8 @@ public class Config {
             
             // Security section
             newIni.put("Security", "SecureKey", String.valueOf(
-                    java.util.Base64.getEncoder().encode(java.util.UUID.randomUUID().toString().getBytes()
-                ))
+                    java.util.Base64.getEncoder().encode(java.util.UUID.randomUUID().toString().getBytes())
+                )
             );
 
             // Database section
