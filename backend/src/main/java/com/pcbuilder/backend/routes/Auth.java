@@ -108,7 +108,7 @@ public class Auth {
             }
         }
         catch (Exception e) {
-            logger.error("Auth.login", e.getMessage() + "Caused by:" + e.getCause());
+            logger.error("Auth.login", e.getMessage());
             return ResponseEntity.status(500).body(null);
         }
     }
@@ -155,8 +155,7 @@ public class Auth {
             
             // @note: Check if username already exists in database
             PreparedStatement statement = connection.prepareStatement("SELECT * FROM Users WHERE username = ?");
-            statement.setString(1, email);
-            statement.setString(2, username);
+            statement.setString(1, username);
             if (statement.executeQuery().next()) {
                 AuthResponse response = new AuthResponse(
                     "Email or username already in use", 
@@ -209,7 +208,7 @@ public class Auth {
             }
         }
         catch (Exception e) {
-            logger.error("Auth.register", e.getMessage() + "Caused by:" + e.getCause());
+            logger.error("Auth.register", e.getMessage());
             return ResponseEntity.status(500).body(null);
         }
     }
