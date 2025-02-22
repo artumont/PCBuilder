@@ -73,31 +73,38 @@ public class Auth {
             PreparedStatement statement = connection.prepareStatement("SELECT * FROM Users WHERE username = ? AND hash_password = ?");
             statement.setString(1, username);
             statement.setString(2, password);
-            if (statement.executeQuery().getString("username").equals(username) && statement.executeQuery().getString("hash_password").equals(password)) {
-                logger.info("UserOperation.LoginOperation", "Login successful");
+            var resultSet = statement.executeQuery();
 
-                String authToken = crypto.generateToken(username, password, "auth", 5000 * 60);
-                String refreshToken = crypto.generateToken(username, password, "regen", 24000 * 60 * 60 * 60);
+            if (resultSet.next()) {
+                String dbUsername = resultSet.getString("username");
+                String dbPassword = resultSet.getString("hash_password");
                 
-                // @note: Check if tokens were generated successfully
-                if (authToken == null || refreshToken == null) {
-                    AuthResponse response = new AuthResponse(
-                        "error",
-                        "Login successful, but failed to generate tokens, please try again in a few minutes", 
-                        null, 
-                        null
-                    );
-                    logger.error("Auth.login", "Failed to generate tokens");
-                    return ResponseEntity.status(500).body(response);
-                }
+                if (dbUsername.equals(username) && dbPassword.equals(password)) {
+                    logger.info("UserOperation.LoginOperation", "Login successful");
 
-                AuthResponse response = new AuthResponse(
-                    "success",
-                    "Login successful", 
-                    authToken, 
-                    refreshToken
-                );
-                return ResponseEntity.ok(response);
+                    String authToken = crypto.generateToken(username, password, "auth", 5000 * 60);
+                    String refreshToken = crypto.generateToken(username, password, "regen", 24000 * 60 * 60 * 60);
+                    
+                    // @note: Check if tokens were generated successfully
+                    if (authToken == null || refreshToken == null) {
+                        AuthResponse response = new AuthResponse(
+                            "error",
+                            "Login successful, but failed to generate tokens, please try again in a few minutes", 
+                            null, 
+                            null
+                        );
+                        logger.error("Auth.login", "Failed to generate tokens");
+                        return ResponseEntity.status(500).body(response);
+                    }
+
+                    AuthResponse response = new AuthResponse(
+                        "success",
+                        "Login successful", 
+                        authToken, 
+                        refreshToken
+                    );
+                    return ResponseEntity.ok(response);
+                }
             }
             else {
                 // @note: Username or password incorrect
