@@ -3,8 +3,15 @@
 import { motion } from "motion/react"
 import { Cpu, HardDrive, MemoryStickIcon as Memory } from "lucide-react"
 import { delay } from "motion"
+import { useNavigation } from "@/context/NavContext"
 
 export default function HomeContent() {
+    const { setActiveButton } = useNavigation();
+
+    const handleBuilderClick = () => {
+        setActiveButton('builder');
+    };
+    
     const containerVariants = {
         hidden: {
             opacity: 0
@@ -42,14 +49,14 @@ export default function HomeContent() {
             }
         },
         hover: { 
-            scale: 1.02,
+            scale: 1.05,
             transition: {
-                duration: 0.1,
+                duration: 0.001,
                 ease: "easeInOut"
             }
         },
         tap: { 
-            scale: 0.9,
+            scale: 0.95,
             transition: {
                 duration: 0.001,
                 ease: "easeInOut"
@@ -85,6 +92,7 @@ export default function HomeContent() {
                         animate="visible"
                         whileHover="hover"
                         whileTap="tap"
+                        onClick={handleBuilderClick}
                         className="bg-light-secondary dark:bg-dark-secondary px-10 py-3 rounded-full font-bold text-lg shadow-lg hover:shadow-xl transition-all duration-300"
                     >
                         Get Started
