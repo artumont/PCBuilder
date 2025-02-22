@@ -108,7 +108,7 @@ public class Auth {
             }
         }
         catch (Exception e) {
-            logger.error("Auth.login", e.getMessage());
+            logger.error("Auth.login", e.getMessage() + "Caused by:" + e.getCause());
             return ResponseEntity.status(500).body(null);
         }
     }
@@ -209,7 +209,7 @@ public class Auth {
             }
         }
         catch (Exception e) {
-            logger.error("Auth.register", e.getMessage());
+            logger.error("Auth.register", e.getMessage() + "Caused by:" + e.getCause());
             return ResponseEntity.status(500).body(null);
         }
     }
