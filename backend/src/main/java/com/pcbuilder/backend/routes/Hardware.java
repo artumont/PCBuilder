@@ -20,11 +20,6 @@ public class Hardware {
         connection = givenConnection;
     }
 
-    @GetMapping("/motherboard")
-    public String getMotherboard(@RequestParam int count, int offset) {
-        throw new UnsupportedOperationException("Not implemented");
-    }
-
     @GetMapping("/cpu")
     public String getCpu(@RequestParam int count, int offset) {
         throw new UnsupportedOperationException("Not implemented");
@@ -39,9 +34,9 @@ public class Hardware {
     public String getRam(@RequestParam int count, int offset) {
         throw new UnsupportedOperationException("Not implemented");
     }
-
-    @GetMapping("/storage")
-    public String getStorage(@RequestParam int count, int offset) {
+    
+    @GetMapping("/case")
+    public String getCase(@RequestParam int count, int offset) {
         throw new UnsupportedOperationException("Not implemented");
     }
 
@@ -49,14 +44,14 @@ public class Hardware {
     public String getPsu(@RequestParam int count, int offset) {
         throw new UnsupportedOperationException("Not implemented");
     }
-
-    @GetMapping("/case")
-    public String getCase(@RequestParam int count, int offset) {
+  
+    @GetMapping("/motherboard")
+    public String getMotherboard(@RequestParam int count, int offset) {
         throw new UnsupportedOperationException("Not implemented");
     }
-
-    @GetMapping("/cooler")
-    public String getCooler(@RequestParam int count, int offset) {
+    
+    @GetMapping("/storage")
+    public String getStorage(@RequestParam int count, int offset) {
         throw new UnsupportedOperationException("Not implemented");
     }
 }
