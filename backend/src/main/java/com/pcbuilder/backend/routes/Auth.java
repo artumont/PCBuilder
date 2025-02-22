@@ -59,6 +59,7 @@ public class Auth {
             // @note: Check if any of the fields are null
             if (username == null || password == null) {
                 AuthResponse response = new AuthResponse(
+                    "error",
                     "Invalid request", 
                     null, 
                     null
@@ -81,7 +82,8 @@ public class Auth {
                 // @note: Check if tokens were generated successfully
                 if (authToken == null || refreshToken == null) {
                     AuthResponse response = new AuthResponse(
-                        "Login successful, but failed to generate tokens", 
+                        "error",
+                        "Login successful, but failed to generate tokens, please try again in a few minutes", 
                         null, 
                         null
                     );
@@ -90,6 +92,7 @@ public class Auth {
                 }
 
                 AuthResponse response = new AuthResponse(
+                    "success",
                     "Login successful", 
                     authToken, 
                     refreshToken
@@ -99,6 +102,7 @@ public class Auth {
             else {
                 // @note: Username or password incorrect
                 AuthResponse response = new AuthResponse(
+                    "error",
                     "Username or password incorrect", 
                     null, 
                     null
@@ -144,6 +148,7 @@ public class Auth {
             // @note: Check if any of the fields are null
             if (email == null || username == null || password == null || phoneNumber == null) {
                 AuthResponse response = new AuthResponse(
+                    "error",
                     "Invalid request", 
                     null, 
                     null
@@ -159,6 +164,7 @@ public class Auth {
             statement.setString(2, email);
             if (statement.executeQuery().next()) {
                 AuthResponse response = new AuthResponse(
+                    "error",
                     "Email or username already in use", 
                     null, 
                     null
@@ -182,7 +188,8 @@ public class Auth {
                 // @note: Check if tokens were generated successfully
                 if (authToken == null || refreshToken == null) {
                     AuthResponse response = new AuthResponse(
-                        "Registration successful, but failed to generate tokens", 
+                        "error",
+                        "Registration successful, but failed to generate tokens, please try again in a few minutes", 
                         null, 
                         null
                     );
@@ -191,6 +198,7 @@ public class Auth {
                 }
 
                 AuthResponse response = new AuthResponse(
+                    "success",
                     "Registration successful", 
                     authToken, 
                     refreshToken
@@ -200,6 +208,7 @@ public class Auth {
             else {
                 // @note: Registration failed
                 AuthResponse response = new AuthResponse(
+                    "error",
                     "Registration failed", 
                     null, 
                     null
