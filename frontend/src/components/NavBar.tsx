@@ -49,7 +49,7 @@ export default function NavBar() {
     };
 
     return (
-        <nav className="mx-auto w-[85%] lg:w-[90%] my-5 px-7 py-2 bg-light dark:bg-dark gl-1 rounded-lg">
+        <nav className="mx-auto w-[85%] lg:w-[90%] my-5 px-7 py-2 bg-light dark:bg-dark gl-1 rounded-lg z-50 fixed lg:static">
             <div className="flex flex-col lg:flex-row lg:items-center">
                 <div className="flex items-center justify-between lg:w-auto">
                     <div className="flex items-center">
@@ -80,7 +80,7 @@ export default function NavBar() {
                     </button>
                 </div>
 
-                <div className={`${isOpen ? 'flex' : 'hidden'} lg:flex flex-col lg:flex-row w-screen lg:absolute lg:left-0 lg:top-7 lg:justify-center`}>
+                <div className={`${isOpen ? 'flex' : 'hidden'} lg:flex flex-col lg:flex-row lg:w-screen lg:absolute lg:left-0 lg:top-7 lg:justify-center`}>
                     <div className="flex flex-col lg:flex-row">
                         <motion.button
                             variants={buttonVariants}

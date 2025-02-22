@@ -47,7 +47,7 @@ export default function RootLayout({
     return (
         <html lang="en" suppressHydrationWarning>
             <body
-                className={`${poppins.variable} antialiased`}
+                className={`${poppins.variable} antialiased min-h-screen`}
             >
                 <NavigationProvider>
                     <ThemeProvider 

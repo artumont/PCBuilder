@@ -41,3 +41,15 @@ body {
 .text-xxl {
     font-size: 1.3rem;
 }
+
+.main-button {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    transition: background-color 0.3s;
+}
+
+.main-button:hover {
+    background-color: var(--color-secondary);
+}
