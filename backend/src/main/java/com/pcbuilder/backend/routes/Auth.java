@@ -154,8 +154,9 @@ public class Auth {
             logger.info("Auth.register", String.format("Register request - Email: %s, Username: %s, Password: %s, Phone Number: %s", email, username, password, phoneNumber));
             
             // @note: Check if username already exists in database
-            PreparedStatement statement = connection.prepareStatement("SELECT * FROM Users WHERE username = ?");
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM Users WHERE username = ? OR email = ?");
             statement.setString(1, username);
+            statement.setString(2, email);
             if (statement.executeQuery().next()) {
                 AuthResponse response = new AuthResponse(
                     "Email or username already in use", 
