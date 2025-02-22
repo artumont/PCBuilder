@@ -105,16 +105,27 @@ public class Auth {
                     );
                     return ResponseEntity.ok(response);
                 }
+                else {
+                    // @note: Username or password incorrect
+                    AuthResponse response = new AuthResponse(
+                        "error",
+                        "Username or password incorrect", 
+                        null, 
+                        null
+                    );
+                    logger.info("UserOperation.LoginOperation", "Username or password incorrect");
+                    return ResponseEntity.status(401).body(response);
+                }
             }
             else {
-                // @note: Username or password incorrect
+                // @note: User doesn't exist in database
                 AuthResponse response = new AuthResponse(
                     "error",
-                    "Username or password incorrect", 
+                    "Username or password incorrect",
                     null, 
                     null
                 );
-                logger.info("UserOperation.LoginOperation", "Username or password incorrect");
+                logger.info("UserOperation.LoginOperation", "User doesn't exist in database");
                 return ResponseEntity.status(401).body(response);
             }
         }
