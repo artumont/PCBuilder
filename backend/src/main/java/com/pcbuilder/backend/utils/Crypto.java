@@ -28,7 +28,7 @@ public class Crypto {
             long nowMillis = System.currentTimeMillis();
             Date now = new Date(nowMillis);
 
-            byte[] keySecretBytes = DatatypeConverter.parseBase64Binary(config.getSetting("Server", "SecureKey"));
+            byte[] keySecretBytes = DatatypeConverter.parseBase64Binary(config.getSetting("Security", "SecureKey"));
             Key signingKey = new SecretKeySpec(keySecretBytes, signatureAlgorithm.getJcaName());
 
             JwtBuilder builder = Jwts.builder().setId(id)
