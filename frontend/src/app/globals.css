@@ -30,6 +30,10 @@ body {
     cursor: var(--default-cursor);
 }
 
+body::-webkit-scrollbar {
+    display: none;
+}
+
 .gl-1 {
     box-shadow: 0 0 10px 3px rgba(255, 255, 255, 0.241);
 }

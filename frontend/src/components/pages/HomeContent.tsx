@@ -1,17 +1,20 @@
 'use client'
 
 import { motion } from "motion/react"
-import { Cpu, HardDrive, Microchip, MemoryStickIcon as Memory } from "lucide-react"
+import Image from "next/image"
 import { delay } from "motion"
 import { useNavigation } from "@/context/NavContext"
+import { Cpu, HardDrive, Microchip, Component, ChartColumn, Code, Github, Linkedin, Twitter, MemoryStickIcon as Memory, NotebookText as Notebook } from "lucide-react"
 
 export default function HomeContent() {
+    // @note: This is super duper messy but im kinda running out of time soooooooooo 
+
     const { setActiveButton } = useNavigation();
 
     const handleBuilderClick = () => {
         setActiveButton('builder');
     };
-    
+
     const containerVariants = {
         hidden: {
             opacity: 0
@@ -24,6 +27,17 @@ export default function HomeContent() {
             }
         }
     }
+
+    const featureVariants = {
+        hidden: { opacity: 0, y: 20 },
+        visible: {
+            opacity: 1,
+            y: 0,
+            transition: {
+                duration: 0.5
+            }
+        }
+    };
 
     const itemVariants = {
         hidden: {
@@ -41,21 +55,21 @@ export default function HomeContent() {
 
     const buttonVariants = {
         initial: { opacity: 0 },
-        visible: { 
-            opacity: 1, 
+        visible: {
+            opacity: 1,
             transition: {
                 delay: 0.9,
                 duration: 0.5
             }
         },
-        hover: { 
+        hover: {
             scale: 1.05,
             transition: {
                 duration: 0.001,
                 ease: "easeInOut"
             }
         },
-        tap: { 
+        tap: {
             scale: 0.95,
             transition: {
                 duration: 0.001,
@@ -65,10 +79,10 @@ export default function HomeContent() {
     };
 
     return (
-        <div className="w-full mt-32 lg:mt-5">
+        <div className="w-full h-auto mt-32 lg:mt-5">
             <section className="relative text-center py-20 px-4 overflow-hidden rounded-lg gl-1">
                 <div className="absolute inset-0 bg-gradient-to-br from-light-secondary via-light to-light-terciary dark:from-dark-secondary dark:via-dark dark:to-dark-terciary opacity-50 z-0"></div>
-                <motion.div 
+                <motion.div
                     className="relative z-10"
                     variants={containerVariants}
                     initial="hidden"
@@ -129,6 +143,173 @@ export default function HomeContent() {
                     </motion.div>
                 </div>
             </section>
+
+            <section className="relative py-20 px-4">
+                <motion.h2 
+                    initial={{opacity: 0, y: 20}}
+                    animate={{opacity: 1, y: 0}}
+                    transition={{duration: 0.5}}
+                    className="text-3xl font-bold text-center mb-10"
+                >
+                    Features
+                </motion.h2>
+                <motion.div
+                    className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true }}
+                    variants={containerVariants}
+                >
+                    <motion.div
+                        className="p-6 rounded-lg gl-1"
+                        variants={featureVariants}
+                        whileHover={{ y: -10, transition: { duration: 0.2 } }}
+                    >
+                        <div className="mb-4 ">
+                            <Component className="w-10 h-10" />
+                        </div>
+                        <h3 className="text-xl font-bold mb-2">Component Selection</h3>
+                        <p className="text-gray-600 dark:text-gray-400">
+                            Choose from a wide range of PC components with real-time compatibility checking
+                        </p>
+                    </motion.div>
+
+                    <motion.div
+                        className="p-6 rounded-lg gl-1"
+                        variants={featureVariants}
+                        whileHover={{ y: -10, transition: { duration: 0.2 } }}
+                    >
+                        <div className="mb-4 ">
+                            <ChartColumn className="w-10 h-10" />
+                        </div>
+                        <h3 className="text-xl font-bold mb-2">Price Tracking</h3>
+                        <p className="text-gray-600 dark:text-gray-400">
+                            Monitor prices across multiple retailers and get the best deals
+                        </p>
+                    </motion.div>
+
+                    <motion.div
+                        className="p-6 rounded-lg gl-1"
+                        variants={featureVariants}
+                        whileHover={{ y: -10, transition: { duration: 0.2 } }}
+                    >
+                        <div className="mb-4 ">
+                            <Notebook className="w-10 h-10" />
+                        </div>
+                        <h3 className="text-xl font-bold mb-2">Build Guides</h3>
+                        <p className="text-gray-600 dark:text-gray-400">
+                            Access curated build guides for different budgets and use cases
+                        </p>
+                    </motion.div>
+                </motion.div>
+            </section>
+
+            <section className="relative py-5 px-4">
+            <motion.h2 
+                    initial={{opacity: 0, y: 20}}
+                    animate={{opacity: 1, y: 0}}
+                    transition={{duration: 0.5}}
+                    className="text-3xl font-bold text-center mb-10"
+                >
+                    Developer Team
+                </motion.h2>
+                <TeamMembers />
+            </section>
+        </div>
+    )
+}
+
+function TeamMembers() {
+    const teamMembers = [
+        {
+            name: "Artu (@artumont)",
+            role: "Lead Developer & Backend Specialist",
+            image: "/assets/pfps/artu.png",
+            github: "https://github.com/artumont",
+        },
+        {
+            name: "Luis (@prodanyboy)",
+            role: "Database Specialist",
+            image: "/assets/pfps/luis.png",
+            github: "https://github.com/prodanyboy",
+        },
+        {
+            name: "Gilberto (@GilPeCa)",
+            role: "Junior Developer",
+            image: "/assets/pfps/gilberto.jpg",
+            github: "https://github.com/GilPeCa",
+        },
+        {
+            name: "Gerardo (@SONRIXMX)",
+            role: "Junior Developer",
+            image: "/assets/pfps/gerardo.png",
+            github: "https://github.com/SONRIXMX",
+        },
+        {
+            name: "Emmanuel (@Ultimateknight143)",
+            role: "Junior Developer",
+            image: "/assets/pfps/emmanuel.png",
+            github: "https://github.com/Ultimateknight143",
+        },
+        {
+            name: "Jesus (@Jesus-Mendoza21)",
+            role: "Junior Developer",
+            image: "/assets/pfps/jesus.jpg",
+            github: "https://github.com/Jesus-Mendoza21",
+        },
+        {
+            name: "Guajardo (@IngGuajardo)",
+            role: "Junior Developer",
+            image: "/assets/pfps/guajardo.png",
+            github: "https://github.com/IngGuajardo",
+        },
+        {
+            name: "Alan (@Alanhhdz)",
+            role: "Junior Developer",
+            image: "/assets/pfps/alan.png",
+            github: "https://github.com/Alanhhdz",
+        }
+    ]
+
+    return (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {teamMembers.map((member, index) => (
+                <motion.div
+                    key={member.name}
+                    className="bg-light dark:bg-dark rounded-lg overflow-hidden gl-1"
+                    initial={{ opacity: 0, y: 50 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    whileHover={{ y: -10, transition: { duration: 0.2 } }}
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                >
+                    <div className="relative h-64">
+                        <Image
+                            src={member.image || "/placeholder.svg"}
+                            alt={member.name}
+                            layout="fill"
+                            objectFit="cover"
+                            className="transition-transform duration-300 hover:scale-110"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-dark-secondary to-transparent opacity-70"></div>
+                    </div>
+                    <div className="p-6">
+                        <h3 className="text-xl font-semibold mb-1 ">
+                            {member.name}
+                        </h3>
+                        <p className="mb-4">{member.role}</p>
+                        <div className="flex justify-center space-x-4">
+                            <a
+                                href={member.github}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="hover:text-light hover:dark:text-light-secondary transition-colors"
+                            >
+                                <Github className="w-6 h-6" />
+                            </a>
+                        </div>
+                    </div>
+                </motion.div>
+            ))}
         </div>
     )
 }

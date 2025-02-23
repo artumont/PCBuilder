@@ -25,7 +25,7 @@ export default function NavSelector() {
     };
 
     return (
-        <div className="mx-auto h-full w-[85%] lg:w-[90%] py-5 flex justify-center">
+        <div className="mx-auto h-auto w-[85%] lg:w-[90%] py-5 flex justify-center">
             {renderContent()}
         </div>
     );

@@ -22,7 +22,8 @@ export const metadata: Metadata = {
         { name: "Emmanuel (@Ultimateknight143)" },
         { name: "Jesus (@Jesus-Mendoza21)" },
         { name: "Guajardo (@IngGuajardo)" },
-        { name: "Gilberto (@GilPeCa)" }
+        { name: "Gilberto (@GilPeCa)" },
+        { name: "Alan (@Alanhhdz)" },
     ],
     applicationName: "PCBuilder",
     openGraph: {
