@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from "motion/react"
-import { Cpu, HardDrive, MemoryStickIcon as Memory } from "lucide-react"
+import { Cpu, HardDrive, Microchip, MemoryStickIcon as Memory } from "lucide-react"
 import { delay } from "motion"
 import { useNavigation } from "@/context/NavContext"
 
@@ -100,11 +100,18 @@ export default function HomeContent() {
                 </motion.div>
                 <div className="absolute inset-0 z-0 overflow-hidden">
                     <motion.div
-                        className="absolute -left-4 top-1/4"
+                        className="absolute left-10 top-10"
                         animate={{ rotate: 360 }}
                         transition={{ duration: 20, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
                     >
                         <Cpu className="w-16 h-16 opacity-20" />
+                    </motion.div>
+                    <motion.div
+                        className="absolute left-1/4 bottom-1/4"
+                        animate={{ rotate: -360 }}
+                        transition={{ duration: 35, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
+                    >
+                        <Microchip className="w-16 h-16 opacity-20" />
                     </motion.div>
                     <motion.div
                         className="absolute right-1/4 bottom-1/4"
