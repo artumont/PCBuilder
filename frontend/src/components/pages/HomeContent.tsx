@@ -302,7 +302,7 @@ function TeamMembers() {
                                 href={member.github}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="hover:text-light hover:dark:text-light-secondary transition-colors"
+                                className="hover:text-dark-secondary hover:dark:text-light-secondary transition-colors"
                             >
                                 <Github className="w-6 h-6" />
                             </a>
