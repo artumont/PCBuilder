@@ -1,6 +1,7 @@
 'use client'
 
-import { createContext, useContext, useState, ReactNode } from 'react';
+import { createContext, useContext, useState, ReactNode, useEffect } from 'react';
+import { useSearchParams, useRouter } from 'next/navigation';
 
 type NavigationContextType = {
     activeButton: string | null;
@@ -10,10 +11,31 @@ type NavigationContextType = {
 const NavigationContext = createContext<NavigationContextType | undefined>(undefined);
 
 export function NavigationProvider({ children }: { children: ReactNode }) {
-    const [activeButton, setActiveButton] = useState<string | null>("home");
+    const searchParams = useSearchParams();
+    const router = useRouter();
+    const [activeButton, setActiveButton] = useState<string | null>(() => {
+        return searchParams.get('tab') || "home";
+    });
+
+    const handleSetActiveButton = (button: string | null) => {
+        setActiveButton(button);
+        if (button) {
+            router.push(`?tab=${button}`);
+        }
+    };
+
+    useEffect(() => {
+        const tabParam = searchParams.get('tab');
+        if (tabParam && tabParam !== activeButton) {
+            setActiveButton(tabParam);
+        }
+    }, [searchParams, activeButton]);
 
     return (
-        <NavigationContext.Provider value={{ activeButton, setActiveButton }}>
+        <NavigationContext.Provider value={{ 
+            activeButton, 
+            setActiveButton: handleSetActiveButton 
+        }}>
             {children}
         </NavigationContext.Provider>
     );

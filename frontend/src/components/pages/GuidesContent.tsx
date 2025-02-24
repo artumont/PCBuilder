@@ -1,9 +1,9 @@
 'use client'
 
-export default function HelpContent() {
+export default function GuidesContent() {
     return (
         <div className="w-full mt-32 lg:mt-5">
-            Help Content
+            Guides Content
         </div>
     )
 }

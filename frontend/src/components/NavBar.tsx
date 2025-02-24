@@ -135,18 +135,18 @@ export default function NavBar() {
 
                         <motion.button
                             variants={buttonVariants}
-                            animate={activeButton === 'help' ? 'active' : 'initial'}
+                            animate={activeButton === 'guides' ? 'active' : 'initial'}
                             onClick={() => {
-                                if (activeButton !== 'help') {
-                                    setActiveButton('help');
+                                if (activeButton !== 'guides') {
+                                    setActiveButton('guides');
                                 }
                             }}
                             initial="initial"
-                            whileHover={activeButton === 'help' ? undefined : 'initial'}
+                            whileHover={activeButton === 'guides' ? undefined : 'initial'}
                             whileTap="tap"
                             className='relative p-5 py-1 pt-5 mx-5 text-left text-lg md:text-xl lg:text-xl'
                         >
-                            <span>Help</span>
+                            <span>Guides</span>
                             <motion.div
                                 variants={underlineVariants}
                                 className='hidden lg:block'

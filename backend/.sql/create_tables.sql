@@ -18,10 +18,10 @@ CREATE TABLE Payment_Methods (
 
 CREATE TABLE Hardware (
    id INT IDENTITY(1,1) PRIMARY KEY,
-   title VARCHAR(200),
-   class VARCHAR(100),
+   name VARCHAR(200),
+   type VARCHAR(100),
    specs VARCHAR(3000),
-   price FLOAT,
+   price MONEY,
    stock INT,
    compatibility VARCHAR(300),
    update_date DATETIME DEFAULT CURRENT_TIMESTAMP,

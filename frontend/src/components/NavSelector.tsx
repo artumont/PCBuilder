@@ -3,8 +3,8 @@
 import { useNavigation } from '@/context/NavContext';
 import AccountContent from './pages/AccountContent';
 import BuilderContent from './pages/BuilderContent';
-import HelpContent from './pages/HelpContent';
 import HomeContent from './pages/HomeContent';
+import GuidesContent from './pages/GuidesContent';
 
 export default function NavSelector() {
     const { activeButton } = useNavigation();
@@ -15,8 +15,8 @@ export default function NavSelector() {
                 return <HomeContent />;
             case 'builder':
                 return <BuilderContent />;
-            case 'help':
-                return <HelpContent />;
+            case 'guides':
+                return <GuidesContent />;
             case 'account':
                 return <AccountContent />;
             default:
