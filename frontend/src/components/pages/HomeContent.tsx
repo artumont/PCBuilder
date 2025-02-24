@@ -286,9 +286,8 @@ function TeamMembers() {
                         <Image
                             src={member.image || "/placeholder.svg"}
                             alt={member.name}
-                            layout="fill"
-                            objectFit="cover"
-                            className="transition-transform duration-300 hover:scale-110"
+                            fill
+                            className="object-cover transition-transform duration-300 hover:scale-110"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-dark-secondary to-transparent opacity-70"></div>
                     </div>
