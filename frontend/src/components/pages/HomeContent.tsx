@@ -4,7 +4,7 @@ import { motion } from "motion/react"
 import Image from "next/image"
 import { delay } from "motion"
 import { useNavigation } from "@/context/NavContext"
-import { Cpu, HardDrive, Microchip, Component, ChartColumn, Code, Github, Linkedin, Twitter, MemoryStickIcon as Memory, NotebookText as Notebook } from "lucide-react"
+import { Cpu, HardDrive, Microchip, Component, Fingerprint, Code, Github, Linkedin, Twitter, MemoryStickIcon as Memory, NotebookText as Notebook } from "lucide-react"
 
 export default function HomeContent() {
     // @note: This is super duper messy but im kinda running out of time soooooooooo 
@@ -154,7 +154,7 @@ export default function HomeContent() {
                     Features
                 </motion.h2>
                 <motion.div
-                    className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+                    className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-8"
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true }}
@@ -180,11 +180,11 @@ export default function HomeContent() {
                         whileHover={{ y: -10, transition: { duration: 0.2 } }}
                     >
                         <div className="mb-4 ">
-                            <ChartColumn className="w-10 h-10" />
+                            <Fingerprint className="w-10 h-10" />
                         </div>
-                        <h3 className="text-xl font-bold mb-2">Price Tracking</h3>
+                        <h3 className="text-xl font-bold mb-2">Detailed Specs</h3>
                         <p className="text-gray-600 dark:text-gray-400">
-                            Monitor prices across multiple retailers and get the best deals
+                            View detailed specifications for each component and build
                         </p>
                     </motion.div>
 
