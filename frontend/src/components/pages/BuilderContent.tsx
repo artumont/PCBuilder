@@ -62,7 +62,7 @@ export default function BuilderContent() {
 
     return (
         <div className="w-full mt-32 lg:mt-5">
-            <motion.div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <motion.div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                 <motion.button 
                     className='flex p-2 rounded-lg h-60 items-center bg-light-terciary dark:bg-dark-terciary border-[7px] border-light-secondary dark:border-dark-secondary' 
                     variants={buttonVariants}
@@ -177,7 +177,7 @@ export default function BuilderContent() {
                         height={96} 
                     />
                         <div className="flex flex-col text-start">
-                            <h1 className="text-4xl">Motherboard</h1>
+                            <h1 className="text-4xl">Mobo</h1>
                             <h2 className="text-sm">{currentBuild.motherboard || "Select a motherboard"}</h2>
                         </div>
                     </div>
