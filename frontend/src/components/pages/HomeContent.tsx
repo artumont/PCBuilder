@@ -297,21 +297,21 @@ function TeamMembers() {
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-dark-secondary to-transparent opacity-70"></div>
                     </div>
-                    <div className="p-6">
+                    <div className="p-6 h-auto min-h-[132px]">
                         <h3 className="text-xl font-semibold mb-1 ">
                             {member.name}
                         </h3>
-                        <p className="mb-4">{member.role}</p>
-                        <div className="flex justify-center space-x-4">
-                            <a
-                                href={member.github}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="hover:text-dark-secondary hover:dark:text-light-secondary transition-colors"
-                            >
-                                <Github className="w-6 h-6" />
-                            </a>
-                        </div>
+                        <p>{member.role}</p>
+                    </div>
+                    <div className="flex justify-center space-x-4 self-end p-4">
+                        <a
+                            href={member.github}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="hover:text-dark-secondary hover:dark:text-light-secondary transition-colors"
+                        >
+                            <Github className="w-6 h-6" />
+                        </a>
                     </div>
                 </motion.div>
             ))}
