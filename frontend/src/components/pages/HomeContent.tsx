@@ -2,8 +2,33 @@
 
 import { motion } from "motion/react"
 import Image from "next/image"
+import { delay } from "motion"
 import { useNavigation } from "@/context/NavContext"
 import { Cpu, HardDrive, Microchip, Component, Fingerprint, Code, Github, Linkedin, Twitter, MemoryStickIcon as Memory, NotebookText as Notebook } from "lucide-react"
+
+const containerVariants = {
+    hidden: {
+        opacity: 0
+    },
+    visible: {
+        opacity: 1,
+        transition: {
+            delayChildren: 0.3,
+            staggerChildren: 0.2
+        }
+    }
+}
+
+const featureVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+        opacity: 1,
+        y: 0,
+        transition: {
+            duration: 0.5
+        }
+    }
+};
 
 export default function HomeContent() {
     // @note: This is super duper messy but im kinda running out of time soooooooooo 
@@ -12,30 +37,6 @@ export default function HomeContent() {
 
     const handleBuilderClick = () => {
         setActiveButton('builder');
-    };
-
-    const containerVariants = {
-        hidden: {
-            opacity: 0
-        },
-        visible: {
-            opacity: 1,
-            transition: {
-                delayChildren: 0.3,
-                staggerChildren: 0.2
-            }
-        }
-    }
-
-    const featureVariants = {
-        hidden: { opacity: 0, y: 20 },
-        visible: {
-            opacity: 1,
-            y: 0,
-            transition: {
-                duration: 0.5
-            }
-        }
     };
 
     const itemVariants = {
@@ -271,15 +272,17 @@ function TeamMembers() {
     ]
 
     return (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <motion.div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+        >
             {teamMembers.map((member, index) => (
                 <motion.div
                     key={member.name}
                     className="bg-light dark:bg-dark rounded-lg overflow-hidden gl-1"
-                    initial={{ opacity: 0, y: 50 }}
-                    animate={{ opacity: 1, y: 0 }}
+                    variants={featureVariants}
                     whileHover={{ y: -10, transition: { duration: 0.2 } }}
-                    transition={{ duration: 0.5, delay: index * 0.1 }}
                 >
                     <div className="relative h-64">
                         <Image
@@ -290,24 +293,24 @@ function TeamMembers() {
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-dark-secondary to-transparent opacity-70"></div>
                     </div>
-                    <div className="p-6 h-auto min-h-[132px]">
+                    <div className="p-6">
                         <h3 className="text-xl font-semibold mb-1 ">
                             {member.name}
                         </h3>
-                        <p>{member.role}</p>
-                    </div>
-                    <div className="flex justify-center space-x-4 self-end p-4">
-                        <a
-                            href={member.github}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="hover:text-dark-secondary hover:dark:text-light-secondary transition-colors"
-                        >
-                            <Github className="w-6 h-6" />
-                        </a>
+                        <p className="mb-4">{member.role}</p>
+                        <div className="flex justify-center space-x-4">
+                            <a
+                                href={member.github}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="hover:text-dark-secondary hover:dark:text-light-secondary transition-colors"
+                            >
+                                <Github className="w-6 h-6" />
+                            </a>
+                        </div>
                     </div>
                 </motion.div>
             ))}
-        </div>
+        </motion.div>
     )
 }

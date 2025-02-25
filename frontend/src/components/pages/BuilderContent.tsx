@@ -4,6 +4,7 @@ import { motion } from "motion/react"
 import { useEffect, useState } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { Cpu } from 'lucide-react'
+import { delay } from "motion";
 
 type Build = {
     cpu: string,
@@ -18,37 +19,25 @@ type Build = {
 export default function BuilderContent() {
     const searchParams = useSearchParams();
     const router = useRouter();
-    
-        const containerVariants = {
-            hidden: {
-                opacity: 0
-            },
-            visible: {
-                opacity: 1,
-                transition: {
-                    delayChildren: 0.3,
-                    staggerChildren: 0.2
-                }
-            }
-        }
 
     const buttonVariants = {
         hidden: { opacity: 0, y: 20 },
-        visible: {
+        visible: (i: number) => ({
             opacity: 1,
             y: 0,
             transition: {
+                delay: i * 0.3,
                 duration: 0.5
             }
-        },
+        }),
         hover: {
-            scale: 1.05,
+            scale: 1.02,
             transition: {
                 duration: 0.2
             }
         },
         tap: {
-            scale: 0.95,
+            scale: 0.97,
             transition: {
                 duration: 0.2
             }
@@ -71,16 +60,15 @@ export default function BuilderContent() {
 
     return (
         <div className="w-full mt-32 lg:mt-5">
-            <motion.div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-                variants={containerVariants}
-            >
+            <motion.div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <motion.button 
                     className='flex p-2 rounded-lg h-64 items-center bg-light-terciary dark:bg-dark-terciary border-[7px] border-light-secondary dark:border-dark-secondary' 
                     variants={buttonVariants}
-                    whileHover="hover"
-                    whileTap="tap"
+                    custom={1}
                     initial="hidden"
                     animate="visible"
+                    whileHover="hover"
+                    whileTap="tap"
                 >
                     <div className="flex items-center ml-10">
                         <Cpu className="w-24 h-24 mr-5" />
@@ -94,10 +82,11 @@ export default function BuilderContent() {
                 <motion.button 
                     className='flex p-2 rounded-lg h-64 items-center bg-light-terciary dark:bg-dark-terciary border-[7px] border-light-secondary dark:border-dark-secondary' 
                     variants={buttonVariants}
-                    whileHover="hover"
-                    whileTap="tap"
+                    custom={2}
                     initial="hidden"
                     animate="visible"
+                    whileHover="hover"
+                    whileTap="tap"
                 >
                     <div className="flex items-center ml-10">
                         <Cpu className="w-24 h-24 mr-5" />
@@ -111,10 +100,11 @@ export default function BuilderContent() {
                 <motion.button 
                     className='flex p-2 rounded-lg h-64 items-center bg-light-terciary dark:bg-dark-terciary border-[7px] border-light-secondary dark:border-dark-secondary' 
                     variants={buttonVariants}
-                    whileHover="hover"
-                    whileTap="tap"
+                    custom={3}
                     initial="hidden"
                     animate="visible"
+                    whileHover="hover"
+                    whileTap="tap"
                 >
                     <div className="flex items-center ml-10">
                         <Cpu className="w-24 h-24 mr-5" />
