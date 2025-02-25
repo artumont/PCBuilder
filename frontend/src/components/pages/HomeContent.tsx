@@ -13,7 +13,8 @@ const containerVariants = {
         opacity: 1,
         transition: {
             delayChildren: 0.3,
-            staggerChildren: 0.2
+            staggerChildren: 0.2,
+            duration: 0.5
         }
     }
 }
@@ -79,7 +80,11 @@ export default function HomeContent() {
 
     return (
         <div className="w-full h-auto mt-32 lg:mt-5">
-            <section className="relative text-center py-20 px-4 overflow-hidden rounded-lg gl-1">
+            <motion.section className="relative text-center py-20 px-4 overflow-hidden rounded-lg gl-1"
+                variants={containerVariants}
+                initial="hidden"
+                animate="visible"
+            >
                 <div className="absolute inset-0 bg-gradient-to-br from-light-secondary via-light to-light-terciary dark:from-dark-secondary dark:via-dark dark:to-dark-terciary opacity-50 z-0"></div>
                 <motion.div
                     className="relative z-10"
@@ -141,7 +146,7 @@ export default function HomeContent() {
                         <Memory className="w-24 h-24 opacity-20" />
                     </motion.div>
                 </div>
-            </section>
+            </motion.section>
 
             <section className="relative py-20 px-4">
                 <motion.h2 
