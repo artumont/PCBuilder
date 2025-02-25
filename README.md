@@ -6,8 +6,6 @@ A comprehensive web application for building and customizing PC configurations w
 
 - Interactive PC part selection interface
 - Real-time compatibility checking
-- Price comparison across multiple vendors
-- Part recommendations based on budget
 - Save and share build configurations
 - User accounts and build history
 
