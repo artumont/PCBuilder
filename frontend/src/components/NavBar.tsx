@@ -54,15 +54,8 @@ export default function NavBar() {
                 <div className="flex items-center justify-between lg:w-auto">
                     <div className="flex items-center">
                         <Image
-                            className='dark:hidden mr-5'
-                            src="/assets/transparent-logo-light.svg"
-                            alt="PCBuilder Logo"
-                            width={65}
-                            height={65}
-                        />
-                        <Image
-                            className='hidden dark:block mr-5'
-                            src="/assets/transparent-logo-dark.svg"
+                            className='brightness-0 dark:brightness-100 dark:invert mr-5'
+                            src="/assets/logo.svg"
                             alt="PCBuilder Logo"
                             width={65}
                             height={65}

@@ -2,7 +2,6 @@
 
 import { motion } from "motion/react"
 import Image from "next/image"
-import { delay } from "motion"
 import { useNavigation } from "@/context/NavContext"
 import { Cpu, HardDrive, Microchip, Component, Fingerprint, Code, Github, Linkedin, Twitter, MemoryStickIcon as Memory, NotebookText as Notebook } from "lucide-react"
 

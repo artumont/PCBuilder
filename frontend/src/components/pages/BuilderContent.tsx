@@ -1,10 +1,9 @@
 'use client'
 
+import Image from "next/image"
 import { motion } from "motion/react"
 import { useEffect, useState } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
-import { Cpu } from 'lucide-react'
-import { delay } from "motion";
 
 type Build = {
     cpu: string,
@@ -13,7 +12,9 @@ type Build = {
     storage: string,
     motherboard: string,
     psu: string,
-    case: string
+    cooling: string
+    case: string,
+    monitor?: string
 }
 
 export default function BuilderContent() {
@@ -51,7 +52,8 @@ export default function BuilderContent() {
         storage: '',
         motherboard: '',
         psu: '',
-        case: ''
+        case: '',
+        cooling: ''
     };
 
     useEffect(() => {
@@ -62,16 +64,22 @@ export default function BuilderContent() {
         <div className="w-full mt-32 lg:mt-5">
             <motion.div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <motion.button 
-                    className='flex p-2 rounded-lg h-64 items-center bg-light-terciary dark:bg-dark-terciary border-[7px] border-light-secondary dark:border-dark-secondary' 
+                    className='flex p-2 rounded-lg h-60 items-center bg-light-terciary dark:bg-dark-terciary border-[7px] border-light-secondary dark:border-dark-secondary' 
                     variants={buttonVariants}
-                    custom={1}
+                    custom={0}
                     initial="hidden"
                     animate="visible"
                     whileHover="hover"
                     whileTap="tap"
                 >
                     <div className="flex items-center ml-10">
-                        <Cpu className="w-24 h-24 mr-5" />
+                        <Image 
+                            className="w-24 h-24 mr-5 brightness-0 dark:brightness-100 dark:invert" 
+                            src="/assets/builder/cpu.svg" 
+                            alt="CPU" 
+                            width={96} 
+                            height={96} 
+                        />
                         <div className="flex flex-col text-start">
                             <h1 className="text-4xl">CPU</h1>
                             <h2 className="text-sm">{currentBuild.cpu || "Select a CPU"}</h2>
@@ -80,16 +88,22 @@ export default function BuilderContent() {
                 </motion.button>
 
                 <motion.button 
-                    className='flex p-2 rounded-lg h-64 items-center bg-light-terciary dark:bg-dark-terciary border-[7px] border-light-secondary dark:border-dark-secondary' 
+                    className='flex p-2 rounded-lg h-60 items-center bg-light-terciary dark:bg-dark-terciary border-[7px] border-light-secondary dark:border-dark-secondary' 
                     variants={buttonVariants}
-                    custom={2}
+                    custom={1}
                     initial="hidden"
                     animate="visible"
                     whileHover="hover"
                     whileTap="tap"
                 >
                     <div className="flex items-center ml-10">
-                        <Cpu className="w-24 h-24 mr-5" />
+                    <Image 
+                        className="w-24 h-24 mr-5 brightness-0 dark:brightness-100 dark:invert" 
+                        src="/assets/builder/gpu.svg" 
+                        alt="GPU" 
+                        width={96} 
+                        height={96} 
+                    />
                         <div className="flex flex-col text-start">
                             <h1 className="text-4xl">GPU</h1>
                             <h2 className="text-sm">{currentBuild.gpu || "Select a GPU"}</h2>
@@ -98,7 +112,31 @@ export default function BuilderContent() {
                 </motion.button>
 
                 <motion.button 
-                    className='flex p-2 rounded-lg h-64 items-center bg-light-terciary dark:bg-dark-terciary border-[7px] border-light-secondary dark:border-dark-secondary' 
+                    className='flex p-2 rounded-lg h-60 items-center bg-light-terciary dark:bg-dark-terciary border-[7px] border-light-secondary dark:border-dark-secondary' 
+                    variants={buttonVariants}
+                    custom={2}
+                    initial="hidden"
+                    animate="visible"
+                    whileHover="hover"
+                    whileTap="tap"
+                >
+                    <div className="flex items-center ml-10">
+                    <Image 
+                        className="w-24 h-24 mr-5 brightness-0 dark:brightness-100 dark:invert" 
+                        src="/assets/builder/ram.svg" 
+                        alt="RAM" 
+                        width={96} 
+                        height={96} 
+                    />
+                        <div className="flex flex-col text-start">
+                            <h1 className="text-4xl">RAM</h1>
+                            <h2 className="text-sm">{currentBuild.ram || "Select the RAM"}</h2>
+                        </div>
+                    </div>
+                </motion.button>
+
+                <motion.button 
+                    className='flex p-2 rounded-lg h-60 items-center bg-light-terciary dark:bg-dark-terciary border-[7px] border-light-secondary dark:border-dark-secondary' 
                     variants={buttonVariants}
                     custom={3}
                     initial="hidden"
@@ -107,10 +145,136 @@ export default function BuilderContent() {
                     whileTap="tap"
                 >
                     <div className="flex items-center ml-10">
-                        <Cpu className="w-24 h-24 mr-5" />
+                    <Image 
+                        className="w-24 h-24 mr-5 brightness-0 dark:brightness-100 dark:invert" 
+                        src="/assets/builder/ssd.svg" 
+                        alt="RAM" 
+                        width={96} 
+                        height={96} 
+                    />
                         <div className="flex flex-col text-start">
-                            <h1 className="text-4xl">RAM</h1>
-                            <h2 className="text-sm">{currentBuild.ram || "Select a RAM"}</h2>
+                            <h1 className="text-4xl">Storage</h1>
+                            <h2 className="text-sm">{currentBuild.storage || "Select the storage"}</h2>
+                        </div>
+                    </div>
+                </motion.button>
+
+                <motion.button 
+                    className='flex p-2 rounded-lg h-60 items-center bg-light-terciary dark:bg-dark-terciary border-[7px] border-light-secondary dark:border-dark-secondary' 
+                    variants={buttonVariants}
+                    custom={4}
+                    initial="hidden"
+                    animate="visible"
+                    whileHover="hover"
+                    whileTap="tap"
+                >
+                    <div className="flex items-center ml-10">
+                    <Image 
+                        className="w-24 h-24 mr-5 brightness-0 dark:brightness-100 dark:invert" 
+                        src="/assets/builder/mobo.svg" 
+                        alt="RAM" 
+                        width={96} 
+                        height={96} 
+                    />
+                        <div className="flex flex-col text-start">
+                            <h1 className="text-4xl">Motherboard</h1>
+                            <h2 className="text-sm">{currentBuild.motherboard || "Select a motherboard"}</h2>
+                        </div>
+                    </div>
+                </motion.button>
+
+                <motion.button 
+                    className='flex p-2 rounded-lg h-60 items-center bg-light-terciary dark:bg-dark-terciary border-[7px] border-light-secondary dark:border-dark-secondary' 
+                    variants={buttonVariants}
+                    custom={5}
+                    initial="hidden"
+                    animate="visible"
+                    whileHover="hover"
+                    whileTap="tap"
+                >
+                    <div className="flex items-center ml-10">
+                    <Image 
+                        className="w-24 h-24 mr-5 brightness-0 dark:brightness-100 dark:invert" 
+                        src="/assets/builder/psu.svg" 
+                        alt="RAM" 
+                        width={96} 
+                        height={96} 
+                    />
+                        <div className="flex flex-col text-start">
+                            <h1 className="text-4xl">PSU</h1>
+                            <h2 className="text-sm">{currentBuild.psu || "Select a PSU"}</h2>
+                        </div>
+                    </div>
+                </motion.button>
+
+                <motion.button 
+                    className='flex p-2 rounded-lg h-60 items-center bg-light-terciary dark:bg-dark-terciary border-[7px] border-light-secondary dark:border-dark-secondary' 
+                    variants={buttonVariants}
+                    custom={6}
+                    initial="hidden"
+                    animate="visible"
+                    whileHover="hover"
+                    whileTap="tap"
+                >
+                    <div className="flex items-center ml-10">
+                    <Image 
+                        className="w-24 h-24 mr-5 brightness-0 dark:brightness-100 dark:invert" 
+                        src="/assets/builder/fan.svg" 
+                        alt="RAM" 
+                        width={96} 
+                        height={96} 
+                    />
+                        <div className="flex flex-col text-start">
+                            <h1 className="text-4xl">Cooling</h1>
+                            <h2 className="text-sm">{currentBuild.psu || "Select a cooling system"}</h2>
+                        </div>
+                    </div>
+                </motion.button>
+
+                <motion.button 
+                    className='flex p-2 rounded-lg h-60 items-center bg-light-terciary dark:bg-dark-terciary border-[7px] border-light-secondary dark:border-dark-secondary' 
+                    variants={buttonVariants}
+                    custom={7}
+                    initial="hidden"
+                    animate="visible"
+                    whileHover="hover"
+                    whileTap="tap"
+                >
+                    <div className="flex items-center ml-10">
+                    <Image 
+                        className="w-24 h-24 mr-5 brightness-0 dark:brightness-100 dark:invert" 
+                        src="/assets/builder/case.svg" 
+                        alt="RAM" 
+                        width={96} 
+                        height={96} 
+                    />
+                        <div className="flex flex-col text-start">
+                            <h1 className="text-4xl">Case</h1>
+                            <h2 className="text-sm">{currentBuild.psu || "Select a case"}</h2>
+                        </div>
+                    </div>
+                </motion.button>
+
+                <motion.button 
+                    className='flex p-2 rounded-lg h-60 items-center bg-light-terciary dark:bg-dark-terciary border-[7px] border-light-secondary dark:border-dark-secondary' 
+                    variants={buttonVariants}
+                    custom={8}
+                    initial="hidden"
+                    animate="visible"
+                    whileHover="hover"
+                    whileTap="tap"
+                >
+                    <div className="flex items-center ml-10">
+                    <Image 
+                        className="w-24 h-24 mr-5 brightness-0 dark:brightness-100 dark:invert" 
+                        src="/assets/builder/monitor.svg" 
+                        alt="RAM" 
+                        width={96} 
+                        height={96} 
+                    />
+                        <div className="flex flex-col text-start">
+                            <h1 className="text-4xl">Monitor</h1>
+                            <h2 className="text-sm">{currentBuild.psu || "Select a monitor (optional)"}</h2>
                         </div>
                     </div>
                 </motion.button>

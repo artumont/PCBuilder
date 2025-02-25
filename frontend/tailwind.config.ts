@@ -13,12 +13,12 @@ export default {
         dark: {
           DEFAULT: '#090909',
           secondary: '#222222',
-          terciary: '#0d0d0d'
+          terciary: '#0c0c0c'
         },
         light: {
           DEFAULT: '#f9f9f9',
           secondary: '#c4c4c4',
-          terciary: '#dadada'
+          terciary: '#ebebeb'
         }
       },
     },
