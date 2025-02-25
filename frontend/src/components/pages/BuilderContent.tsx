@@ -177,7 +177,7 @@ export default function BuilderContent() {
                         height={96} 
                     />
                         <div className="flex flex-col text-start">
-                            <h1 className="text-4xl">Mobo</h1>
+                            <h1 className="text-4xl">Motherboard</h1>
                             <h2 className="text-sm">{currentBuild.motherboard || "Select a motherboard"}</h2>
                         </div>
                     </div>
