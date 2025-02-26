@@ -30,6 +30,7 @@ CREATE TABLE Hardware.GPUs (
    id INT IDENTITY(1,1) PRIMARY KEY,
    name VARCHAR(255) NOT NULL,
    image_url VARCHAR(2048),
+   chipset VARCHAR(255) NOT NULL, -- @note: This is the GPU chipset, e.g. GTX 1080, RX 580, etc.
    vram INT NOT NULL, -- @note: This is in MB
    wattage INT NOT NULL, -- @note: This is in Watts
    price MONEY,
@@ -111,4 +112,15 @@ CREATE TABLE Hardware.CoolerSocketCompatibility (
     PRIMARY KEY (cooler_id, socket_id),
     FOREIGN KEY (cooler_id) REFERENCES Hardware.Coolers(id),
     FOREIGN KEY (socket_id) REFERENCES Hardware.Sockets(id)
+);
+
+CREATE TABLE Hardware.Monitor (
+    id INT IDENTITY(1,1) PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    image_url VARCHAR(2048),
+    resolution VARCHAR(255) NOT NULL,
+    refresh_rate INT NOT NULL, -- @note: This is in Hz
+    size DECIMAL(4,2) NOT NULL, -- @note: This is in inches
+    panel_type VARCHAR(255) NOT NULL, -- @note: This is TN, IPS, etc
+    price MONEY
 );
