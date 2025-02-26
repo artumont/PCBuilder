@@ -1,4 +1,5 @@
 CREATE SCHEMA Hardware;
+GO
 
 CREATE TABLE Hardware.CPUs (
    id INT IDENTITY(1,1) PRIMARY KEY,
