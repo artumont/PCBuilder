@@ -6,20 +6,20 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import com.pcbuilder.backend.dto.hardware.HardwareResponse;
-import com.pcbuilder.backend.services.CpuService;
+import com.pcbuilder.backend.services.GpuService;
 
 @RestController
-@RequestMapping("/components/cpu")
-public class CpuController {
+@RequestMapping("/components/gpu")
+public class GpuController {
 
-    private final CpuService cpuService;
+    private final GpuService gpuService;
 
-    public CpuController(CpuService cpuService) {
-        this.cpuService = cpuService;
+    public GpuController(GpuService gpuService) {
+        this.gpuService = gpuService;
     }
 
     @GetMapping("/get")
-    public ResponseEntity<HardwareResponse> getCpu(
+    public ResponseEntity<HardwareResponse> getGpu(
         @RequestParam(required = false) 
         Integer id, 
         
@@ -27,18 +27,16 @@ public class CpuController {
         String name,
 
         @RequestParam(required = false)
-        String socket
+        String vram
 
         // @todo: Add the other important parameters.
     ) {
         if (id != null) {
-            return cpuService.getCpuById(id);
+            return gpuService.getGpuById(id);
         } else if (name != null) {
-            return cpuService.getCpuByName(name);
-        } else if (socket != null) {
-            return cpuService.getCpuBySocket(socket);
+            return gpuService.getGpuByName(name);
         } else {
-            return cpuService.getAllCpus();
+            return gpuService.getAllGpus();
         }
     }
 }
