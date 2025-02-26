@@ -4,8 +4,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 
-import com.pcbuilder.backend.helpers.Logger;
 import com.pcbuilder.backend.utils.Config;
+import com.pcbuilder.backend.utils.Logger;
 
 @SpringBootApplication
 public class App {

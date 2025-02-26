@@ -5,8 +5,6 @@ import org.ini4j.Ini;
 import java.io.IOException;
 import org.ini4j.InvalidFileFormatException;
 
-import com.pcbuilder.backend.helpers.Logger;
-
 public class Config {
     private Ini ini;
     private static Logger logger;

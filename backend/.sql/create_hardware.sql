@@ -6,8 +6,8 @@ CREATE TABLE Hardware.CPUs (
    name VARCHAR(255) NOT NULL,
    image_url VARCHAR(2048),
    socket VARCHAR(255) NOT NULL,
-   clock_speed DECIMAL(4,2) NOT NULL, -- @note: This is in GHz
    cores INT NOT NULL,
+   clock_speed DECIMAL(4,2) NOT NULL, -- @note: This is in GHz
    threads INT NOT NULL,
    price MONEY,
    INDEX idx_socket (socket)

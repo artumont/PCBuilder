@@ -1,10 +1,11 @@
-package com.pcbuilder.backend.helpers;
+package com.pcbuilder.backend.services;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
 import com.pcbuilder.backend.utils.Config;
+import com.pcbuilder.backend.utils.Logger;
 
 public class Database {
     private final int maxRetryCount;

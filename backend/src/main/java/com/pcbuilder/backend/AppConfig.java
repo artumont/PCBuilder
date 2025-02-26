@@ -5,10 +5,10 @@ import java.sql.Connection;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import com.pcbuilder.backend.helpers.Database;
-import com.pcbuilder.backend.helpers.Logger;
+import com.pcbuilder.backend.services.Database;
 import com.pcbuilder.backend.utils.Config;
 import com.pcbuilder.backend.utils.Crypto;
+import com.pcbuilder.backend.utils.Logger;
 
 @Configuration
 public class AppConfig {

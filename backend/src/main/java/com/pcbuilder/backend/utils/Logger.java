@@ -1,4 +1,4 @@
-package com.pcbuilder.backend.helpers;
+package com.pcbuilder.backend.utils;
 
 import java.io.File;
 import java.io.FileWriter;
