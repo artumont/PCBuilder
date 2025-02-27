@@ -10,11 +10,11 @@ import com.pcbuilder.backend.dto.hardware.MultiHardwareResponse;
 import com.pcbuilder.backend.utils.Logger;
 
 @Service
-public class GpuService {
+public class StorageService {
     private final Logger logger;
     private final Connection connection;
 
-    public GpuService(Logger logger, Connection connection) {
+    public StorageService(Logger logger, Connection connection) {
         this.logger = logger;
         this.connection = connection;
     }
@@ -31,16 +31,16 @@ public class GpuService {
         throw new UnsupportedOperationException("Unimplemented method 'searchByName'");
     }
 
-    public ResponseEntity<MultiHardwareResponse> searchByChipset(String chipset, Integer offset, Integer limit) {
-        throw new UnsupportedOperationException("Unimplemented method 'searchByChipset'");
+    public ResponseEntity<MultiHardwareResponse> searchByStorageFormat(String storageFormat, Integer offset, Integer limit) {
+        throw new UnsupportedOperationException("Unimplemented method 'searchByStorageFormat'");
     }
 
-    public ResponseEntity<MultiHardwareResponse> searchByVram(Integer minVram, Integer maxVram, Integer offset, Integer limit) {
-        throw new UnsupportedOperationException("Unimplemented method 'searchByVram'");
+    public ResponseEntity<MultiHardwareResponse> searchByStorageProtocol(String storageProtocol, Integer offset, Integer limit) {
+        throw new UnsupportedOperationException("Unimplemented method 'searchByStorageProtocol'");
     }
 
-    public ResponseEntity<MultiHardwareResponse> searchByWattage(Integer minWattage, Integer maxWattage, Integer offset, Integer limit) {
-        throw new UnsupportedOperationException("Unimplemented method 'searchByWattage'");
+    public ResponseEntity<MultiHardwareResponse> searchBySize(Integer minSize, Integer maxSize, Integer offset, Integer limit) {
+        throw new UnsupportedOperationException("Unimplemented method 'searchBySize'");
     }
 
     public ResponseEntity<MultiHardwareResponse> searchByPrice(Float minPrice, Float maxPrice, Integer offset, Integer limit) {

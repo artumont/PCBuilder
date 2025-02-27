@@ -27,23 +27,23 @@ public class CpuService {
         throw new UnsupportedOperationException("Unimplemented method 'searchByRange'");
     }
 
-    public ResponseEntity<MultiHardwareResponse> searchByName(String name) {
+    public ResponseEntity<MultiHardwareResponse> searchByName(String name, Integer offset, Integer limit) {
         throw new UnsupportedOperationException("Unimplemented method 'searchByName'");
     }
 
-    public ResponseEntity<MultiHardwareResponse> searchBySocket(String socket) {
+    public ResponseEntity<MultiHardwareResponse> searchBySocket(String socket, Integer offset, Integer limit) {
         throw new UnsupportedOperationException("Unimplemented method 'searchBySocket'");
     }
 
-    public ResponseEntity<MultiHardwareResponse> searchByCores(Integer minCores, Integer maxCores) {
+    public ResponseEntity<MultiHardwareResponse> searchByCores(Integer minCores, Integer maxCores, Integer offset, Integer limit) {
         throw new UnsupportedOperationException("Unimplemented method 'searchByCores'");
     }
 
-    public ResponseEntity<MultiHardwareResponse> searchByClockSpeed(float minClockSpeed, float maxClockSpeed) {
+    public ResponseEntity<MultiHardwareResponse> searchByClockSpeed(float minClockSpeed, float maxClockSpeed, Integer offset, Integer limit) {
         throw new UnsupportedOperationException("Unimplemented method 'searchByClockSpeed'");
     }
 
-    public ResponseEntity<MultiHardwareResponse> searchByPrice(float minPrice, float maxPrice) {
+    public ResponseEntity<MultiHardwareResponse> searchByPrice(float minPrice, float maxPrice, Integer offset, Integer limit) {
         throw new UnsupportedOperationException("Unimplemented method 'searchByPrice'");
     }
 }

@@ -57,7 +57,7 @@ public class GpuController {
         @RequestParam(required = false)
         Float maxPrice,
 
-        // @note: Both 'offset' and 'limit' are part of an operation.
+        // @note: Both 'offset' and 'limit' are part of the operations.
         @RequestParam(required = false)
         Integer offset,
 
@@ -65,15 +65,15 @@ public class GpuController {
         Integer limit
     ) {
         if (name != null) {
-            return gpuService.searchByName(name);
+            return gpuService.searchByName(name, offset, limit);
         } else if (chipset != null) {
-            return gpuService.searchByChipset(chipset);
+            return gpuService.searchByChipset(chipset, offset, limit);
         } else if (minVram != null && maxVram != null) {
-            return gpuService.searchByVram(minVram, maxVram);
+            return gpuService.searchByVram(minVram, maxVram, offset, limit);
         } else if (minWattage != null && maxWattage != null) {
-            return gpuService.searchByWattage(minWattage, maxWattage);
+            return gpuService.searchByWattage(minWattage, maxWattage, offset, limit);
         } else if (minPrice != null && maxPrice != null) {
-            return gpuService.searchByPrice(minPrice, maxPrice);
+            return gpuService.searchByPrice(minPrice, maxPrice, offset, limit);
         } else if (offset != null && limit != null) {
             return gpuService.searchByRange(offset, limit);
         }

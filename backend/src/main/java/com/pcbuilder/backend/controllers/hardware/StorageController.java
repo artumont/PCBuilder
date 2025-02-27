@@ -7,25 +7,25 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import com.pcbuilder.backend.dto.hardware.HardwareResponse;
 import com.pcbuilder.backend.dto.hardware.MultiHardwareResponse;
-import com.pcbuilder.backend.services.hardware.RamService;
+import com.pcbuilder.backend.services.hardware.StorageService;
 
 @RestController
-@RequestMapping("/components/motherboard")
-public class RamController {
+@RequestMapping("/components/storage")
+public class StorageController {
 
-    private final RamService ramService;
+    private final StorageService storageService;
 
-    public RamController(RamService ramService) {
-        this.ramService = ramService;
+    public StorageController(StorageService storageService) {
+        this.storageService = storageService;
     }
 
     @GetMapping("/fetch")
-    public ResponseEntity<HardwareResponse> getRam(
+    public ResponseEntity<HardwareResponse> getStorage(
         @RequestParam(required = true) 
         Integer id
 
     ) {
-        return ramService.fetchById(id);
+        return storageService.fetchById(id);
     }
 
     @GetMapping("/search")
@@ -34,21 +34,17 @@ public class RamController {
         String name,
 
         @RequestParam(required = false)
-        String ramType,
-
-        // @note: Both 'minCapacity' and 'maxCapacity' are part of a range.
-        @RequestParam(required = false)
-        Integer minCapacity,
+        String storageFormat,
 
         @RequestParam(required = false)
-        Integer maxCapacity,
+        String storageProtocol,
 
-        // @note: Both 'minSpeed' and 'maxSpeed' are part of a range.
+        // @note: Both 'minSize' and 'maxSize' are part of a range.
         @RequestParam(required = false)
-        Integer minSpeed,
+        Integer minSize,
 
         @RequestParam(required = false)
-        Integer maxSpeed,
+        Integer maxSize,
 
         // @note: Both 'minPrice' and 'maxPrice' are part of a range.
         @RequestParam(required = false)
@@ -65,17 +61,17 @@ public class RamController {
         Integer limit
     ) {
         if (name != null) {
-            return ramService.searchByName(name, offset, limit);
-        } else if (ramType != null) {
-            return ramService.searchByRamType(ramType, offset, limit);
-        } else if (minCapacity != null && maxCapacity != null) {
-            return ramService.searchByCapacity(minCapacity, maxCapacity, offset, limit);
-        } else if (minSpeed != null && maxSpeed != null) {
-            return ramService.searchBySpeed(minSpeed, maxSpeed, offset, limit);
+            return storageService.searchByName(name, offset, limit);
+        } else if (storageFormat != null) {
+            return storageService.searchByStorageFormat(storageFormat, offset, limit);
+        } else if (storageProtocol != null) {
+            return storageService.searchByStorageProtocol(storageProtocol, offset, limit);
+        } else if (minSize != null && maxSize != null) {
+            return storageService.searchBySize(minSize, maxSize, offset, limit);
         } else if (minPrice != null && maxPrice != null) {
-            return ramService.searchByPrice(minPrice, maxPrice, offset, limit);
+            return storageService.searchByPrice(minPrice, maxPrice, offset, limit);
         } else if (offset != null && limit != null) {
-            return ramService.searchByRange(offset, limit);
+            return storageService.searchByRange(offset, limit);
         }
         return ResponseEntity.badRequest().build();
     }

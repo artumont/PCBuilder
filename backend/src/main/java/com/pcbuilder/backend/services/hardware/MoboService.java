@@ -27,39 +27,39 @@ public class MoboService {
         throw new UnsupportedOperationException("Unimplemented method 'searchByRange'");
     }
 
-    public ResponseEntity<MultiHardwareResponse> searchByName(String name) {
+    public ResponseEntity<MultiHardwareResponse> searchByName(String name, Integer offset, Integer limit) {
         throw new UnsupportedOperationException("Unimplemented method 'searchByName'");
     }
 
-    public ResponseEntity<MultiHardwareResponse> searchBySocket(String socket) {
+    public ResponseEntity<MultiHardwareResponse> searchBySocket(String socket, Integer offset, Integer limit) {
         throw new UnsupportedOperationException("Unimplemented method 'searchBySocket'");
     }
 
-    public ResponseEntity<MultiHardwareResponse> searchByRamType(String ramType) {
+    public ResponseEntity<MultiHardwareResponse> searchByRamType(String ramType, Integer offset, Integer limit) {
         throw new UnsupportedOperationException("Unimplemented method 'searchByRamType'");
     }
 
-    public ResponseEntity<MultiHardwareResponse> searchBySize(String size) {
+    public ResponseEntity<MultiHardwareResponse> searchBySize(String size, Integer offset, Integer limit) {
         throw new UnsupportedOperationException("Unimplemented method 'searchBySize'");
     }
 
-    public ResponseEntity<MultiHardwareResponse> searchByChipset(Integer chipsetId) {
+    public ResponseEntity<MultiHardwareResponse> searchByChipset(Integer chipsetId, Integer offset, Integer limit) {
         throw new UnsupportedOperationException("Unimplemented method 'searchByChipset'");
     }
 
-    public ResponseEntity<MultiHardwareResponse> searchBySataSlots(Integer minSataSlots, Integer maxSataSlots) {
+    public ResponseEntity<MultiHardwareResponse> searchBySataSlots(Integer minSataSlots, Integer maxSataSlots, Integer offset, Integer limit) {
         throw new UnsupportedOperationException("Unimplemented method 'searchBySataSlots'");
     }
 
-    public ResponseEntity<MultiHardwareResponse> searchByRamSlots(Integer minRamSlots, Integer maxRamSlots) {
+    public ResponseEntity<MultiHardwareResponse> searchByRamSlots(Integer minRamSlots, Integer maxRamSlots, Integer offset, Integer limit) {
         throw new UnsupportedOperationException("Unimplemented method 'searchByRamSlots'");
     }
 
-    public ResponseEntity<MultiHardwareResponse> searchByM2Slots(Integer minM2Slots, Integer maxM2Slots) {
+    public ResponseEntity<MultiHardwareResponse> searchByM2Slots(Integer minM2Slots, Integer maxM2Slots, Integer offset, Integer limit) {
         throw new UnsupportedOperationException("Unimplemented method 'searchByM2Slots'");
     }
 
-    public ResponseEntity<MultiHardwareResponse> searchByPrice(Float minPrice, Float maxPrice) {
+    public ResponseEntity<MultiHardwareResponse> searchByPrice(Float minPrice, Float maxPrice, Integer offset, Integer limit) {
         throw new UnsupportedOperationException("Unimplemented method 'searchByPrice'");
     }
 }

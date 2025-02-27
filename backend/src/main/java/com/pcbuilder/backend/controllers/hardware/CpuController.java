@@ -57,7 +57,7 @@ public class CpuController {
         @RequestParam(required = false)
         Float maxPrice,
 
-        // @note: Both 'offset' and 'limit' are part of an operation.
+        // @note: Both 'offset' and 'limit' are part of the operations.
         @RequestParam(required = false)
         Integer offset,
 
@@ -65,15 +65,15 @@ public class CpuController {
         Integer limit
     ) {
         if (name != null) {
-            return cpuService.searchByName(name);
+            return cpuService.searchByName(name, offset, limit);
         } else if (socket != null) {
-            return cpuService.searchBySocket(socket);
+            return cpuService.searchBySocket(socket, offset, limit);
         } else if (minCores != null && maxCores != null) {
-            return cpuService.searchByCores(minCores, maxCores);
+            return cpuService.searchByCores(minCores, maxCores, offset, limit);
         } else if (minClockSpeed != null && maxClockSpeed != null) {
-            return cpuService.searchByClockSpeed(minClockSpeed, maxClockSpeed);
+            return cpuService.searchByClockSpeed(minClockSpeed, maxClockSpeed, offset, limit);
         } else if (minPrice != null && maxPrice != null) {
-            return cpuService.searchByPrice(minPrice, maxPrice);
+            return cpuService.searchByPrice(minPrice, maxPrice, offset, limit);
         } else if (offset != null && limit != null) {
             return cpuService.searchByRange(offset, limit);
         }
