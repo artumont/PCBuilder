@@ -12,7 +12,7 @@ public class Cpu implements Hardware {
 
     public Cpu(
             int id, String name, String imageUrl, String socket, 
-            float clockSpeed, int cores, int threads, float price
+            int cores, float clockSpeed,  int threads, float price
         ) {
         this.id = id;
         this.name = name;

@@ -1,12 +1,15 @@
 package com.pcbuilder.backend.services.hardware;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.pcbuilder.backend.dto.hardware.HardwareResponse;
 import com.pcbuilder.backend.dto.hardware.MultiHardwareResponse;
+import com.pcbuilder.backend.models.hardware.Cpu;
 import com.pcbuilder.backend.utils.Logger;
 
 @Service
@@ -20,7 +23,40 @@ public class CpuService {
     }
 
     public ResponseEntity<HardwareResponse> fetchById(int id) {
-        throw new UnsupportedOperationException("Unimplemented method 'fetchById'");
+        try {
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM Hardware.CPUs WHERE id = ?");
+            statement.setInt(1, id);
+            
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                return ResponseEntity.ok(new HardwareResponse(
+                    "success",
+                    "Found CPU with id: " + id,
+                    "cpu",
+                    new Cpu(
+                        resultSet.getInt("id"),
+                        resultSet.getString("name"),
+                        resultSet.getString("image_url"),
+                        resultSet.getString("socket"),
+                        resultSet.getInt("cores"),
+                        resultSet.getFloat("clock_speed"),
+                        resultSet.getInt("threads"),
+                        resultSet.getFloat("price")
+                    )
+                ));
+            }
+            else {
+                return ResponseEntity.ok(new HardwareResponse(
+                    "error",
+                    "CPU with id: " + id + " not found",
+                    "cpu",
+                    null
+                ));
+            }
+        } catch (Exception e) {
+            logger.error("RamService.fetchById", e.getMessage());
+            return ResponseEntity.status(500).body(null);
+        }
     }
 
     public ResponseEntity<MultiHardwareResponse> searchByRange(int offset, int limit) {
