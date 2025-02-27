@@ -1,4 +1,4 @@
-package com.pcbuilder.backend.controllers;
+package com.pcbuilder.backend.controllers.auth;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -70,14 +70,14 @@ public class AuthController {
             logger.info("Auth.login", String.format("Login request - Username: %s, Password: %s", username, password));
 
             // @note: Check if user exists in database
-            PreparedStatement statement = connection.prepareStatement("SELECT * FROM Users WHERE username = ? AND hash_password = ?");
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM Users WHERE username = ? AND password = ?");
             statement.setString(1, username);
             statement.setString(2, password);
             var resultSet = statement.executeQuery();
 
             if (resultSet.next()) {
                 String dbUsername = resultSet.getString("username");
-                String dbPassword = resultSet.getString("hash_password");
+                String dbPassword = resultSet.getString("password");
                 
                 if (dbUsername.equals(username) && dbPassword.equals(password)) {
                     logger.info("Auth.Login", "Login successful");
@@ -161,10 +161,9 @@ public class AuthController {
             String email = registerRequest.email();
             String username = registerRequest.username();
             String password = registerRequest.password();
-            String phoneNumber = registerRequest.phoneNumber();
 
             // @note: Check if any of the fields are null
-            if (email == null || username == null || password == null || phoneNumber == null) {
+            if (email == null || username == null || password == null) {
                 AuthResponse response = new AuthResponse(
                     "error",
                     "Invalid request", 
@@ -174,7 +173,7 @@ public class AuthController {
                 logger.info("Auth.RegisterOperation", "Invalid request");
                 return ResponseEntity.status(400).body(response);
             }
-            logger.info("Auth.register", String.format("Register request - Email: %s, Username: %s, Password: %s, Phone Number: %s", email, username, password, phoneNumber));
+            logger.info("Auth.register", String.format("Register request - Email: %s, Username: %s, Password: %s", email, username, password));
             
             // @note: Check if username already exists in database
             PreparedStatement statement = connection.prepareStatement("SELECT * FROM Users WHERE username = ? OR email = ?");
@@ -192,11 +191,10 @@ public class AuthController {
             }
             
             // @note: Insert new user into database
-            statement = connection.prepareStatement("INSERT INTO Users (email, username, hash_password, phone_number) VALUES (?, ?, ?, ?)");
+            statement = connection.prepareStatement("INSERT INTO Users (email, username, password) VALUES (?, ?, ?)");
             statement.setString(1, email);
             statement.setString(2, username);
             statement.setString(3, password);
-            statement.setString(4, phoneNumber);
             if (statement.executeUpdate() > 0) {
                 logger.info("Auth.RegisterOperation", "Registration successful");
 

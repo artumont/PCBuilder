@@ -9,7 +9,10 @@ public class Gpu implements Hardware {
     private int wattage;
     private float price;
 
-    public Gpu(int id, String name, String imageUrl, String chipset, int vram, int wattage, float price) {
+    public Gpu(
+            int id, String name, String imageUrl, String chipset, 
+            int vram, int wattage, float price
+        ) {
         this.id = id;
         this.name = name;
         this.imageUrl = imageUrl;

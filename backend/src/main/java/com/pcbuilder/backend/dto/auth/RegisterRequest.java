@@ -18,8 +18,5 @@ public record RegisterRequest(
     @NotBlank(message = "Password is required")
     @Pattern(regexp = "^[A-Za-z0-9]+$", message = "Password must be alphanumeric")
     @Size(min = 6, max = 30, message = "Password must be between 6 and 30 characters")
-    String password,
-
-    @Pattern(regexp = "^[0-9]{10}$", message = "Phone number must be 10 digits")
-    String phoneNumber
+    String password
 ) {}

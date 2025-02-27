@@ -1,36 +1,33 @@
-package com.pcbuilder.backend.services;
+package com.pcbuilder.backend.services.hardware;
 
 import java.sql.Connection;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.pcbuilder.backend.dto.hardware.HardwareResponse;
+import com.pcbuilder.backend.dto.hardware.MultiHardwareResponse;
 import com.pcbuilder.backend.utils.Logger;
 
 @Service
-public class GpuService {
-
+public class MoboService {
     private final Logger logger;
     private final Connection connection;
 
-    public GpuService(Logger logger, Connection connection) {
+    public MoboService(Logger logger, Connection connection) {
         this.logger = logger;
         this.connection = connection;
     }
 
-    public ResponseEntity<HardwareResponse> getGpuById(int id) {
+    public ResponseEntity<HardwareResponse> fetchById(int id) {
         return null;
     }
 
-    public ResponseEntity<HardwareResponse> getGpuByName(String name) {
+    public ResponseEntity<HardwareResponse> fetchBySocket(String socket) {
         return null;
     }
 
-    public ResponseEntity<HardwareResponse> getGpuByVram(int vram) {
-        return null;
-    }
-
-    public ResponseEntity<HardwareResponse> getAllGpus() {
+    public ResponseEntity<MultiHardwareResponse> getAll(int offset, int limit) {
         return null;
     }
 }

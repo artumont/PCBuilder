@@ -1,11 +1,12 @@
 package com.pcbuilder.backend.dto.hardware;
 
-import com.pcbuilder.backend.models.hardware.Hardware;
-
+import java.util.List;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
-public record HardwareResponse(
+import com.pcbuilder.backend.models.hardware.Hardware;
+
+public record MultiHardwareResponse(
     @NotBlank(message = "Status is required")
     String status,
 
@@ -15,6 +16,6 @@ public record HardwareResponse(
     @NotNull(message = "Hardware type is required")
     String hardwareType,
 
-    @NotBlank(message = "Hardware is required")
-    Hardware hardwareData
+    @NotBlank(message = "Hardware list is required")
+    List<Hardware> hardwareList
 ) {}

@@ -6,16 +6,16 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import com.pcbuilder.backend.dto.hardware.HardwareResponse;
-import com.pcbuilder.backend.services.hardware.GpuService;
+import com.pcbuilder.backend.services.hardware.MoboService;
 
 @RestController
-@RequestMapping("/components/gpu")
-public class GpuController {
+@RequestMapping("/components/motherboard")
+public class MoboController {
 
-    private final GpuService gpuService;
+    private final MoboService moboService;
 
-    public GpuController(GpuService gpuService) {
-        this.gpuService = gpuService;
+    public MoboController(MoboService moboService) {
+        this.moboService = moboService;
     }
 
     @GetMapping("/fetch")
@@ -24,14 +24,14 @@ public class GpuController {
         Integer id, 
 
         @RequestParam(required = false)
-        Integer vram // @note: This is in megabytes.
+        String socket
 
         // @todo: Add the other important parameters.
     ) {
         if (id != null) {
-            return gpuService.fetchById(id);
-        } else if (vram != null) {
-            return gpuService.fetchByVram(vram);
+            return moboService.fetchById(id);
+        } else if (socket != null) {
+            return moboService.fetchBySocket(socket);
         } else {
             return ResponseEntity.badRequest().build();
         }
