@@ -62,17 +62,15 @@ public class CpuService {
 
     public ResponseEntity<MultiHardwareResponse> searchByRange(int offset, int limit) {
         try {
-            PreparedStatement statement = connection.prepareStatement(
-                "SELECT * FROM Hardware.CPUs ORDER BY id OFFSET ? ROWS FETCH NEXT ? ROWS ONLY"
-            );
-            statement.setInt(1, offset);
-            statement.setInt(2, limit);
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM Hardware.CPUs ORDER BY id OFFSET ? ROWS FETCH NEXT ? ROWS ONLY");
+            statement.setInt(1, limit);
+            statement.setInt(2, offset);
             
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
                 MultiHardwareResponse multiHardwareResponse = new MultiHardwareResponse(
                     "success",
-                    String.format("Found CPUs from %d to %d", offset, offset + limit),
+                    String.format("Found %s CPUs", resultSet.getFetchSize()),
                     "cpu",
                     List.of()
                 );
@@ -99,7 +97,7 @@ public class CpuService {
                 ));
             }
         } catch (Exception e) {
-            logger.error("CpuService.searchByRange", e.getMessage());
+            logger.error("RamService.searchByRange", e.getMessage());
             return ResponseEntity.status(500).body(null);
         }
     }
