@@ -79,5 +79,4 @@ public class GpuController {
         }
         return ResponseEntity.badRequest().build();
     }
-    
 }

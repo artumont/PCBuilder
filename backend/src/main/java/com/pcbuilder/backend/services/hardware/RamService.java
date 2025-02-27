@@ -26,4 +26,24 @@ public class RamService {
     public ResponseEntity<MultiHardwareResponse> searchByRange(int offset, int limit) {
         throw new UnsupportedOperationException("Unimplemented method 'searchByRange'");
     }
+
+	public ResponseEntity<MultiHardwareResponse> searchByName(String name) {
+		throw new UnsupportedOperationException("Unimplemented method 'searchByName'");
+	}
+
+    public ResponseEntity<MultiHardwareResponse> searchByRamType(String ramType) {
+        throw new UnsupportedOperationException("Unimplemented method 'searchByRamType'");
+    }
+
+    public ResponseEntity<MultiHardwareResponse> searchByCapacity(Integer minCapacity, Integer maxCapacity) {
+        throw new UnsupportedOperationException("Unimplemented method 'searchByCapacity'");
+    }
+
+    public ResponseEntity<MultiHardwareResponse> searchBySpeed(Integer minSpeed, Integer maxSpeed) {
+        throw new UnsupportedOperationException("Unimplemented method 'searchBySpeed'");
+    }
+
+    public ResponseEntity<MultiHardwareResponse> searchByPrice(Float minPrice, Float maxPrice) {
+        throw new UnsupportedOperationException("Unimplemented method 'searchByPrice'");
+    }
 }

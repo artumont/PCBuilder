@@ -20,7 +20,7 @@ public class MoboController {
     }
 
     @GetMapping("/fetch")
-    public ResponseEntity<HardwareResponse> getGpu(
+    public ResponseEntity<HardwareResponse> getMobo(
         @RequestParam(required = true) 
         Integer id
 

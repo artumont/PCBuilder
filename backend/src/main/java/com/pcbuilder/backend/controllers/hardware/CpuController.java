@@ -79,5 +79,4 @@ public class CpuController {
         }
         return ResponseEntity.badRequest().build();
     }
-    
 }
