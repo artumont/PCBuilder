@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import com.pcbuilder.backend.dto.hardware.HardwareResponse;
+import com.pcbuilder.backend.dto.hardware.MultiHardwareResponse;
 import com.pcbuilder.backend.services.hardware.GpuService;
 
 @RestController
@@ -20,25 +21,63 @@ public class GpuController {
 
     @GetMapping("/fetch")
     public ResponseEntity<HardwareResponse> getGpu(
-        @RequestParam(required = false) 
-        Integer id, 
+        @RequestParam(required = true) 
+        Integer id 
+
+    ) {
+        return gpuService.fetchById(id);
+    }
+
+    @GetMapping("/search")
+    public ResponseEntity<MultiHardwareResponse> searchGpu(
+        @RequestParam(required = false)
+        String name,
 
         @RequestParam(required = false)
-        Integer vram // @note: This is in megabytes.
+        String chipset,
 
-        // @todo: Add the other important parameters.
+        // @note: Both 'minVram' and 'maxVram' are part of a range.
+        @RequestParam(required = false)
+        Integer minVram,
+
+        @RequestParam(required = false)
+        Integer maxVram,
+
+        // @note: Both 'minWattage' and 'maxWattage' are part of a range.
+        @RequestParam(required = false)
+        Integer minWattage,
+
+        @RequestParam(required = false)
+        Integer maxWattage,
+
+        // @note: Both 'minPrice' and 'maxPrice' are part of a range.
+        @RequestParam(required = false)
+        Float minPrice,
+
+        @RequestParam(required = false)
+        Float maxPrice,
+
+        // @note: Both 'offset' and 'limit' are part of an operation.
+        @RequestParam(required = false)
+        Integer offset,
+
+        @RequestParam(required = false)
+        Integer limit
     ) {
-        if (id != null) {
-            return gpuService.fetchById(id);
-        } else if (vram != null) {
-            return gpuService.fetchByVram(vram);
-        } else {
-            return ResponseEntity.badRequest().build();
+        if (name != null) {
+            return gpuService.searchByName(name);
+        } else if (chipset != null) {
+            return gpuService.searchByChipset(chipset);
+        } else if (minVram != null && maxVram != null) {
+            return gpuService.searchByVram(minVram, maxVram);
+        } else if (minWattage != null && maxWattage != null) {
+            return gpuService.searchByWattage(minWattage, maxWattage);
+        } else if (minPrice != null && maxPrice != null) {
+            return gpuService.searchByPrice(minPrice, maxPrice);
+        } else if (offset != null && limit != null) {
+            return gpuService.searchByRange(offset, limit);
         }
+        return ResponseEntity.badRequest().build();
     }
-
-    @GetMapping("/list")
-    public ResponseEntity<HardwareResponse> getMethodName(@RequestParam String param) {
-        return null;
-    }
+    
 }

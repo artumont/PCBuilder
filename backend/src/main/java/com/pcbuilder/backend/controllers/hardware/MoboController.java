@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import com.pcbuilder.backend.dto.hardware.HardwareResponse;
+import com.pcbuilder.backend.dto.hardware.MultiHardwareResponse;
 import com.pcbuilder.backend.services.hardware.MoboService;
 
 @RestController
@@ -20,25 +21,86 @@ public class MoboController {
 
     @GetMapping("/fetch")
     public ResponseEntity<HardwareResponse> getGpu(
-        @RequestParam(required = false) 
-        Integer id, 
+        @RequestParam(required = true) 
+        Integer id
 
-        @RequestParam(required = false)
-        String socket
-
-        // @todo: Add the other important parameters.
     ) {
-        if (id != null) {
-            return moboService.fetchById(id);
-        } else if (socket != null) {
-            return moboService.fetchBySocket(socket);
-        } else {
-            return ResponseEntity.badRequest().build();
-        }
+        return moboService.fetchById(id);
     }
 
-    @GetMapping("/list")
-    public ResponseEntity<HardwareResponse> getMethodName(@RequestParam String param) {
-        return null;
+    @GetMapping("/search")
+    public ResponseEntity<MultiHardwareResponse> seachMobo(
+        @RequestParam(required = false)
+        String name,
+
+        @RequestParam(required = false)
+        String socket,
+
+        @RequestParam(required = false)
+        String ramType,
+
+        @RequestParam(required = false)
+        String size,
+        
+        @RequestParam(required = false)
+        Integer chipsetId,
+
+        // @note: Both 'minSataSlots' and 'maxSataSlots' are part of a range.
+        @RequestParam(required = false)
+        Integer minSataSlots,
+
+        @RequestParam(required = false)
+        Integer maxSataSlots,
+
+        // @note: Both 'minM2Slots' and 'maxM2Slots' are part of a range.
+        @RequestParam(required = false)
+        Integer minM2Slots,
+
+        @RequestParam(required = false)
+        Integer maxM2Slots,
+
+        // @note: Both 'minRamSlots' and 'maxRamSlots' are part of a range.
+        @RequestParam(required = false)
+        Integer minRamSlots,
+
+        @RequestParam(required = false)
+        Integer maxRamSlots,
+
+        // @note: Both 'minPrice' and 'maxPrice' are part of a range.
+        @RequestParam(required = false)
+        Float minPrice,
+
+        @RequestParam(required = false)
+        Float maxPrice,
+
+        // @note: Both 'offset' and 'limit' are part of an operation.
+        @RequestParam(required = false)
+        Integer offset,
+
+        @RequestParam(required = false)
+        Integer limit
+    ) {
+        if (name != null) {
+            return moboService.searchByName(name);
+        } else if (socket != null) {
+            return moboService.searchBySocket(socket);
+        } else if (ramType != null) {
+            return moboService.searchByRamType(ramType);
+        } else if (size != null) {
+            return moboService.searchBySize(size);
+        } else if (chipsetId != null) {
+            return moboService.searchByChipset(chipsetId);
+        } else if (minSataSlots != null && maxSataSlots != null) {
+            return moboService.searchBySataSlots(minSataSlots, maxSataSlots);
+        } else if (minM2Slots != null && maxM2Slots != null) {
+            return moboService.searchByM2Slots(minM2Slots, maxM2Slots);
+        } else if (minRamSlots != null && maxRamSlots != null) {
+            return moboService.searchByRamSlots(minRamSlots, maxRamSlots);
+        } else if (minPrice != null && maxPrice != null) {
+            return moboService.searchByPrice(minPrice, maxPrice);
+        } else if (offset != null && limit != null) {
+            return moboService.searchByRange(offset, limit);
+        }
+        return ResponseEntity.badRequest().build();
     }
 }

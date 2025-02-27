@@ -1,12 +1,13 @@
 package com.pcbuilder.backend.services.hardware;
 
 import java.sql.Connection;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import com.pcbuilder.backend.utils.Logger;
 import com.pcbuilder.backend.dto.hardware.HardwareResponse;
 import com.pcbuilder.backend.dto.hardware.MultiHardwareResponse;
+import com.pcbuilder.backend.utils.Logger;
 
 @Service
 public class CpuService {
@@ -19,14 +20,30 @@ public class CpuService {
     }
 
     public ResponseEntity<HardwareResponse> fetchById(int id) {
-        return null;
+        throw new UnsupportedOperationException("Unimplemented method 'fetchById'");
     }
 
-    public ResponseEntity<HardwareResponse> fetchBySocket(String socket) {
-        return null;
+    public ResponseEntity<MultiHardwareResponse> searchByRange(int offset, int limit) {
+        throw new UnsupportedOperationException("Unimplemented method 'searchByRange'");
     }
 
-    public ResponseEntity<MultiHardwareResponse> getAll(int offset, int limit) {
-        return null;
+    public ResponseEntity<MultiHardwareResponse> searchByName(String name) {
+        throw new UnsupportedOperationException("Unimplemented method 'searchByName'");
+    }
+
+    public ResponseEntity<MultiHardwareResponse> searchBySocket(String socket) {
+        throw new UnsupportedOperationException("Unimplemented method 'searchBySocket'");
+    }
+
+    public ResponseEntity<MultiHardwareResponse> searchByCores(Integer minCores, Integer maxCores) {
+        throw new UnsupportedOperationException("Unimplemented method 'searchByCores'");
+    }
+
+    public ResponseEntity<MultiHardwareResponse> searchByClockSpeed(float minClockSpeed, float maxClockSpeed) {
+        throw new UnsupportedOperationException("Unimplemented method 'searchByClockSpeed'");
+    }
+
+    public ResponseEntity<MultiHardwareResponse> searchByPrice(float minPrice, float maxPrice) {
+        throw new UnsupportedOperationException("Unimplemented method 'searchByPrice'");
     }
 }

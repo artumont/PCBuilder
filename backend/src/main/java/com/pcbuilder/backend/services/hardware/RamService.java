@@ -1,6 +1,7 @@
 package com.pcbuilder.backend.services.hardware;
 
 import java.sql.Connection;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -19,14 +20,10 @@ public class RamService {
     }
 
     public ResponseEntity<HardwareResponse> fetchById(int id) {
-        return null;
+        throw new UnsupportedOperationException("Unimplemented method 'fetchById'");
     }
 
-    public ResponseEntity<HardwareResponse> fetchBySize(int size) {
-        return null;
-    }
-
-    public ResponseEntity<MultiHardwareResponse> getAll(int offset, int limit) {
-        return null;
+    public ResponseEntity<MultiHardwareResponse> searchByRange(int offset, int limit) {
+        throw new UnsupportedOperationException("Unimplemented method 'searchByRange'");
     }
 }

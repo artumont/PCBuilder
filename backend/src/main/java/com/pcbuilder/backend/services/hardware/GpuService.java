@@ -1,6 +1,7 @@
 package com.pcbuilder.backend.services.hardware;
 
 import java.sql.Connection;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -19,14 +20,30 @@ public class GpuService {
     }
 
     public ResponseEntity<HardwareResponse> fetchById(int id) {
-        return null;
+        throw new UnsupportedOperationException("Unimplemented method 'fetchById'");
     }
 
-    public ResponseEntity<HardwareResponse> fetchByVram(int vram) {
-        return null;
+    public ResponseEntity<MultiHardwareResponse> searchByRange(int offset, int limit) {
+        throw new UnsupportedOperationException("Unimplemented method 'searchByRange'");
     }
 
-    public ResponseEntity<MultiHardwareResponse> getAll(int offset, int limit) {
-        return null;
+    public ResponseEntity<MultiHardwareResponse> searchByName(String name) {
+        throw new UnsupportedOperationException("Unimplemented method 'searchByName'");
+    }
+
+    public ResponseEntity<MultiHardwareResponse> searchByChipset(String chipset) {
+        throw new UnsupportedOperationException("Unimplemented method 'searchByChipset'");
+    }
+
+    public ResponseEntity<MultiHardwareResponse> searchByVram(Integer minVram, Integer maxVram) {
+        throw new UnsupportedOperationException("Unimplemented method 'searchByVram'");
+    }
+
+    public ResponseEntity<MultiHardwareResponse> searchByWattage(Integer minWattage, Integer maxWattage) {
+        throw new UnsupportedOperationException("Unimplemented method 'searchByWattage'");
+    }
+
+    public ResponseEntity<MultiHardwareResponse> searchByPrice(Float minPrice, Float maxPrice) {
+        throw new UnsupportedOperationException("Unimplemented method 'searchByPrice'");
     }
 }
