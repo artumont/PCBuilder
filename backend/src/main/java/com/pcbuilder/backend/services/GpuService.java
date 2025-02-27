@@ -26,6 +26,10 @@ public class GpuService {
         return null;
     }
 
+    public ResponseEntity<HardwareResponse> getGpuByVram(int vram) {
+        return null;
+    }
+
     public ResponseEntity<HardwareResponse> getAllGpus() {
         return null;
     }
