@@ -3,6 +3,7 @@ package com.pcbuilder.backend.services.hardware;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.List;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -60,7 +61,45 @@ public class CpuService {
     }
 
     public ResponseEntity<MultiHardwareResponse> searchByRange(int offset, int limit) {
-        throw new UnsupportedOperationException("Unimplemented method 'searchByRange'");
+        try {
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM Hardware.CPUs LIMIT ? OFFSET ?");
+            statement.setInt(1, limit);
+            statement.setInt(2, offset);
+            
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                MultiHardwareResponse multiHardwareResponse = new MultiHardwareResponse(
+                    "success",
+                    String.format("Found %s CPUs", resultSet.getFetchSize()),
+                    "cpu",
+                    List.of()
+                );
+                do {
+                    multiHardwareResponse.addHardware(new Cpu(
+                        resultSet.getInt("id"),
+                        resultSet.getString("name"),
+                        resultSet.getString("image_url"),
+                        resultSet.getString("socket"),
+                        resultSet.getInt("cores"),
+                        resultSet.getFloat("clock_speed"),
+                        resultSet.getInt("threads"),
+                        resultSet.getFloat("price")
+                    ));
+                } while (resultSet.next());
+                return ResponseEntity.ok(multiHardwareResponse);
+            }
+            else {
+                return ResponseEntity.ok(new MultiHardwareResponse(
+                    "error",
+                    "No CPUs found",
+                    "cpu",
+                    List.of()
+                ));
+            }
+        } catch (Exception e) {
+            logger.error("RamService.searchByRange", e.getMessage());
+            return ResponseEntity.status(500).body(null);
+        }
     }
 
     public ResponseEntity<MultiHardwareResponse> searchByName(String name, Integer offset, Integer limit) {

@@ -18,4 +18,8 @@ public record MultiHardwareResponse(
 
     @NotBlank(message = "Hardware list is required")
     List<Hardware> hardwareList
-) {}
+) {
+    public void addHardware(Hardware hardware) {
+        hardwareList.add(hardware);
+    }
+}
