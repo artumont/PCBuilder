@@ -10,7 +10,7 @@ import com.pcbuilder.backend.dto.hardware.MultiHardwareResponse;
 import com.pcbuilder.backend.services.hardware.CpuService;
 
 @RestController
-@RequestMapping("/components/cpu")
+@RequestMapping("/hardware/cpu")
 public class CpuController {
 
     private final CpuService cpuService;

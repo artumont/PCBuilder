@@ -10,7 +10,7 @@ import com.pcbuilder.backend.dto.hardware.MultiHardwareResponse;
 import com.pcbuilder.backend.services.hardware.GpuService;
 
 @RestController
-@RequestMapping("/components/gpu")
+@RequestMapping("/hardware/gpu")
 public class GpuController {
 
     private final GpuService gpuService;

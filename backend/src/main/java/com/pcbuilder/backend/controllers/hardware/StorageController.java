@@ -10,7 +10,7 @@ import com.pcbuilder.backend.dto.hardware.MultiHardwareResponse;
 import com.pcbuilder.backend.services.hardware.StorageService;
 
 @RestController
-@RequestMapping("/components/storage")
+@RequestMapping("/hardware/storage")
 public class StorageController {
 
     private final StorageService storageService;

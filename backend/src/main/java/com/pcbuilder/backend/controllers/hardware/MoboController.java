@@ -10,7 +10,7 @@ import com.pcbuilder.backend.dto.hardware.MultiHardwareResponse;
 import com.pcbuilder.backend.services.hardware.MoboService;
 
 @RestController
-@RequestMapping("/components/motherboard")
+@RequestMapping("/hardware/motherboard")
 public class MoboController {
 
     private final MoboService moboService;

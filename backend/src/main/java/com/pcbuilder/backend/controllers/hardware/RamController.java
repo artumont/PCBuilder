@@ -10,7 +10,7 @@ import com.pcbuilder.backend.dto.hardware.MultiHardwareResponse;
 import com.pcbuilder.backend.services.hardware.RamService;
 
 @RestController
-@RequestMapping("/components/ram")
+@RequestMapping("/hardware/ram")
 public class RamController {
 
     private final RamService ramService;
