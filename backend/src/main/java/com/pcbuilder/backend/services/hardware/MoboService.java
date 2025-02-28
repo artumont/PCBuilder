@@ -411,7 +411,7 @@ public class MoboService {
 
     public ResponseEntity<MultiHardwareResponse> searchByChipset(String chipset, Integer limit) {
         try {
-            logger.info("MoboService.searchByChipset", String.format("Searching for Motherboards with chipset: %d", chipset));
+            logger.info("MoboService.searchByChipset", String.format("Searching for Motherboards with chipset: %s", chipset));
             List<Mobo> mobos = new ArrayList<>();
             try (PreparedStatement statement = connection.prepareStatement(
                 "SELECT TOP (?) * FROM Hardware.Motherboards WHERE LOWER(chipset) LIKE LOWER(?) ORDER BY CHARINDEX(LOWER(?), LOWER(chipset)), chipset"
