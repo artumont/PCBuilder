@@ -332,10 +332,130 @@ public class CpuService {
     }
 
     public ResponseEntity<MultiHardwareResponse> searchByClockSpeed(float minClockSpeed, float maxClockSpeed, Integer limit) {
-        throw new UnsupportedOperationException("Unimplemented method 'searchByClockSpeed'");
+        try {
+            logger.info("CpuService.searchByClockSpeed", String.format("Searching for CPUs with clock speed between %f and %f", minClockSpeed, maxClockSpeed));
+            List<Cpu> cpus = new ArrayList<>();
+            try (PreparedStatement statement = connection.prepareStatement(
+                "SELECT TOP (?) * FROM Hardware.CPUs WHERE clock_speed >= ? AND clock_speed <= ? ORDER BY clock_speed"
+            )) {
+                statement.setInt(1, limit);
+                statement.setFloat(2, minClockSpeed);
+                statement.setFloat(3, maxClockSpeed);
+                
+                try (ResultSet resultSet = statement.executeQuery()) {
+                    while (resultSet.next()) {
+                        cpus.add(new Cpu(
+                            resultSet.getInt("id"),
+                            resultSet.getString("name"),
+                            resultSet.getString("image_url"),
+                            resultSet.getString("socket"),
+                            resultSet.getInt("cores"),
+                            resultSet.getFloat("clock_speed"),
+                            resultSet.getInt("threads"),
+                            resultSet.getFloat("price")
+                        ));
+                    }
+                }
+            }
+
+            if (!cpus.isEmpty()) {
+                logger.info("CpuService.searchByClockSpeed", String.format("Successfully fetched %d CPUs", cpus.size()));
+                return ResponseEntity.ok(new MultiHardwareResponse(
+                    "success",
+                    String.format("Successfully fetched %d CPUs", cpus.size()),
+                    "cpu",
+                    new ArrayList<Hardware>(cpus)
+                ));
+            } else {
+                logger.info("CpuService.searchByClockSpeed", "Failed to fetch CPUs");
+                return ResponseEntity.ok(new MultiHardwareResponse(
+                    "error",
+                    "Failed to fetch CPUs",
+                    "cpu",
+                    List.of()
+                ));
+            }
+        } catch (SQLException e) {
+            logger.error("CpuService.searchByClockSpeed", String.format("Database error: %s", e.getMessage()));
+            return ResponseEntity.status(500).body(new MultiHardwareResponse(
+                "error",
+                "Internal server error while fetching CPUs",
+                "cpu",
+                List.of()
+            ));
+        }
+        catch (Exception e) {
+            logger.error("CpuService.searchByClockSpeed", e.getMessage());
+            return ResponseEntity.status(500).body(new MultiHardwareResponse(
+                "error",
+                "Internal server error while fetching CPUs",
+                "cpu",
+                List.of()
+            ));
+        }
     }
 
     public ResponseEntity<MultiHardwareResponse> searchByPrice(float minPrice, float maxPrice, Integer limit) {
-        throw new UnsupportedOperationException("Unimplemented method 'searchByPrice'");
+        try {
+            logger.info("CpuService.searchByPrice", String.format("Searching for CPUs with price between %f and %f", minPrice, maxPrice));
+            List<Cpu> cpus = new ArrayList<>();
+            try (PreparedStatement statement = connection.prepareStatement(
+                "SELECT TOP (?) * FROM Hardware.CPUs WHERE price >= ? AND price <= ? ORDER BY price"
+            )) {
+                statement.setInt(1, limit);
+                statement.setFloat(2, minPrice);
+                statement.setFloat(3, maxPrice);
+                
+                try (ResultSet resultSet = statement.executeQuery()) {
+                    while (resultSet.next()) {
+                        cpus.add(new Cpu(
+                            resultSet.getInt("id"),
+                            resultSet.getString("name"),
+                            resultSet.getString("image_url"),
+                            resultSet.getString("socket"),
+                            resultSet.getInt("cores"),
+                            resultSet.getFloat("clock_speed"),
+                            resultSet.getInt("threads"),
+                            resultSet.getFloat("price")
+                        ));
+                    }
+                }
+            }
+
+            if (!cpus.isEmpty()) {
+                logger.info("CpuService.searchByPrice", String.format("Successfully fetched %d CPUs", cpus.size()));
+                return ResponseEntity.ok(new MultiHardwareResponse(
+                    "success",
+                    String.format("Successfully fetched %d CPUs", cpus.size()),
+                    "cpu",
+                    new ArrayList<Hardware>(cpus)
+                ));
+            } else {
+                logger.info("CpuService.searchByPrice", "Failed to fetch CPUs");
+                return ResponseEntity.ok(new MultiHardwareResponse(
+                    "error",
+                    "Failed to fetch CPUs",
+                    "cpu",
+                    List.of()
+                ));
+            }
+        } catch (SQLException e) {
+            logger.error("CpuService.searchByPrice", String.format("Database error: %s", e.getMessage()));
+            return ResponseEntity.status(500).body(new MultiHardwareResponse(
+                "error",
+                "Internal server error while fetching CPUs",
+                "cpu",
+                List.of()
+            ));
+        }
+        catch (Exception e) {
+            logger.error("CpuService.searchByPrice", e.getMessage());
+            return ResponseEntity.status(500).body(new MultiHardwareResponse(
+                "error",
+                "Internal server error while fetching CPUs",
+                "cpu",
+                List.of()
+            ));
+        }
     }
 }
