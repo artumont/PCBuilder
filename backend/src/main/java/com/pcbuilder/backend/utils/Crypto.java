@@ -8,8 +8,6 @@ import java.nio.charset.StandardCharsets;
 import java.security.Key;
 import java.security.MessageDigest;
 
-import com.pcbuilder.backend.helpers.Logger;
-
 public class Crypto {
     private static Logger logger;
     private static Config config;

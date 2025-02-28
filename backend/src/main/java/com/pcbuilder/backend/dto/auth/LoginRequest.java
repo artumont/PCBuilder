@@ -1,4 +1,4 @@
-package com.pcbuilder.backend.models.auth;
+package com.pcbuilder.backend.dto.auth;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
