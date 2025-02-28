@@ -63,8 +63,8 @@ public class CpuService {
     public ResponseEntity<MultiHardwareResponse> searchByRange(int offset, int limit) {
         try {
             PreparedStatement statement = connection.prepareStatement("SELECT * FROM Hardware.CPUs ORDER BY id OFFSET ? ROWS FETCH NEXT ? ROWS ONLY");
-            statement.setInt(1, limit);
-            statement.setInt(2, offset);
+            statement.setInt(1, offset);
+            statement.setInt(2, limit);
             
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
