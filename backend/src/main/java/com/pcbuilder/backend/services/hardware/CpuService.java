@@ -144,7 +144,7 @@ public class CpuService {
             logger.info("CpuService.searchByName", String.format("Searching for CPUs with name: %s", name));
             List<Cpu> cpus = new ArrayList<>();
             try (PreparedStatement statement = connection.prepareStatement(
-                "SELECT TOP (?) * FROM Hardware.CPUs WHERE LOWER(name) LIKE LOWER(?) ORDER BY CHARINDEX(LOWER(?), LOWER(name)), name"
+                "SELECT TOP (?) * FROM Hardware.CPUs WHERE LOWER(name) LIKE LOWER(?) ORDER BY id"
             )) {
                 statement.setInt(1, limit);
                 statement.setString(2, "%" + name + "%"); 
@@ -207,7 +207,7 @@ public class CpuService {
             logger.info("CpuService.searchBySocket", String.format("Searching for CPUs with socket: %s", socket));
             List<Cpu> cpus = new ArrayList<>();
             try (PreparedStatement statement = connection.prepareStatement(
-                "SELECT TOP (?) * FROM Hardware.CPUs WHERE LOWER(socket) LIKE LOWER(?) ORDER BY CHARINDEX(LOWER(?), LOWER(socket)), socket"
+                "SELECT TOP (?) * FROM Hardware.CPUs WHERE LOWER(socket) LIKE LOWER(?) ORDER BY id"
             )) {
                 statement.setInt(1, limit);
                 statement.setString(2, "%" + socket + "%"); 
