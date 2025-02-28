@@ -53,7 +53,7 @@ CREATE TABLE Hardware.Motherboards (
    INDEX idx_socket (socket)
 );
 
-CREATE TABLE Hardware.RAM (
+CREATE TABLE Hardware.RAMs (
    id INT IDENTITY(1,1) PRIMARY KEY,
    name VARCHAR(255) NOT NULL,
    image_url VARCHAR(2048),
@@ -64,7 +64,7 @@ CREATE TABLE Hardware.RAM (
    INDEX idx_type (type)
 );
 
-CREATE TABLE Hardware.Storage (
+CREATE TABLE Hardware.Storages (
    id INT IDENTITY(1,1) PRIMARY KEY,
    name VARCHAR(255) NOT NULL,
    image_url VARCHAR(2048),
@@ -76,7 +76,7 @@ CREATE TABLE Hardware.Storage (
    INDEX idx_protocol (protocol)
 );
 
-CREATE TABLE Hardware.PSU (
+CREATE TABLE Hardware.PSUs (
    id INT IDENTITY(1,1) PRIMARY KEY,
    name VARCHAR(255) NOT NULL,
    image_url VARCHAR(2048),
@@ -115,7 +115,7 @@ CREATE TABLE Hardware.CoolerSocketCompatibility (
     FOREIGN KEY (socket_id) REFERENCES Hardware.Sockets(id)
 );
 
-CREATE TABLE Hardware.Monitor (
+CREATE TABLE Hardware.Monitors (
     id INT IDENTITY(1,1) PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
     image_url VARCHAR(2048),
