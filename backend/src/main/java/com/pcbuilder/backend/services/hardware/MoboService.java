@@ -29,7 +29,7 @@ public class MoboService {
     public ResponseEntity<HardwareResponse> fetchById(int id) {
         try {
             logger.info("MoboService.fetchById", String.format("Fetching Motherboard with id: %s", id));
-            PreparedStatement statement = connection.prepareStatement("SELECT * FROM Hardware.MOBOs WHERE id = ?");
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM Hardware.Motherboards WHERE id = ?");
             statement.setInt(1, id);
             
             ResultSet resultSet = statement.executeQuery();
@@ -86,7 +86,7 @@ public class MoboService {
         try {
             logger.info("MoboService.searchByRange", String.format("Searching for Motherboards with offset: %s and limit: %s", offset, limit));
             List<Mobo> mobos = new ArrayList<>();
-            try (PreparedStatement statement = connection.prepareStatement("SELECT * FROM Hardware.MOBOs ORDER BY id OFFSET ? ROWS FETCH NEXT ? ROWS ONLY")) {
+            try (PreparedStatement statement = connection.prepareStatement("SELECT * FROM Hardware.Motherboards ORDER BY id OFFSET ? ROWS FETCH NEXT ? ROWS ONLY")) {
                 statement.setInt(1, offset);
                 statement.setInt(2, limit);
                 
@@ -150,7 +150,7 @@ public class MoboService {
             logger.info("MoboService.searchByName", String.format("Searching for Motherboards with name: %s", name));
             List<Mobo> mobos = new ArrayList<>();
             try (PreparedStatement statement = connection.prepareStatement(
-                "SELECT TOP (?) * FROM Hardware.MOBOs WHERE LOWER(name) LIKE LOWER(?) ORDER BY CHARINDEX(LOWER(?), LOWER(name)), name"
+                "SELECT TOP (?) * FROM Hardware.Motherboards WHERE LOWER(name) LIKE LOWER(?) ORDER BY CHARINDEX(LOWER(?), LOWER(name)), name"
             )) {
                 statement.setInt(1, limit);
                 statement.setString(2, "%" + name + "%");
@@ -216,7 +216,7 @@ public class MoboService {
             logger.info("MoboService.searchBySocket", String.format("Searching for Motherboards with socket: %s", socket));
             List<Mobo> mobos = new ArrayList<>();
             try (PreparedStatement statement = connection.prepareStatement(
-                "SELECT TOP (?) * FROM Hardware.MOBOs WHERE LOWER(socket) LIKE LOWER(?) ORDER BY CHARINDEX(LOWER(?), LOWER(socket)), socket"
+                "SELECT TOP (?) * FROM Hardware.Motherboards WHERE LOWER(socket) LIKE LOWER(?) ORDER BY CHARINDEX(LOWER(?), LOWER(socket)), socket"
             )) {
                 statement.setInt(1, limit);
                 statement.setString(2, "%" + socket + "%");
@@ -282,7 +282,7 @@ public class MoboService {
             logger.info("MoboService.searchByRamType", String.format("Searching for Motherboards with RAM type: %s", ramType));
             List<Mobo> mobos = new ArrayList<>();
             try (PreparedStatement statement = connection.prepareStatement(
-                "SELECT TOP (?) * FROM Hardware.MOBOs WHERE LOWER(ram_type) LIKE LOWER(?) ORDER BY CHARINDEX(LOWER(?), LOWER(ram_type)), ram_type"
+                "SELECT TOP (?) * FROM Hardware.Motherboards WHERE LOWER(ram_type) LIKE LOWER(?) ORDER BY CHARINDEX(LOWER(?), LOWER(ram_type)), ram_type"
             )) {
                 statement.setInt(1, limit);
                 statement.setString(2, "%" + ramType + "%");
@@ -348,7 +348,7 @@ public class MoboService {
             logger.info("MoboService.searchBySize", String.format("Searching for Motherboards with size: %s", size));
             List<Mobo> mobos = new ArrayList<>();
             try (PreparedStatement statement = connection.prepareStatement(
-                "SELECT TOP (?) * FROM Hardware.MOBOs WHERE LOWER(size) LIKE LOWER(?) ORDER BY CHARINDEX(LOWER(?), LOWER(size)), size"
+                "SELECT TOP (?) * FROM Hardware.Motherboards WHERE LOWER(size) LIKE LOWER(?) ORDER BY CHARINDEX(LOWER(?), LOWER(size)), size"
             )) {
                 statement.setInt(1, limit);
                 statement.setString(2, "%" + size + "%");
@@ -414,7 +414,7 @@ public class MoboService {
             logger.info("MoboService.searchByChipset", String.format("Searching for Motherboards with chipset ID: %d", chipsetId));
             List<Mobo> mobos = new ArrayList<>();
             try (PreparedStatement statement = connection.prepareStatement(
-                "SELECT TOP (?) * FROM Hardware.MOBOs WHERE chipset_id = ? ORDER BY name"
+                "SELECT TOP (?) * FROM Hardware.Motherboards WHERE chipset_id = ? ORDER BY name"
             )) {
                 statement.setInt(1, limit);
                 statement.setInt(2, chipsetId);
@@ -479,7 +479,7 @@ public class MoboService {
             logger.info("MoboService.searchBySataSlots", String.format("Searching for Motherboards with SATA slots between %d and %d", minSataSlots, maxSataSlots));
             List<Mobo> mobos = new ArrayList<>();
             try (PreparedStatement statement = connection.prepareStatement(
-                "SELECT TOP (?) * FROM Hardware.MOBOs WHERE sata_storage_slots >= ? AND sata_storage_slots <= ? ORDER BY sata_storage_slots"
+                "SELECT TOP (?) * FROM Hardware.Motherboards WHERE sata_storage_slots >= ? AND sata_storage_slots <= ? ORDER BY sata_storage_slots"
             )) {
                 statement.setInt(1, limit);
                 statement.setInt(2, minSataSlots);
@@ -545,7 +545,7 @@ public class MoboService {
             logger.info("MoboService.searchByRamSlots", String.format("Searching for Motherboards with RAM slots between %d and %d", minRamSlots, maxRamSlots));
             List<Mobo> mobos = new ArrayList<>();
             try (PreparedStatement statement = connection.prepareStatement(
-                "SELECT TOP (?) * FROM Hardware.MOBOs WHERE ram_slots >= ? AND ram_slots <= ? ORDER BY ram_slots"
+                "SELECT TOP (?) * FROM Hardware.Motherboards WHERE ram_slots >= ? AND ram_slots <= ? ORDER BY ram_slots"
             )) {
                 statement.setInt(1, limit);
                 statement.setInt(2, minRamSlots);
@@ -611,7 +611,7 @@ public class MoboService {
             logger.info("MoboService.searchByM2Slots", String.format("Searching for Motherboards with M.2 slots between %d and %d", minM2Slots, maxM2Slots));
             List<Mobo> mobos = new ArrayList<>();
             try (PreparedStatement statement = connection.prepareStatement(
-                "SELECT TOP (?) * FROM Hardware.MOBOs WHERE m2_storage_slots >= ? AND m2_storage_slots <= ? ORDER BY m2_storage_slots"
+                "SELECT TOP (?) * FROM Hardware.Motherboards WHERE m2_storage_slots >= ? AND m2_storage_slots <= ? ORDER BY m2_storage_slots"
             )) {
                 statement.setInt(1, limit);
                 statement.setInt(2, minM2Slots);
@@ -677,7 +677,7 @@ public class MoboService {
             logger.info("MoboService.searchByPrice", String.format("Searching for Motherboards with price between %f and %f", minPrice, maxPrice));
             List<Mobo> mobos = new ArrayList<>();
             try (PreparedStatement statement = connection.prepareStatement(
-                "SELECT TOP (?) * FROM Hardware.MOBOs WHERE price >= ? AND price <= ? ORDER BY price"
+                "SELECT TOP (?) * FROM Hardware.Motherboards WHERE price >= ? AND price <= ? ORDER BY price"
             )) {
                 statement.setInt(1, limit);
                 statement.setFloat(2, minPrice);
