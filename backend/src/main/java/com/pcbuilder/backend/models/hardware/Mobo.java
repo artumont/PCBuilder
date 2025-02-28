@@ -1,4 +1,5 @@
 package com.pcbuilder.backend.models.hardware;
+
 public class Mobo implements Hardware {
     private int id;
     private String name;
@@ -9,14 +10,17 @@ public class Mobo implements Hardware {
     private int ramSlots;
     private String ramType;
     private String size;
-    private int chipsetId;
+    private String chipset;
     private float price;
 
+    // Default constructor for JPA
+    protected Mobo() {}
+
     public Mobo(
-            int id, String name, String imageUrl, String socket, 
-            int sataStorageSlots, int m2StorageSlots, int ramSlots, String ramType, 
-            String size, int chipsetId, float price
-        ) {
+            int id, String name, String imageUrl, String socket,
+            int sataStorageSlots, int m2StorageSlots, int ramSlots,
+            String ramType, String size, String chipset, float price
+    ) {
         this.id = id;
         this.name = name;
         this.imageUrl = imageUrl;
@@ -26,7 +30,7 @@ public class Mobo implements Hardware {
         this.ramSlots = ramSlots;
         this.ramType = ramType;
         this.size = size;
-        this.chipsetId = chipsetId;
+        this.chipset = chipset;
         this.price = price;
     }
 
@@ -74,7 +78,7 @@ public class Mobo implements Hardware {
         return size;
     }
 
-    public int getChipsetId() {
-        return chipsetId;
+    public String getChipset() {
+        return chipset;
     }
 }

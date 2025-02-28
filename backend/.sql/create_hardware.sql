@@ -29,7 +29,7 @@ CREATE TABLE Hardware.Motherboards (
    image_url VARCHAR(2048),
    socket VARCHAR(255) NOT NULL,
    sata_storage_slots INT NOT NULL,
-   m_2_storage_slots INT NOT NULL,
+   m2_storage_slots INT NOT NULL,
    ram_slots INT NOT NULL,
    ram_type VARCHAR(255) NOT NULL, -- @note: This is DDR3, DDR4, etc.
    size VARCHAR(255) NOT NULL, -- @note: this is using the ATX, Micro-ATX, Mini-ITX, etc. standard

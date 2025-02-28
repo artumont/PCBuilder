@@ -49,8 +49,8 @@ public class MoboService {
                         resultSet.getInt("ram_slots"),
                         resultSet.getString("ram_type"),
                         resultSet.getString("size"),
-                        resultSet.getInt("chipset_id"),
-                        resultSet.getFloat("price")
+                        resultSet.getString("chipset"), 
+                        resultSet.getFloat("price")  
                     )
                 ));
             }
@@ -102,8 +102,8 @@ public class MoboService {
                             resultSet.getInt("ram_slots"),
                             resultSet.getString("ram_type"),
                             resultSet.getString("size"),
-                            resultSet.getInt("chipset_id"),
-                            resultSet.getFloat("price")
+                            resultSet.getString("chipset"), 
+                            resultSet.getFloat("price")  
                         ));
                     }
                 }
@@ -168,8 +168,8 @@ public class MoboService {
                             resultSet.getInt("ram_slots"),
                             resultSet.getString("ram_type"),
                             resultSet.getString("size"),
-                            resultSet.getInt("chipset_id"),
-                            resultSet.getFloat("price")
+                            resultSet.getString("chipset"), 
+                            resultSet.getFloat("price")  
                         ));
                     }
                 }
@@ -234,8 +234,8 @@ public class MoboService {
                             resultSet.getInt("ram_slots"),
                             resultSet.getString("ram_type"),
                             resultSet.getString("size"),
-                            resultSet.getInt("chipset_id"),
-                            resultSet.getFloat("price")
+                            resultSet.getString("chipset"), 
+                            resultSet.getFloat("price")  
                         ));
                     }
                 }
@@ -300,8 +300,8 @@ public class MoboService {
                             resultSet.getInt("ram_slots"),
                             resultSet.getString("ram_type"),
                             resultSet.getString("size"),
-                            resultSet.getInt("chipset_id"),
-                            resultSet.getFloat("price")
+                            resultSet.getString("chipset"), 
+                            resultSet.getFloat("price")  
                         ));
                     }
                 }
@@ -366,8 +366,8 @@ public class MoboService {
                             resultSet.getInt("ram_slots"),
                             resultSet.getString("ram_type"),
                             resultSet.getString("size"),
-                            resultSet.getInt("chipset_id"),
-                            resultSet.getFloat("price")
+                            resultSet.getString("chipset"), 
+                            resultSet.getFloat("price")  
                         ));
                     }
                 }
@@ -431,8 +431,8 @@ public class MoboService {
                             resultSet.getInt("ram_slots"),
                             resultSet.getString("ram_type"),
                             resultSet.getString("size"),
-                            resultSet.getInt("chipset_id"),
-                            resultSet.getFloat("price")
+                            resultSet.getString("chipset"), 
+                            resultSet.getFloat("price")  
                         ));
                     }
                 }
@@ -497,8 +497,8 @@ public class MoboService {
                             resultSet.getInt("ram_slots"),
                             resultSet.getString("ram_type"),
                             resultSet.getString("size"),
-                            resultSet.getInt("chipset_id"),
-                            resultSet.getFloat("price")
+                            resultSet.getString("chipset"), 
+                            resultSet.getFloat("price")  
                         ));
                     }
                 }
@@ -563,8 +563,8 @@ public class MoboService {
                             resultSet.getInt("ram_slots"),
                             resultSet.getString("ram_type"),
                             resultSet.getString("size"),
-                            resultSet.getInt("chipset_id"),
-                            resultSet.getFloat("price")
+                            resultSet.getString("chipset"), 
+                            resultSet.getFloat("price")  
                         ));
                     }
                 }
@@ -629,8 +629,8 @@ public class MoboService {
                             resultSet.getInt("ram_slots"),
                             resultSet.getString("ram_type"),
                             resultSet.getString("size"),
-                            resultSet.getInt("chipset_id"),
-                            resultSet.getFloat("price")
+                            resultSet.getString("chipset"), 
+                            resultSet.getFloat("price")  
                         ));
                     }
                 }
@@ -695,8 +695,8 @@ public class MoboService {
                             resultSet.getInt("ram_slots"),
                             resultSet.getString("ram_type"),
                             resultSet.getString("size"),
-                            resultSet.getInt("chipset_id"),
-                            resultSet.getFloat("price")
+                            resultSet.getString("chipset"), 
+                            resultSet.getFloat("price")  
                         ));
                     }
                 }
