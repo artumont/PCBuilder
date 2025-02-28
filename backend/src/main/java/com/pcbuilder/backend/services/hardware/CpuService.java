@@ -270,7 +270,7 @@ public class CpuService {
             logger.info("CpuService.searchByCores", String.format("Searching for CPUs with cores between %d and %d", minCores, maxCores));
             List<Cpu> cpus = new ArrayList<>();
             try (PreparedStatement statement = connection.prepareStatement(
-                "SELECT TOP (?) * FROM Hardware.CPUs WHERE cores >= ? AND cores <= ? ORDER BY id"
+                "SELECT TOP (?) * FROM Hardware.CPUs WHERE cores >= ? AND cores <= ? ORDER BY cores"
             )) {
                 statement.setInt(1, limit);
                 statement.setInt(2, minCores);
