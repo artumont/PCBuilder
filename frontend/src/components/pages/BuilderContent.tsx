@@ -2,7 +2,7 @@
 
 import Image from "next/image"
 import { motion } from "motion/react"
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 
 type Build = {
@@ -57,7 +57,7 @@ export default function BuilderContent() {
     };
 
     useEffect(() => {
-        let config = searchParams.get("config")
+        const config = searchParams.get("config")
     })
 
     return (
