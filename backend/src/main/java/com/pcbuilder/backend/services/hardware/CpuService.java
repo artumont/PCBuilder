@@ -60,6 +60,14 @@ public class CpuService {
                     null
                 ));
             }
+        } catch (SQLException e) {
+            logger.error("CpuService.searchByRange", String.format("Database error: %s", e.getMessage()));
+            return ResponseEntity.status(500).body(new HardwareResponse(
+                "error",
+                "Internal server error while fetching CPU",
+                "cpu",
+                null
+            ));
         } catch (Exception e) {
             logger.error("RamService.fetchById", e.getMessage());
             return ResponseEntity.status(500).body(new HardwareResponse(
@@ -114,6 +122,14 @@ public class CpuService {
             }
         } catch (SQLException e) {
             logger.error("CpuService.searchByRange", String.format("Database error: %s", e.getMessage()));
+            return ResponseEntity.status(500).body(new MultiHardwareResponse(
+                "error",
+                "Internal server error while fetching CPUs",
+                "cpu",
+                List.of()
+            ));
+        } catch (Exception e) {
+            logger.error("CpuService.searchByRange", e.getMessage());
             return ResponseEntity.status(500).body(new MultiHardwareResponse(
                 "error",
                 "Internal server error while fetching CPUs",
