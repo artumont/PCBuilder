@@ -71,16 +71,21 @@ public class CpuService {
     public ResponseEntity<MultiHardwareResponse> searchByRange(int offset, int limit) {
         try {
             logger.info("CpuService.searchByRange", String.format("Searching for CPUs with offset: %s and limit: %s", offset, limit));
+            PreparedStatement countStatement = connection.prepareStatement("SELECT COUNT(*) as total FROM Hardware.CPUs");
+            ResultSet countResult = countStatement.executeQuery();
+            countResult.next();
+            int totalCount = countResult.getInt("total");
+            
             PreparedStatement statement = connection.prepareStatement("SELECT * FROM Hardware.CPUs ORDER BY id OFFSET ? ROWS FETCH NEXT ? ROWS ONLY");
             statement.setInt(1, offset);
             statement.setInt(2, limit);
             
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
-                logger.info("CpuService.searchByRange", String.format("Found %s CPUs", resultSet.getFetchSize()));
+                logger.info("CpuService.searchByRange", String.format("Found %d CPUs", totalCount));
                 MultiHardwareResponse multiHardwareResponse = new MultiHardwareResponse(
                     "success",
-                    String.format("Found %s CPUs", resultSet.getFetchSize()),
+                    String.format("Found %d CPUs", totalCount),
                     "cpu",
                     List.of()
                 );
@@ -97,8 +102,7 @@ public class CpuService {
                     ));
                 } while (resultSet.next());
                 return ResponseEntity.ok(multiHardwareResponse);
-            }
-            else {
+            } else {
                 logger.info("CpuService.searchByRange", "No CPUs found");
                 return ResponseEntity.ok(new MultiHardwareResponse(
                     "error",
