@@ -69,17 +69,23 @@ public class Database {
 
     private String getConnectionString() {
         String serverName = config.getSetting("Database", "ServerName");
-        if (serverName.startsWith("http://") || serverName.startsWith("https://")) {
-            serverName = serverName.replaceAll("https?://", "").replaceAll("/+$", "");
-        }
         
         return String.format(
-            "jdbc:sqlserver://%s:%s;databaseName=%s;encrypt=%s;trustServerCertificate=%s;",
+            "jdbc:sqlserver://%s:%s;" +
+            "databaseName=%s;" +
+            "encrypt=%s;" +
+            "trustServerCertificate=%s;" +
+            "loginTimeout=%s;" +
+            "queryTimeout=%s;" +
+            "connectRetryCount=3;" +
+            "connectRetryInterval=10",
             serverName,
             config.getSetting("Database", "Port"),
             config.getSetting("Database", "DatabaseName"),
             config.getSetting("Database", "Encrypt"),
-            config.getSetting("Database", "TrustServerCertificate")
+            config.getSetting("Database", "TrustServerCertificate"),
+            config.getSetting("Database", "LoginTimeout"),
+            config.getSetting("Database", "QueryTimeout")
         );
     }
 }

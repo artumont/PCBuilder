@@ -85,6 +85,8 @@ public class Config {
             newIni.put("Database", "Password", "pcbuilder");
             newIni.put("Database", "MaxRetryCount", "3");
             newIni.put("Database", "RetryDelay", "1000");
+            newIni.put("Database", "LoginTimeout", "30");
+            newIni.put("Database", "QueryTimeout", "30");
             
             // Save to file
             newIni.store(new File(path));
