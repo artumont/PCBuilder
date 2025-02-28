@@ -144,7 +144,7 @@ public class CpuService {
             logger.info("CpuService.searchByName", String.format("Searching for CPUs with name: %s", name));
             List<Cpu> cpus = new ArrayList<>();
             try (PreparedStatement statement = connection.prepareStatement(
-                "SELECT * FROM Hardware.CPUs WHERE name LIKE ? ORDER BY id FETCH NEXT ? ROWS ONLY"
+                "SELECT TOP (?) * FROM Hardware.CPUs WHERE LOWER(name) LIKE LOWER(?) ORDER BY id"
             )) {
                 statement.setString(1, name);
                 statement.setInt(2, limit);
