@@ -3,7 +3,7 @@
 import { motion } from "motion/react"
 import Image from "next/image"
 import { useNavigation } from "@/context/NavContext"
-import { Cpu, HardDrive, Microchip, Component, Fingerprint, Code, Github, Linkedin, Twitter, MemoryStickIcon as Memory, NotebookText as Notebook } from "lucide-react"
+import { Cpu, HardDrive, Microchip, Component, Fingerprint, Github, MemoryStickIcon as Memory, NotebookText as Notebook } from "lucide-react"
 
 const containerVariants = {
     hidden: {
@@ -281,7 +281,7 @@ function TeamMembers() {
             initial="hidden"
             animate="visible"
         >
-            {teamMembers.map((member, index) => (
+            {teamMembers.map((member) => (
                 <motion.div
                     key={member.name}
                     className="bg-light dark:bg-dark rounded-lg overflow-hidden gl-1"

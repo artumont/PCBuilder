@@ -56,8 +56,6 @@ export default function RootLayout({
                         defaultTheme="system"
                         enableSystem={true}
                         storageKey="theme"
-                        enableColorScheme
-                        disableTransitionOnChange
                     >
                         {children}
                         <ThemeToggle />

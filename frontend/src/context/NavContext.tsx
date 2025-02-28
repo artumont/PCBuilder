@@ -1,6 +1,6 @@
 'use client'
 
-import { createContext, useContext, useState, ReactNode, useEffect } from 'react';
+import { createContext, useContext, useState, ReactNode, useEffect, Suspense } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 
 type NavigationContextType = {
@@ -10,7 +10,7 @@ type NavigationContextType = {
 
 const NavigationContext = createContext<NavigationContextType | undefined>(undefined);
 
-export function NavigationProvider({ children }: { children: ReactNode }) {
+function NavigationProviderContent({ children }: { children: ReactNode }) {
     const searchParams = useSearchParams();
     const router = useRouter();
     const [activeButton, setActiveButton] = useState<string | null>(() => {
@@ -38,6 +38,23 @@ export function NavigationProvider({ children }: { children: ReactNode }) {
         }}>
             {children}
         </NavigationContext.Provider>
+    );
+}
+
+export function NavigationProvider({ children }: { children: ReactNode }) {
+    return (
+        <Suspense fallback={
+            <NavigationContext.Provider value={{
+                activeButton: "home",
+                setActiveButton: () => {}
+            }}>
+                {children}
+            </NavigationContext.Provider>
+        }>
+            <NavigationProviderContent>
+                {children}
+            </NavigationProviderContent>
+        </Suspense>
     );
 }
 
