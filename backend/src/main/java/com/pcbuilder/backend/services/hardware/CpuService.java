@@ -140,7 +140,67 @@ public class CpuService {
     }
 
     public ResponseEntity<MultiHardwareResponse> searchByName(String name, Integer offset, Integer limit) {
-        throw new UnsupportedOperationException("Unimplemented method 'searchByName'");
+        try {
+            logger.info("CpuService.searchByName", String.format("Searching for CPUs with name: %s", name));
+            List<Cpu> cpus = new ArrayList<>();
+            try (PreparedStatement statement = connection.prepareStatement(
+                "SELECT * FROM Hardware.CPUs WHERE name LIKE ? ORDER BY id OFFSET ? ROWS FETCH NEXT ? ROWS ONLY"
+            )) {
+                statement.setString(1, name);
+                statement.setInt(2, offset);
+                statement.setInt(3, limit);
+                
+                try (ResultSet resultSet = statement.executeQuery()) {
+                    while (resultSet.next()) {
+                        cpus.add(new Cpu(
+                            resultSet.getInt("id"),
+                            resultSet.getString("name"),
+                            resultSet.getString("image_url"),
+                            resultSet.getString("socket"),
+                            resultSet.getInt("cores"),
+                            resultSet.getFloat("clock_speed"),
+                            resultSet.getInt("threads"),
+                            resultSet.getFloat("price")
+                        ));
+                    }
+                }
+            }
+            
+            if (!cpus.isEmpty()) {
+                logger.info("CpuService.searchByName", String.format("Successfully fetched %d CPUs", cpus.size()));
+                return ResponseEntity.ok(new MultiHardwareResponse(
+                    "success",
+                    String.format("Successfully fetched %d CPUs", cpus.size()),
+                    "cpu",
+                    new ArrayList<Hardware>(cpus)
+                ));
+            } else {
+                logger.info("CpuService.searchByName", "Failed to fetch CPUs");
+                return ResponseEntity.ok(new MultiHardwareResponse(
+                    "error",
+                    "Failed to fetch CPUs",
+                    "cpu",
+                    List.of()
+                ));
+            }
+        } catch (SQLException e) {
+            logger.error("CpuService.searchByName", String.format("Database error: %s", e.getMessage()));
+            return ResponseEntity.status(500).body(new MultiHardwareResponse(
+                "error",
+                "Internal server error while fetching CPUs",
+                "cpu",
+                List.of()
+            ));
+        }
+        catch (Exception e) {
+            logger.error("CpuService.searchByName", e.getMessage());
+            return ResponseEntity.status(500).body(new MultiHardwareResponse(
+                "error",
+                "Internal server error while fetching CPUs",
+                "cpu",
+                List.of()
+            ));
+        }
     }
 
     public ResponseEntity<MultiHardwareResponse> searchBySocket(String socket, Integer offset, Integer limit) {
