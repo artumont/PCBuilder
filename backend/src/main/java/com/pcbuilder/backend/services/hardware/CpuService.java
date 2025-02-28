@@ -25,11 +25,13 @@ public class CpuService {
 
     public ResponseEntity<HardwareResponse> fetchById(int id) {
         try {
+            logger.info("CpuService.fetchById", String.format("Fetching CPU with id: %s", id));
             PreparedStatement statement = connection.prepareStatement("SELECT * FROM Hardware.CPUs WHERE id = ?");
             statement.setInt(1, id);
             
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
+                logger.info("CpuService.fetchById", String.format("Found CPU with id: %s", id));
                 return ResponseEntity.ok(new HardwareResponse(
                     "success",
                     "Found CPU with id: " + id,
@@ -47,6 +49,7 @@ public class CpuService {
                 ));
             }
             else {
+                logger.info("CpuService.fetchById", String.format("CPU with id: %s not found", id));
                 return ResponseEntity.ok(new HardwareResponse(
                     "error",
                     "CPU with id: " + id + " not found",
@@ -56,18 +59,25 @@ public class CpuService {
             }
         } catch (Exception e) {
             logger.error("RamService.fetchById", e.getMessage());
-            return ResponseEntity.status(500).body(null);
+            return ResponseEntity.status(500).body(new HardwareResponse(
+                "error",
+                "Internal server error while fetching CPU",
+                "cpu",
+                null
+            ));
         }
     }
 
     public ResponseEntity<MultiHardwareResponse> searchByRange(int offset, int limit) {
         try {
+            logger.info("CpuService.searchByRange", String.format("Searching for CPUs with offset: %s and limit: %s", offset, limit));
             PreparedStatement statement = connection.prepareStatement("SELECT * FROM Hardware.CPUs ORDER BY id OFFSET ? ROWS FETCH NEXT ? ROWS ONLY");
             statement.setInt(1, offset);
             statement.setInt(2, limit);
             
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
+                logger.info("CpuService.searchByRange", String.format("Found %s CPUs", resultSet.getFetchSize()));
                 MultiHardwareResponse multiHardwareResponse = new MultiHardwareResponse(
                     "success",
                     String.format("Found %s CPUs", resultSet.getFetchSize()),
@@ -89,6 +99,7 @@ public class CpuService {
                 return ResponseEntity.ok(multiHardwareResponse);
             }
             else {
+                logger.info("CpuService.searchByRange", "No CPUs found");
                 return ResponseEntity.ok(new MultiHardwareResponse(
                     "error",
                     "No CPUs found",
@@ -97,8 +108,13 @@ public class CpuService {
                 ));
             }
         } catch (Exception e) {
-            logger.error("RamService.searchByRange", e.getMessage());
-            return ResponseEntity.status(500).body(null);
+            logger.error("CpuService.searchByRange", String.format("Database error: %s", e.getMessage()));
+            return ResponseEntity.status(500).body(new MultiHardwareResponse(
+                "error",
+                "Internal server error while fetching CPUs",
+                "cpu",
+                List.of()
+            ));
         }
     }
 

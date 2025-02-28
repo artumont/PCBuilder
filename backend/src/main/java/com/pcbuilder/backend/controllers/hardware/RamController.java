@@ -74,7 +74,7 @@ public class RamController {
             return ramService.searchBySpeed(minSpeed, maxSpeed, offset, limit);
         } else if (minPrice != null && maxPrice != null) {
             return ramService.searchByPrice(minPrice, maxPrice, offset, limit);
-        } else if (offset != null && limit != null) {
+        } else if (offset != null && limit != null && offset >= 0 && limit > 0) {
             return ramService.searchByRange(offset, limit);
         }
         return ResponseEntity.badRequest().build();
