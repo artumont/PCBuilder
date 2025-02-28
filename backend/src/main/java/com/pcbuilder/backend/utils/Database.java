@@ -68,9 +68,14 @@ public class Database {
     }
 
     private String getConnectionString() {
+        String serverName = config.getSetting("Database", "ServerName");
+        if (serverName.startsWith("http://") || serverName.startsWith("https://")) {
+            serverName = serverName.replaceAll("https?://", "").replaceAll("/+$", "");
+        }
+        
         return String.format(
             "jdbc:sqlserver://%s:%s;databaseName=%s;encrypt=%s;trustServerCertificate=%s;",
-            config.getSetting("Database", "ServerName"),
+            serverName,
             config.getSetting("Database", "Port"),
             config.getSetting("Database", "DatabaseName"),
             config.getSetting("Database", "Encrypt"),
