@@ -409,15 +409,16 @@ public class MoboService {
         }
     }
 
-    public ResponseEntity<MultiHardwareResponse> searchByChipset(Integer chipsetId, Integer limit) {
+    public ResponseEntity<MultiHardwareResponse> searchByChipset(String chipset, Integer limit) {
         try {
-            logger.info("MoboService.searchByChipset", String.format("Searching for Motherboards with chipset ID: %d", chipsetId));
+            logger.info("MoboService.searchByChipset", String.format("Searching for Motherboards with chipset: %d", chipset));
             List<Mobo> mobos = new ArrayList<>();
             try (PreparedStatement statement = connection.prepareStatement(
-                "SELECT TOP (?) * FROM Hardware.Motherboards WHERE chipset_id = ? ORDER BY name"
+                "SELECT TOP (?) * FROM Hardware.Motherboards WHERE LOWER(chipset) LIKE LOWER(?) ORDER BY CHARINDEX(LOWER(?), LOWER(chipset)), chipset"
             )) {
                 statement.setInt(1, limit);
-                statement.setInt(2, chipsetId);
+                statement.setString(2, "%" + chipset + "%");
+                statement.setString(3, chipset);
                 
                 try (ResultSet resultSet = statement.executeQuery()) {
                     while (resultSet.next()) {

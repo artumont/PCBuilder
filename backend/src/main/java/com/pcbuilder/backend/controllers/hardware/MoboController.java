@@ -43,7 +43,7 @@ public class MoboController {
         String size,
         
         @RequestParam(required = false)
-        Integer chipsetId,
+        String chipset,
 
         // @note: Both 'minSataSlots' and 'maxSataSlots' are part of a range.
         @RequestParam(required = false)
@@ -88,8 +88,8 @@ public class MoboController {
             return moboService.searchByRamType(ramType, limit);
         } else if (size != null) {
             return moboService.searchBySize(size, limit);
-        } else if (chipsetId != null) {
-            return moboService.searchByChipset(chipsetId, limit);
+        } else if (chipset != null) {
+            return moboService.searchByChipset(chipset, limit);
         } else if (minSataSlots != null && maxSataSlots != null) {
             return moboService.searchBySataSlots(minSataSlots, maxSataSlots, limit);
         } else if (minM2Slots != null && maxM2Slots != null) {
