@@ -203,11 +203,130 @@ public class CpuService {
     }
 
     public ResponseEntity<MultiHardwareResponse> searchBySocket(String socket, Integer limit) {
-        throw new UnsupportedOperationException("Unimplemented method 'searchBySocket'");
+        try {
+            logger.info("CpuService.searchBySocket", String.format("Searching for CPUs with socket: %s", socket));
+            List<Cpu> cpus = new ArrayList<>();
+            try (PreparedStatement statement = connection.prepareStatement(
+                "SELECT TOP (?) * FROM Hardware.CPUs WHERE LOWER(socket) LIKE LOWER(?) ORDER BY id"
+            )) {
+                statement.setInt(1, limit);
+                statement.setString(2, "%" + socket + "%"); 
+                
+                try (ResultSet resultSet = statement.executeQuery()) {
+                    while (resultSet.next()) {
+                        cpus.add(new Cpu(
+                            resultSet.getInt("id"),
+                            resultSet.getString("name"),
+                            resultSet.getString("image_url"),
+                            resultSet.getString("socket"),
+                            resultSet.getInt("cores"),
+                            resultSet.getFloat("clock_speed"),
+                            resultSet.getInt("threads"),
+                            resultSet.getFloat("price")
+                        ));
+                    }
+                }
+            }
+
+            if (!cpus.isEmpty()) {
+                logger.info("CpuService.searchBySocket", String.format("Successfully fetched %d CPUs", cpus.size()));
+                return ResponseEntity.ok(new MultiHardwareResponse(
+                    "success",
+                    String.format("Successfully fetched %d CPUs", cpus.size()),
+                    "cpu",
+                    new ArrayList<Hardware>(cpus)
+                ));
+            } else {
+                logger.info("CpuService.searchBySocket", "Failed to fetch CPUs");
+                return ResponseEntity.ok(new MultiHardwareResponse(
+                    "error",
+                    "Failed to fetch CPUs",
+                    "cpu",
+                    List.of()
+                ));
+            }
+        } catch (SQLException e) {
+            logger.error("CpuService.searchBySocket", String.format("Database error: %s", e.getMessage()));
+            return ResponseEntity.status(500).body(new MultiHardwareResponse(
+                "error",
+                "Internal server error while fetching CPUs",
+                "cpu",
+                List.of()
+            ));
+        }
+        catch (Exception e) {
+            logger.error("CpuService.searchBySocket", e.getMessage());
+            return ResponseEntity.status(500).body(new MultiHardwareResponse(
+                "error",
+                "Internal server error while fetching CPUs",
+                "cpu",
+                List.of()
+            ));
+        }
     }
 
     public ResponseEntity<MultiHardwareResponse> searchByCores(Integer minCores, Integer maxCores, Integer limit) {
-        throw new UnsupportedOperationException("Unimplemented method 'searchByCores'");
+        try {
+            logger.info("CpuService.searchByCores", String.format("Searching for CPUs with cores between %d and %d", minCores, maxCores));
+            List<Cpu> cpus = new ArrayList<>();
+            try (PreparedStatement statement = connection.prepareStatement(
+                "SELECT TOP (?) * FROM Hardware.CPUs WHERE cores >= ? AND cores <= ? ORDER BY id"
+            )) {
+                statement.setInt(1, limit);
+                statement.setInt(2, minCores);
+                statement.setInt(3, maxCores);
+                
+                try (ResultSet resultSet = statement.executeQuery()) {
+                    while (resultSet.next()) {
+                        cpus.add(new Cpu(
+                            resultSet.getInt("id"),
+                            resultSet.getString("name"),
+                            resultSet.getString("image_url"),
+                            resultSet.getString("socket"),
+                            resultSet.getInt("cores"),
+                            resultSet.getFloat("clock_speed"),
+                            resultSet.getInt("threads"),
+                            resultSet.getFloat("price")
+                        ));
+                    }
+                }
+            }
+
+            if (!cpus.isEmpty()) {
+                logger.info("CpuService.searchByCores", String.format("Successfully fetched %d CPUs", cpus.size()));
+                return ResponseEntity.ok(new MultiHardwareResponse(
+                    "success",
+                    String.format("Successfully fetched %d CPUs", cpus.size()),
+                    "cpu",
+                    new ArrayList<Hardware>(cpus)
+                ));
+            } else {
+                logger.info("CpuService.searchByCores", "Failed to fetch CPUs");
+                return ResponseEntity.ok(new MultiHardwareResponse(
+                    "error",
+                    "Failed to fetch CPUs",
+                    "cpu",
+                    List.of()
+                ));
+            }
+        } catch (SQLException e) {
+            logger.error("CpuService.searchByCores", String.format("Database error: %s", e.getMessage()));
+            return ResponseEntity.status(500).body(new MultiHardwareResponse(
+                "error",
+                "Internal server error while fetching CPUs",
+                "cpu",
+                List.of()
+            ));
+        }
+        catch (Exception e) {
+            logger.error("CpuService.searchByCores", e.getMessage());
+            return ResponseEntity.status(500).body(new MultiHardwareResponse(
+                "error",
+                "Internal server error while fetching CPUs",
+                "cpu",
+                List.of()
+            ));
+        }
     }
 
     public ResponseEntity<MultiHardwareResponse> searchByClockSpeed(float minClockSpeed, float maxClockSpeed, Integer limit) {
