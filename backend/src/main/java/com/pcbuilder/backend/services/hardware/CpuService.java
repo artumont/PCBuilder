@@ -146,8 +146,8 @@ public class CpuService {
             try (PreparedStatement statement = connection.prepareStatement(
                 "SELECT TOP (?) * FROM Hardware.CPUs WHERE LOWER(name) LIKE LOWER(?) ORDER BY id"
             )) {
-                statement.setString(1, name);
-                statement.setInt(2, limit);
+                statement.setInt(1, limit);
+                statement.setString(2, "%" + name + "%"); 
                 
                 try (ResultSet resultSet = statement.executeQuery()) {
                     while (resultSet.next()) {
