@@ -3,6 +3,8 @@ package com.pcbuilder.backend.services.hardware;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.http.ResponseEntity;
@@ -11,6 +13,7 @@ import org.springframework.stereotype.Service;
 import com.pcbuilder.backend.dto.hardware.HardwareResponse;
 import com.pcbuilder.backend.dto.hardware.MultiHardwareResponse;
 import com.pcbuilder.backend.models.hardware.Cpu;
+import com.pcbuilder.backend.models.hardware.Hardware;
 import com.pcbuilder.backend.utils.Logger;
 
 @Service
@@ -76,32 +79,35 @@ public class CpuService {
             countResult.next();
             int totalCount = countResult.getInt("total");
             
-            PreparedStatement statement = connection.prepareStatement("SELECT * FROM Hardware.CPUs ORDER BY id OFFSET ? ROWS FETCH NEXT ? ROWS ONLY");
-            statement.setInt(1, offset);
-            statement.setInt(2, limit);
-            
-            ResultSet resultSet = statement.executeQuery();
-            if (resultSet.next()) {
+            List<Cpu> cpus = new ArrayList<>();
+            try (PreparedStatement statement = connection.prepareStatement("SELECT * FROM Hardware.CPUs ORDER BY id OFFSET ? ROWS FETCH NEXT ? ROWS ONLY")) {
+                statement.setInt(1, offset);
+                statement.setInt(2, limit);
+                
+                try (ResultSet resultSet = statement.executeQuery()) {
+                    while (resultSet.next()) {
+                        cpus.add(new Cpu(
+                            resultSet.getInt("id"),
+                            resultSet.getString("name"),
+                            resultSet.getString("image_url"),
+                            resultSet.getString("socket"),
+                            resultSet.getInt("cores"),
+                            resultSet.getFloat("clock_speed"),
+                            resultSet.getInt("threads"),
+                            resultSet.getFloat("price")
+                        ));
+                    }
+                }
+            }
+
+            if (!cpus.isEmpty()) {
                 logger.info("CpuService.searchByRange", String.format("Found %d CPUs", totalCount));
-                MultiHardwareResponse multiHardwareResponse = new MultiHardwareResponse(
+                return ResponseEntity.ok(new MultiHardwareResponse(
                     "success",
                     String.format("Found %d CPUs", totalCount),
                     "cpu",
-                    List.of()
-                );
-                do {
-                    multiHardwareResponse.addHardware(new Cpu(
-                        resultSet.getInt("id"),
-                        resultSet.getString("name"),
-                        resultSet.getString("image_url"),
-                        resultSet.getString("socket"),
-                        resultSet.getInt("cores"),
-                        resultSet.getFloat("clock_speed"),
-                        resultSet.getInt("threads"),
-                        resultSet.getFloat("price")
-                    ));
-                } while (resultSet.next());
-                return ResponseEntity.ok(multiHardwareResponse);
+                    new ArrayList<Hardware>(cpus)
+                ));
             } else {
                 logger.info("CpuService.searchByRange", "No CPUs found");
                 return ResponseEntity.ok(new MultiHardwareResponse(
@@ -111,7 +117,7 @@ public class CpuService {
                     List.of()
                 ));
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
             logger.error("CpuService.searchByRange", String.format("Database error: %s", e.getMessage()));
             return ResponseEntity.status(500).body(new MultiHardwareResponse(
                 "error",
