@@ -74,11 +74,6 @@ public class CpuService {
     public ResponseEntity<MultiHardwareResponse> searchByRange(int offset, int limit) {
         try {
             logger.info("CpuService.searchByRange", String.format("Searching for CPUs with offset: %s and limit: %s", offset, limit));
-            PreparedStatement countStatement = connection.prepareStatement("SELECT COUNT(*) as total FROM Hardware.CPUs");
-            ResultSet countResult = countStatement.executeQuery();
-            countResult.next();
-            int totalCount = countResult.getInt("total");
-            
             List<Cpu> cpus = new ArrayList<>();
             try (PreparedStatement statement = connection.prepareStatement("SELECT * FROM Hardware.CPUs ORDER BY id OFFSET ? ROWS FETCH NEXT ? ROWS ONLY")) {
                 statement.setInt(1, offset);
@@ -101,18 +96,18 @@ public class CpuService {
             }
 
             if (!cpus.isEmpty()) {
-                logger.info("CpuService.searchByRange", String.format("Found %d CPUs", totalCount));
+                logger.info("CpuService.searchByRange", String.format("Successfully fetched %d CPUs", cpus.size()));
                 return ResponseEntity.ok(new MultiHardwareResponse(
                     "success",
-                    String.format("Found %d CPUs", totalCount),
+                    String.format("Successfully fetched %d CPUs", cpus.size()),
                     "cpu",
                     new ArrayList<Hardware>(cpus)
                 ));
             } else {
-                logger.info("CpuService.searchByRange", "No CPUs found");
+                logger.info("CpuService.searchByRange", "Failed to fetch CPUs");
                 return ResponseEntity.ok(new MultiHardwareResponse(
                     "error",
-                    "No CPUs found",
+                    "Failed to fetch CPUs",
                     "cpu",
                     List.of()
                 ));
