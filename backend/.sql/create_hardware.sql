@@ -31,7 +31,7 @@ CREATE TABLE Hardware.GPUs (
    id INT IDENTITY(1,1) PRIMARY KEY,
    name VARCHAR(255) NOT NULL,
    image_url VARCHAR(2048),
-   chipset VARCHAR(255) NOT NULL, -- @note: This is the GPU chipset, e.g. GTX 1080, RX 580, etc.
+   chipset VARCHAR(255) NOT NULL, -- @note: This is the GPU chipset, e.g. Navi 22, AD102, etc.
    vram INT NOT NULL, -- @note: This is in MB
    wattage INT NOT NULL, -- @note: This is in Watts
    price MONEY,
