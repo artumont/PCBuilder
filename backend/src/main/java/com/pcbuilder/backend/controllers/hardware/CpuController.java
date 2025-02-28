@@ -61,19 +61,19 @@ public class CpuController {
         @RequestParam(required = false)
         Integer offset,
 
-        @RequestParam(required = false)
+        @RequestParam(required = true)
         Integer limit
     ) {
         if (name != null) {
-            return cpuService.searchByName(name, offset, limit);
+            return cpuService.searchByName(name, limit);
         } else if (socket != null) {
-            return cpuService.searchBySocket(socket, offset, limit);
+            return cpuService.searchBySocket(socket, limit);
         } else if (minCores != null && maxCores != null) {
-            return cpuService.searchByCores(minCores, maxCores, offset, limit);
+            return cpuService.searchByCores(minCores, maxCores, limit);
         } else if (minClockSpeed != null && maxClockSpeed != null) {
-            return cpuService.searchByClockSpeed(minClockSpeed, maxClockSpeed, offset, limit);
+            return cpuService.searchByClockSpeed(minClockSpeed, maxClockSpeed, limit);
         } else if (minPrice != null && maxPrice != null) {
-            return cpuService.searchByPrice(minPrice, maxPrice, offset, limit);
+            return cpuService.searchByPrice(minPrice, maxPrice, limit);
         } else if (offset != null && limit != null) {
             return cpuService.searchByRange(offset, limit);
         }

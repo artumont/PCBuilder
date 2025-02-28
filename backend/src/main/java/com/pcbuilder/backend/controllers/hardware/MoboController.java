@@ -74,30 +74,30 @@ public class MoboController {
         Float maxPrice,
 
         // @note: Both 'offset' and 'limit' are part of the operations.
-        @RequestParam(required = true)
+        @RequestParam(required = false)
         Integer offset,
 
         @RequestParam(required = true)
         Integer limit
     ) {
         if (name != null) {
-            return moboService.searchByName(name, offset, limit);
+            return moboService.searchByName(name, limit);
         } else if (socket != null) {
-            return moboService.searchBySocket(socket, offset, limit);
+            return moboService.searchBySocket(socket, limit);
         } else if (ramType != null) {
-            return moboService.searchByRamType(ramType, offset, limit);
+            return moboService.searchByRamType(ramType, limit);
         } else if (size != null) {
-            return moboService.searchBySize(size, offset, limit);
+            return moboService.searchBySize(size, limit);
         } else if (chipsetId != null) {
-            return moboService.searchByChipset(chipsetId, offset, limit);
+            return moboService.searchByChipset(chipsetId, limit);
         } else if (minSataSlots != null && maxSataSlots != null) {
-            return moboService.searchBySataSlots(minSataSlots, maxSataSlots, offset, limit);
+            return moboService.searchBySataSlots(minSataSlots, maxSataSlots, limit);
         } else if (minM2Slots != null && maxM2Slots != null) {
-            return moboService.searchByM2Slots(minM2Slots, maxM2Slots, offset, limit);
+            return moboService.searchByM2Slots(minM2Slots, maxM2Slots, limit);
         } else if (minRamSlots != null && maxRamSlots != null) {
-            return moboService.searchByRamSlots(minRamSlots, maxRamSlots, offset, limit);
+            return moboService.searchByRamSlots(minRamSlots, maxRamSlots, limit);
         } else if (minPrice != null && maxPrice != null) {
-            return moboService.searchByPrice(minPrice, maxPrice, offset, limit);
+            return moboService.searchByPrice(minPrice, maxPrice, limit);
         } else if (offset != null && limit != null) {
             return moboService.searchByRange(offset, limit);
         }

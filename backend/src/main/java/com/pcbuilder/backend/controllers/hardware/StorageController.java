@@ -54,22 +54,22 @@ public class StorageController {
         Float maxPrice,
 
         // @note: Both 'offset' and 'limit' are part of the operations.
-        @RequestParam(required = true)
+        @RequestParam(required = false)
         Integer offset,
 
         @RequestParam(required = true)
         Integer limit
     ) {
         if (name != null) {
-            return storageService.searchByName(name, offset, limit);
+            return storageService.searchByName(name, limit);
         } else if (storageFormat != null) {
-            return storageService.searchByStorageFormat(storageFormat, offset, limit);
+            return storageService.searchByStorageFormat(storageFormat, limit);
         } else if (storageProtocol != null) {
-            return storageService.searchByStorageProtocol(storageProtocol, offset, limit);
+            return storageService.searchByStorageProtocol(storageProtocol, limit);
         } else if (minSize != null && maxSize != null) {
-            return storageService.searchBySize(minSize, maxSize, offset, limit);
+            return storageService.searchBySize(minSize, maxSize, limit);
         } else if (minPrice != null && maxPrice != null) {
-            return storageService.searchByPrice(minPrice, maxPrice, offset, limit);
+            return storageService.searchByPrice(minPrice, maxPrice, limit);
         } else if (offset != null && limit != null) {
             return storageService.searchByRange(offset, limit);
         }

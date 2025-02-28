@@ -27,23 +27,23 @@ public class GpuService {
         throw new UnsupportedOperationException("Unimplemented method 'searchByRange'");
     }
 
-    public ResponseEntity<MultiHardwareResponse> searchByName(String name, Integer offset, Integer limit) {
+    public ResponseEntity<MultiHardwareResponse> searchByName(String name, Integer limit) {
         throw new UnsupportedOperationException("Unimplemented method 'searchByName'");
     }
 
-    public ResponseEntity<MultiHardwareResponse> searchByChipset(String chipset, Integer offset, Integer limit) {
+    public ResponseEntity<MultiHardwareResponse> searchByChipset(String chipset, Integer limit) {
         throw new UnsupportedOperationException("Unimplemented method 'searchByChipset'");
     }
 
-    public ResponseEntity<MultiHardwareResponse> searchByVram(Integer minVram, Integer maxVram, Integer offset, Integer limit) {
+    public ResponseEntity<MultiHardwareResponse> searchByVram(Integer minVram, Integer maxVram, Integer limit) {
         throw new UnsupportedOperationException("Unimplemented method 'searchByVram'");
     }
 
-    public ResponseEntity<MultiHardwareResponse> searchByWattage(Integer minWattage, Integer maxWattage, Integer offset, Integer limit) {
+    public ResponseEntity<MultiHardwareResponse> searchByWattage(Integer minWattage, Integer maxWattage, Integer limit) {
         throw new UnsupportedOperationException("Unimplemented method 'searchByWattage'");
     }
 
-    public ResponseEntity<MultiHardwareResponse> searchByPrice(Float minPrice, Float maxPrice, Integer offset, Integer limit) {
+    public ResponseEntity<MultiHardwareResponse> searchByPrice(Float minPrice, Float maxPrice, Integer limit) {
         throw new UnsupportedOperationException("Unimplemented method 'searchByPrice'");
     }
 }

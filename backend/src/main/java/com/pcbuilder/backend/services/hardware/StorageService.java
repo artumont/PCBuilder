@@ -27,23 +27,23 @@ public class StorageService {
         throw new UnsupportedOperationException("Unimplemented method 'searchByRange'");
     }
 
-    public ResponseEntity<MultiHardwareResponse> searchByName(String name, Integer offset, Integer limit) {
+    public ResponseEntity<MultiHardwareResponse> searchByName(String name, Integer limit) {
         throw new UnsupportedOperationException("Unimplemented method 'searchByName'");
     }
 
-    public ResponseEntity<MultiHardwareResponse> searchByStorageFormat(String storageFormat, Integer offset, Integer limit) {
+    public ResponseEntity<MultiHardwareResponse> searchByStorageFormat(String storageFormat, Integer limit) {
         throw new UnsupportedOperationException("Unimplemented method 'searchByStorageFormat'");
     }
 
-    public ResponseEntity<MultiHardwareResponse> searchByStorageProtocol(String storageProtocol, Integer offset, Integer limit) {
+    public ResponseEntity<MultiHardwareResponse> searchByStorageProtocol(String storageProtocol, Integer limit) {
         throw new UnsupportedOperationException("Unimplemented method 'searchByStorageProtocol'");
     }
 
-    public ResponseEntity<MultiHardwareResponse> searchBySize(Integer minSize, Integer maxSize, Integer offset, Integer limit) {
+    public ResponseEntity<MultiHardwareResponse> searchBySize(Integer minSize, Integer maxSize, Integer limit) {
         throw new UnsupportedOperationException("Unimplemented method 'searchBySize'");
     }
 
-    public ResponseEntity<MultiHardwareResponse> searchByPrice(Float minPrice, Float maxPrice, Integer offset, Integer limit) {
+    public ResponseEntity<MultiHardwareResponse> searchByPrice(Float minPrice, Float maxPrice, Integer limit) {
         throw new UnsupportedOperationException("Unimplemented method 'searchByPrice'");
     }
 }

@@ -139,16 +139,15 @@ public class CpuService {
         }
     }
 
-    public ResponseEntity<MultiHardwareResponse> searchByName(String name, Integer offset, Integer limit) {
+    public ResponseEntity<MultiHardwareResponse> searchByName(String name, Integer limit) {
         try {
             logger.info("CpuService.searchByName", String.format("Searching for CPUs with name: %s", name));
             List<Cpu> cpus = new ArrayList<>();
             try (PreparedStatement statement = connection.prepareStatement(
-                "SELECT * FROM Hardware.CPUs WHERE name LIKE ? ORDER BY id OFFSET ? ROWS FETCH NEXT ? ROWS ONLY"
+                "SELECT * FROM Hardware.CPUs WHERE name LIKE ? ORDER BY id FETCH NEXT ? ROWS ONLY"
             )) {
                 statement.setString(1, name);
-                statement.setInt(2, offset);
-                statement.setInt(3, limit);
+                statement.setInt(2, limit);
                 
                 try (ResultSet resultSet = statement.executeQuery()) {
                     while (resultSet.next()) {
@@ -165,7 +164,7 @@ public class CpuService {
                     }
                 }
             }
-            
+
             if (!cpus.isEmpty()) {
                 logger.info("CpuService.searchByName", String.format("Successfully fetched %d CPUs", cpus.size()));
                 return ResponseEntity.ok(new MultiHardwareResponse(
@@ -203,19 +202,19 @@ public class CpuService {
         }
     }
 
-    public ResponseEntity<MultiHardwareResponse> searchBySocket(String socket, Integer offset, Integer limit) {
+    public ResponseEntity<MultiHardwareResponse> searchBySocket(String socket, Integer limit) {
         throw new UnsupportedOperationException("Unimplemented method 'searchBySocket'");
     }
 
-    public ResponseEntity<MultiHardwareResponse> searchByCores(Integer minCores, Integer maxCores, Integer offset, Integer limit) {
+    public ResponseEntity<MultiHardwareResponse> searchByCores(Integer minCores, Integer maxCores, Integer limit) {
         throw new UnsupportedOperationException("Unimplemented method 'searchByCores'");
     }
 
-    public ResponseEntity<MultiHardwareResponse> searchByClockSpeed(float minClockSpeed, float maxClockSpeed, Integer offset, Integer limit) {
+    public ResponseEntity<MultiHardwareResponse> searchByClockSpeed(float minClockSpeed, float maxClockSpeed, Integer limit) {
         throw new UnsupportedOperationException("Unimplemented method 'searchByClockSpeed'");
     }
 
-    public ResponseEntity<MultiHardwareResponse> searchByPrice(float minPrice, float maxPrice, Integer offset, Integer limit) {
+    public ResponseEntity<MultiHardwareResponse> searchByPrice(float minPrice, float maxPrice, Integer limit) {
         throw new UnsupportedOperationException("Unimplemented method 'searchByPrice'");
     }
 }

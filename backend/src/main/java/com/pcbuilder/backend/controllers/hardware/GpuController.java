@@ -61,19 +61,19 @@ public class GpuController {
         @RequestParam(required = false)
         Integer offset,
 
-        @RequestParam(required = false)
+        @RequestParam(required = true)
         Integer limit
     ) {
         if (name != null) {
-            return gpuService.searchByName(name, offset, limit);
+            return gpuService.searchByName(name, limit);
         } else if (chipset != null) {
-            return gpuService.searchByChipset(chipset, offset, limit);
+            return gpuService.searchByChipset(chipset, limit);
         } else if (minVram != null && maxVram != null) {
-            return gpuService.searchByVram(minVram, maxVram, offset, limit);
+            return gpuService.searchByVram(minVram, maxVram, limit);
         } else if (minWattage != null && maxWattage != null) {
-            return gpuService.searchByWattage(minWattage, maxWattage, offset, limit);
+            return gpuService.searchByWattage(minWattage, maxWattage, limit);
         } else if (minPrice != null && maxPrice != null) {
-            return gpuService.searchByPrice(minPrice, maxPrice, offset, limit);
+            return gpuService.searchByPrice(minPrice, maxPrice, limit);
         } else if (offset != null && limit != null) {
             return gpuService.searchByRange(offset, limit);
         }

@@ -58,22 +58,22 @@ public class RamController {
         Float maxPrice,
 
         // @note: Both 'offset' and 'limit' are part of the operations.
-        @RequestParam(required = true)
+        @RequestParam(required = false)
         Integer offset,
 
         @RequestParam(required = true)
         Integer limit
     ) {
         if (name != null) {
-            return ramService.searchByName(name, offset, limit);
+            return ramService.searchByName(name, limit);
         } else if (ramType != null) {
-            return ramService.searchByRamType(ramType, offset, limit);
+            return ramService.searchByRamType(ramType, limit);
         } else if (minCapacity != null && maxCapacity != null) {
-            return ramService.searchByCapacity(minCapacity, maxCapacity, offset, limit);
+            return ramService.searchByCapacity(minCapacity, maxCapacity, limit);
         } else if (minSpeed != null && maxSpeed != null) {
-            return ramService.searchBySpeed(minSpeed, maxSpeed, offset, limit);
+            return ramService.searchBySpeed(minSpeed, maxSpeed, limit);
         } else if (minPrice != null && maxPrice != null) {
-            return ramService.searchByPrice(minPrice, maxPrice, offset, limit);
+            return ramService.searchByPrice(minPrice, maxPrice, limit);
         } else if (offset != null && limit != null && offset >= 0 && limit > 0) {
             return ramService.searchByRange(offset, limit);
         }
