@@ -17,9 +17,9 @@ public class Mobo implements Hardware {
     protected Mobo() {}
 
     public Mobo(
-            int id, String name, String imageUrl, String socket,
-            int sataStorageSlots, int m2StorageSlots, int ramSlots,
-            String ramType, String size, String chipset, float price
+        int id, String name, String imageUrl, String socket,
+        int sataStorageSlots, int m2StorageSlots, int ramSlots,
+        String ramType, String size, String chipset, float price
     ) {
         this.id = id;
         this.name = name;

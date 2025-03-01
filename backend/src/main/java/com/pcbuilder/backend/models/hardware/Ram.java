@@ -10,9 +10,9 @@ public class Ram implements Hardware {
     private float price;
 
     public Ram(
-            int id, String name, String imageUrl, int speed, 
-            int size, String type, float price
-        ) {
+        int id, String name, String imageUrl, int speed, 
+        int size, String type, float price
+    ) {
         this.id = id;
         this.name = name;
         this.imageUrl = imageUrl;
