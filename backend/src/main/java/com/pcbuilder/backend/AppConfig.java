@@ -24,7 +24,11 @@ public class AppConfig {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
-                    .allowedOrigins("https://pcbuilder-black*.vercel.app", "http://localhost:3000")
+                    .allowedOrigins(
+                        "https://pcbuilder-black.vercel.app",
+                        "https://pcbuilder-black-*.vercel.app",
+                        "http://localhost:3000"
+                    )
                     .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                     .allowedHeaders("*")
                     .allowCredentials(true);
