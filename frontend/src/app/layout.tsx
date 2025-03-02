@@ -28,16 +28,39 @@ export const metadata: Metadata = {
     applicationName: "PCBuilder",
     openGraph: {
         type: "website",
+        locale: "en_US",
         title: "PCBuilder - Build and Customize Your PC",
         description: "A comprehensive web application for building and customizing PC configurations.",
+        siteName: "PCBuilder",
         url: "https://github.com/artumont/PCBuilder",
+        images: [{ 
+            url: "/assets/og-image.png",
+            width: 1200,
+            height: 630,
+            alt: "PCBuilder - Build and Customize Your PC",
+        }],
+    },
+    twitter: {
+        card: "summary_large_image",
+        title: "PCBuilder - Build and Customize Your PC",
+        description: "A comprehensive web application for building and customizing PC configurations.",
+        images: ["/assets/og-image.png"],
     },
     icons: {
         icon: [
-            { url: "/assets/logo-light.ico" },
-            { url: "/assets/logo-dark.ico", media: "(prefers-color-scheme: dark)" },
+            {
+                media: '(prefers-color-scheme: light)',
+                url: '/assets/logo-light.ico',
+                href: '/assets/logo-light.ico',
+            },
+            {
+                media: '(prefers-color-scheme: dark)',
+                url: '/assets/logo-dark.ico',
+                href: '/assets/logo-dark.ico',
+            },
         ],
     },
+    category: "technology",
 };
 
 export default function RootLayout({
