@@ -194,7 +194,7 @@ export default function BuilderContent() {
                     <Image 
                         className="w-24 h-24 mr-5 brightness-0 dark:brightness-100 dark:invert" 
                         src="/assets/builder/ssd.svg" 
-                        alt="RAM" 
+                        alt="SSD" 
                         width={96} 
                         height={96} 
                     />
@@ -219,7 +219,7 @@ export default function BuilderContent() {
                     <Image 
                         className="w-24 h-24 mr-5 brightness-0 dark:brightness-100 dark:invert" 
                         src="/assets/builder/mobo.svg" 
-                        alt="RAM" 
+                        alt="MOBO" 
                         width={96} 
                         height={96} 
                     />
@@ -244,7 +244,7 @@ export default function BuilderContent() {
                     <Image 
                         className="w-24 h-24 mr-5 brightness-0 dark:brightness-100 dark:invert" 
                         src="/assets/builder/psu.svg" 
-                        alt="RAM" 
+                        alt="PSU" 
                         width={96} 
                         height={96} 
                     />
@@ -269,7 +269,7 @@ export default function BuilderContent() {
                     <Image 
                         className="w-24 h-24 mr-5 brightness-0 dark:brightness-100 dark:invert" 
                         src="/assets/builder/fan.svg" 
-                        alt="RAM" 
+                        alt="FAN" 
                         width={96} 
                         height={96} 
                     />
@@ -294,7 +294,7 @@ export default function BuilderContent() {
                     <Image 
                         className="w-24 h-24 mr-5 brightness-0 dark:brightness-100 dark:invert" 
                         src="/assets/builder/case.svg" 
-                        alt="RAM" 
+                        alt="CASE" 
                         width={96} 
                         height={96} 
                     />
@@ -319,7 +319,7 @@ export default function BuilderContent() {
                     <Image 
                         className="w-24 h-24 mr-5 brightness-0 dark:brightness-100 dark:invert" 
                         src="/assets/builder/monitor.svg" 
-                        alt="RAM" 
+                        alt="MONITOR" 
                         width={96} 
                         height={96} 
                     />

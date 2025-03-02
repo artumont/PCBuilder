@@ -98,7 +98,7 @@ export default function HardwarePicker({ type, onSelect, onClose }: {
     return (
         <AnimatePresence>
             <motion.div 
-                className="fixed inset-0 bg-black bg-opacity-50 z-50 flex justify-center items-start backdrop-blur-sm"
+                className="fixed inset-0 bg-black bg-opacity-75 z-50 flex justify-center items-start backdrop-blur-sm"
                 variants={overlayVariants}
                 initial="hidden"
                 animate="visible"
