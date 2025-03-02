@@ -4,7 +4,7 @@ INSERT INTO Hardware.CPUs (name, image_url, socket, cores, clock_speed, threads,
 ('AMD Ryzen 9 7950X3D', 'https://m.media-amazon.com/images/I/5116zdA9uyL._AC_UY218_.jpg', 'AM5', 16, 5.70, 32, 699.99),
 ('AMD Ryzen 9 5950X', 'https://m.media-amazon.com/images/I/61ISSSA+x+L._AC_UY218_.jpg', 'AM4', 16, 4.90, 32, 549.99),
 ('Intel Core i9-12900KS', 'https://m.media-amazon.com/images/I/51klBAsxGHL._AC_UY218_.jpg', 'LGA1700', 16, 5.50, 24, 739.99),
-('AMD Ryzen 9 7900X', 'https://m.media-amazon.com/images/I/51V16VSqyfL._AC_UY218_.jpg', 'AM5', 12, 5.60, 24, 549.99),
+('AMD Ryzen 9 7900X', 'https://m.media-amazon.com/images/I/51OEiWrUtqL._AC_UL320_.jpg', 'AM5', 12, 5.60, 24, 549.99),
 ('Intel Core i7-13700K', 'https://m.media-amazon.com/images/I/51iNzatVxLL._AC_UY218_.jpg', 'LGA1700', 16, 5.40, 24, 419.99),
 ('AMD Ryzen 7 7800X3D', 'https://m.media-amazon.com/images/I/51HqC0rU9HL._AC_UY218_.jpg', 'AM5', 8, 5.00, 16, 449.99),
 ('Intel Core i5-13600K', 'https://m.media-amazon.com/images/I/61My4F2-XUL._AC_UY218_.jpg', 'LGA1700', 14, 5.10, 20, 319.99),
@@ -29,7 +29,7 @@ INSERT INTO Hardware.GPUs (name, image_url, chipset, vram, wattage, price) VALUE
 ('AMD Radeon RX 6700 XT', 'https://m.media-amazon.com/images/I/81ba+dsNlUL._AC_UY218_.jpg', 'Navi 22', 12288, 230, 479.99);
 
 -- Insert Motherboards
-INSERT INTO Hardware.Motherboards (name, image_url, socket, sata_storage_slots, m_2_storage_slots, ram_slots, ram_type, size, chipset, price) VALUES
+INSERT INTO Hardware.Motherboards (name, image_url, socket, sata_storage_slots, m2_storage_slots, ram_slots, ram_type, size, chipset, price) VALUES
 ('ASUS ROG Maximus Z790 Hero', 'https://m.media-amazon.com/images/I/81CpgF-+P4L._AC_UY218_.jpg', 'LGA1700', 6, 5, 4, 'DDR5', 'ATX', 'Z790', 629.99),
 ('MSI MEG X670E ACE', 'https://m.media-amazon.com/images/I/811eMHgYpdL._AC_UY218_.jpg', 'AM5', 6, 5, 4, 'DDR5', 'ATX', 'X670E', 699.99),
 ('Gigabyte X570S AORUS Master', 'https://m.media-amazon.com/images/I/71G9DjmRntL._AC_UY218_.jpg', 'AM4', 6, 4, 4, 'DDR4', 'ATX', 'X570S', 389.99),
@@ -92,7 +92,7 @@ INSERT INTO Hardware.PSUs (name, image_url, wattage, size, price) VALUES
 INSERT INTO Hardware.Cases (name, image_url, size, price) VALUES
 ('Lian Li O11 Dynamic EVO', 'https://m.media-amazon.com/images/I/61OeOaBlAIL._AC_UY218_.jpg', 'ATX', 169.99),
 ('Fractal Design Meshify 2', 'https://m.media-amazon.com/images/I/91JfXda95sL._AC_UY218_.jpg', 'ATX', 149.99),
-('NZXT H510 Flow', 'https://m.media-amazon.com/images/I/41yL3DM3dGL._AC_UY218_.jpg', 'ATX', 89.99),
+('NZXT H510 Flow', 'https://m.media-amazon.com/images/I/71SIs5kxpYL._AC_UL320_.jpg', 'ATX', 89.99),
 ('Phanteks Eclipse P300A', 'https://m.media-amazon.com/images/I/71J4iohAlaL._AC_UY218_.jpg', 'ATX', 69.99),
 ('Corsair 5000D Airflow', 'https://m.media-amazon.com/images/I/71XO-m7qldL._AC_UY218_.jpg', 'ATX', 174.99),
 ('be quiet! Pure Base 500DX', 'https://m.media-amazon.com/images/I/61YQafwg6gL._AC_UY218_.jpg', 'ATX', 109.99),
