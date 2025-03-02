@@ -294,7 +294,8 @@ export default function BuilderContent() {
                         height={96} 
                     />
                         <div className="flex flex-col text-start">
-                            <h1 className="text-4xl">Storage</h1>
+                            <h1 className="text-4xl hidden lg:block">Storage</h1>
+                            <h1 className="text-4xl lg:hidden">SSD</h1>
                             <h2 className="text-sm">{currentBuild.storage || "Select the storage"}</h2>
                         </div>
                     </div>
@@ -319,7 +320,8 @@ export default function BuilderContent() {
                         height={96} 
                     />
                         <div className="flex flex-col text-start">
-                            <h1 className="text-4xl">Motherboard</h1>
+                            <h1 className="text-4xl hidden lg:block">Motherboard</h1>
+                            <h1 className="text-4xl lg:hidden">Mobo</h1>
                             <h2 className="text-sm">{currentBuild.motherboard || "Select a motherboard"}</h2>
                         </div>
                     </div>
@@ -369,7 +371,8 @@ export default function BuilderContent() {
                         height={96} 
                     />
                         <div className="flex flex-col text-start">
-                            <h1 className="text-4xl">Cooling</h1>
+                            <h1 className="text-4xl hidden lg:block">Cooling</h1>
+                            <h1 className="text-4xl lg:hidden">AIO</h1>
                             <h2 className="text-sm">{currentBuild.cooling || "Select a cooling system"}</h2>
                         </div>
                     </div>
@@ -419,7 +422,8 @@ export default function BuilderContent() {
                         height={96} 
                     />
                         <div className="flex flex-col text-start">
-                            <h1 className="text-4xl">Monitor</h1>
+                            <h1 className="text-4xl hidden lg:block">Monitor</h1>
+                            <h1 className="text-4xl lg:hidden">Screen</h1>
                             <h2 className="text-sm">{currentBuild.monitor || "Select a monitor (optional)"}</h2>
                         </div>
                     </div>
@@ -433,10 +437,10 @@ export default function BuilderContent() {
                 initial="hidden"
                 animate="visible"
             >
-                <div className="flex flex-row p-6 rounded-lg bg-light-terciary dark:bg-dark-terciary border-[7px] border-light-secondary dark:border-dark-secondary">
-                    <div className="flex-1 p-6">
-                        <h2 className="text-2xl font-semibold">Total Price</h2>
-                        <p className="text-lg mt-2">
+                <div className="flex flex-col lg:flex-row gap-4 p-4 lg:p-6 rounded-lg bg-light-terciary dark:bg-dark-terciary border-[7px] border-light-secondary dark:border-dark-secondary">
+                    <div className="flex flex-row lg:flex-col justify-between items-center lg:items-start flex-1 p-4 lg:p-6">
+                        <h2 className="text-xl lg:text-2xl font-semibold">Total Price</h2>
+                        <p className="text-lg lg:mt-2">
                             {isLoadingPrice ? (
                                 <motion.span 
                                     initial={{ opacity: 0.5 }}
@@ -451,7 +455,7 @@ export default function BuilderContent() {
                         </p>
                     </div>
                     <motion.button 
-                        className="flex-1 p-6 rounded-lg bg-green-500/30 hover:bg-green-500/50 border-[4px] border-green-500/80 font-semibold text-xl transition-colors"
+                        className="w-full lg:flex-1 p-4 lg:p-6 rounded-lg bg-green-500/30 hover:bg-green-500/50 border-[4px] border-green-500/80 font-semibold text-lg lg:text-xl transition-colors"
                         whileHover="hover"
                         whileTap="tap"
                         onClick={handleSaveConfig}
