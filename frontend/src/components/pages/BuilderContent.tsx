@@ -4,9 +4,9 @@ import Image from "next/image"
 import { motion } from "motion/react"
 import { useEffect, useState } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
-import HardwarePicker from "./overlays/HardwarePicker";
-import { fetchHardwareByName } from "./overlays/ApiUtils";
-import { HardwareType } from "./overlays/Types";
+import HardwarePicker from "./builder/HardwarePicker";
+import { fetchHardwareByName } from "./builder/ApiUtils";
+import { HardwareType } from "./builder/Types";
 
 export type Build = {
     cpu: string,
@@ -423,7 +423,7 @@ export default function BuilderContent() {
                     />
                         <div className="flex flex-col text-start">
                             <h1 className="text-4xl hidden lg:block">Monitor</h1>
-                            <h1 className="text-4xl lg:hidden">Screen</h1>
+                            <h1 className="text-4xl lg:hidden">LCD</h1>
                             <h2 className="text-sm">{currentBuild.monitor || "Select a monitor (optional)"}</h2>
                         </div>
                     </div>
