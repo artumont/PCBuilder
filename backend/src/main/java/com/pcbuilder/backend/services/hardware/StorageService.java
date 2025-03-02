@@ -29,7 +29,7 @@ public class StorageService {
     public ResponseEntity<HardwareResponse> fetchById(int id) {
         try {
             logger.info("StorageService.fetchById", String.format("Fetching Storage with id: %s", id));
-            PreparedStatement statement = connection.prepareStatement("SELECT * FROM Hardware.Storage WHERE id = ?");
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM Hardware.Storages WHERE id = ?");
             statement.setInt(1, id);
             
             ResultSet resultSet = statement.executeQuery();
@@ -82,7 +82,7 @@ public class StorageService {
         try {
             logger.info("StorageService.searchByRange", String.format("Searching for Storage devices with offset: %s and limit: %s", offset, limit));
             List<Storage> storageList = new ArrayList<>();
-            try (PreparedStatement statement = connection.prepareStatement("SELECT * FROM Hardware.Storage ORDER BY id OFFSET ? ROWS FETCH NEXT ? ROWS ONLY")) {
+            try (PreparedStatement statement = connection.prepareStatement("SELECT * FROM Hardware.Storages ORDER BY id OFFSET ? ROWS FETCH NEXT ? ROWS ONLY")) {
                 statement.setInt(1, offset);
                 statement.setInt(2, limit);
                 
@@ -142,7 +142,7 @@ public class StorageService {
             logger.info("StorageService.searchByName", String.format("Searching for Storage devices with name: %s", name));
             List<Storage> storageList = new ArrayList<>();
             try (PreparedStatement statement = connection.prepareStatement(
-                "SELECT TOP (?) * FROM Hardware.Storage WHERE LOWER(name) LIKE LOWER(?) ORDER BY CHARINDEX(LOWER(?), LOWER(name)), name"
+                "SELECT TOP (?) * FROM Hardware.Storages WHERE LOWER(name) LIKE LOWER(?) ORDER BY CHARINDEX(LOWER(?), LOWER(name)), name"
             )) {
                 statement.setInt(1, limit);
                 statement.setString(2, "%" + name + "%"); 
@@ -204,7 +204,7 @@ public class StorageService {
             logger.info("StorageService.searchByStorageFormat", String.format("Searching for Storage devices with format: %s", format));
             List<Storage> storageList = new ArrayList<>();
             try (PreparedStatement statement = connection.prepareStatement(
-                "SELECT TOP (?) * FROM Hardware.Storage WHERE LOWER(format) LIKE LOWER(?) ORDER BY CHARINDEX(LOWER(?), LOWER(format)), format"
+                "SELECT TOP (?) * FROM Hardware.Storages WHERE LOWER(format) LIKE LOWER(?) ORDER BY CHARINDEX(LOWER(?), LOWER(format)), format"
             )) {
                 statement.setInt(1, limit);
                 statement.setString(2, "%" + format + "%"); 
@@ -266,7 +266,7 @@ public class StorageService {
             logger.info("StorageService.searchByStorageProtocol", String.format("Searching for Storage devices with protocol: %s", protocol));
             List<Storage> storageList = new ArrayList<>();
             try (PreparedStatement statement = connection.prepareStatement(
-                "SELECT TOP (?) * FROM Hardware.Storage WHERE LOWER(protocol) LIKE LOWER(?) ORDER BY CHARINDEX(LOWER(?), LOWER(protocol)), protocol"
+                "SELECT TOP (?) * FROM Hardware.Storages WHERE LOWER(protocol) LIKE LOWER(?) ORDER BY CHARINDEX(LOWER(?), LOWER(protocol)), protocol"
             )) {
                 statement.setInt(1, limit);
                 statement.setString(2, "%" + protocol + "%"); 
@@ -328,7 +328,7 @@ public class StorageService {
             logger.info("StorageService.searchBySize", String.format("Searching for Storage devices with size between %d and %d", minSize, maxSize));
             List<Storage> storageList = new ArrayList<>();
             try (PreparedStatement statement = connection.prepareStatement(
-                "SELECT TOP (?) * FROM Hardware.Storage WHERE size >= ? AND size <= ? ORDER BY size"
+                "SELECT TOP (?) * FROM Hardware.Storages WHERE size >= ? AND size <= ? ORDER BY size"
             )) {
                 statement.setInt(1, limit);
                 statement.setInt(2, minSize);
@@ -390,7 +390,7 @@ public class StorageService {
             logger.info("StorageService.searchByPrice", String.format("Searching for Storage devices with price between %f and %f", minPrice, maxPrice));
             List<Storage> storageList = new ArrayList<>();
             try (PreparedStatement statement = connection.prepareStatement(
-                "SELECT TOP (?) * FROM Hardware.Storage WHERE price >= ? AND price <= ? ORDER BY price"
+                "SELECT TOP (?) * FROM Hardware.Storages WHERE price >= ? AND price <= ? ORDER BY price"
             )) {
                 statement.setInt(1, limit);
                 statement.setFloat(2, minPrice);
