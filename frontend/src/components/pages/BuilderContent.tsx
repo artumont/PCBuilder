@@ -5,6 +5,8 @@ import { motion } from "motion/react"
 import { useEffect, useState } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import HardwarePicker from "./overlays/HardwarePicker";
+import { fetchHardwareByName } from "./overlays/ApiUtils";
+import { HardwareType } from "./overlays/Types";
 
 export type Build = {
     cpu: string,
@@ -18,8 +20,6 @@ export type Build = {
     monitor?: string
     [key: string]: string | undefined
 }
-
-type HardwareType = 'cpu' | 'gpu' | 'ram' | 'storage' | 'motherboard' | 'psu' | 'case' | 'cooler' | 'monitor';
 
 export interface ConfigUrlInfo {
     url: string;
@@ -84,6 +84,44 @@ export default function BuilderContent() {
         monitor: ''
     });
 
+    const fetchPricesForBuild = async (build: Build) => {
+        if (Object.values(build).every(v => !v)) return;
+        const components: { type: HardwareType; name: string; }[] = [
+            { type: 'cpu', name: build.cpu },
+            { type: 'gpu', name: build.gpu },
+            { type: 'ram', name: build.ram },
+            { type: 'storage', name: build.storage },
+            { type: 'motherboard', name: build.motherboard },
+            { type: 'psu', name: build.psu },
+            { type: 'case', name: build.case },
+            { type: 'cooler', name: build.cooling }
+        ];
+
+        if (build.monitor) {
+            components.push({ type: 'monitor', name: build.monitor });
+        }
+
+        const newSelectedPrices: Record<string, number> = {};
+        let total = 0;
+
+        for (const component of components) {
+            if (component.name) {
+                try {
+                    const hardware = await fetchHardwareByName(component.type, component.name);
+                    const key = component.type === 'cooler' ? 'cooling' : component.type;
+                    newSelectedPrices[key] = hardware.price;
+                    total += hardware.price;
+                } catch (error) {
+                    console.error(`Failed to fetch price for ${component.type}:`, error);
+                    return;
+                }
+            }
+        }
+
+        setSelectedPrices(newSelectedPrices);
+        setTotalPrice(total);
+    };
+
     useEffect(() => {
         const config = searchParams.get("config")
         if (config) {
@@ -93,6 +131,7 @@ export default function BuilderContent() {
                     ...prev,
                     ...build
                 }));
+                fetchPricesForBuild(build);
             } catch (e) {
                 console.error("Failed to parse config:", e);
             }
@@ -107,7 +146,6 @@ export default function BuilderContent() {
             [buildKey]: hardware.name
         };
         
-        // Update selected prices and total
         const newSelectedPrices = {
             ...selectedPrices,
             [buildKey]: hardware.price
@@ -126,7 +164,6 @@ export default function BuilderContent() {
     };
 
     const handleSaveConfig = async () => {
-        // Ensure at least CPU, GPU, RAM, Storage, Motherboard, PSU, Case, and Cooling are selected
         const requiredParts = ['cpu', 'gpu', 'ram', 'storage', 'motherboard', 'psu', 'case', 'cooling'];
         const missingParts = requiredParts.filter(part => !currentBuild[part]);
 
@@ -136,9 +173,8 @@ export default function BuilderContent() {
         }
 
         try {
-            // Here you would typically call your backend API to save the configuration
-            // For now, we'll just show a success message
             alert('Configuration saved successfully!');
+            // @todo: Save configuration on database
         } catch (error) {
             console.error('Failed to save configuration:', error);
             alert('Failed to save configuration. Please try again.');
