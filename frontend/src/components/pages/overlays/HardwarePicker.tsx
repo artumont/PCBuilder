@@ -105,7 +105,7 @@ export default function HardwarePicker({ type, onSelect, onClose }: {
                 exit="exit"
             >
                 <motion.div 
-                    className="bg-light-primary dark:bg-dark-primary w-[95%] sm:w-[90%] md:w-[85%] lg:max-w-5xl h-[90vh] mt-20 rounded-lg p-4 sm:p-6 overflow-y-auto border-[7px] border-light-secondary dark:border-dark-secondary"
+                    className="bg-light-primary dark:bg-dark-primary w-[95%] sm:w-[90%] md:w-[85%] lg:max-w-8xl h-[90vh] mt-20 rounded-lg p-4 sm:p-6 overflow-y-auto border-[7px] border-light-secondary dark:border-dark-secondary"
                     variants={contentVariants}
                     initial="hidden"
                     animate="visible"
