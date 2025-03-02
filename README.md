@@ -21,33 +21,6 @@ A comprehensive web application for building and customizing PC configurations w
 - SQL Server database
 - Node.js and npm (for frontend development)
 
-## 🔧 Setup
-
-1. Clone the repository
-```bash
-git clone https://github.com/artumont/PCBuilder.git
-cd PCBuilder
-```
-
-2. Set up the database
-```
-Download: https://www.microsoft.com/es-mx/sql-server/sql-server-downloads (Express & SSMS)
-Execute 'SQL Server 2022 Configuration Manager' then go to 'Protocols for (MSSQLSERVER)'
-Enable and configure 'Shared Memory' and 'TCP/IP' (TCP should have all ips active not enabled, the port should also be the same as in your config)
-Go to 'SQL Server Services' and restart 'SQL Server (MSSQLSERVER)'
-After that you should be good to go!
-```
-
-3. Configure application properties
-```bash
-// Configuration instructions here
-```
-
-4. Run the application
-```bash
-// Run instructions here
-```
-
 ## 🏗️ Project Structure
 
 - `/backend` - Server-side logic and API endpoints
