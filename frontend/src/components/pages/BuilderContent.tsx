@@ -16,6 +16,7 @@ export type Build = {
     cooling: string
     case: string,
     monitor?: string
+    [key: string]: string | undefined
 }
 
 type HardwareType = 'cpu' | 'gpu' | 'ram' | 'storage' | 'motherboard' | 'psu' | 'case' | 'cooler' | 'monitor';
@@ -42,6 +43,8 @@ interface Hardware {
 export default function BuilderContent() {
     const [selectedType, setSelectedType] = useState<HardwareType | null>(null);
     const [showPicker, setShowPicker] = useState(false);
+    const [totalPrice, setTotalPrice] = useState(0);
+    const [selectedPrices, setSelectedPrices] = useState<Record<string, number>>({});
     const searchParams = useSearchParams();
     const router = useRouter();
 
@@ -104,6 +107,14 @@ export default function BuilderContent() {
             [buildKey]: hardware.name
         };
         
+        // Update selected prices and total
+        const newSelectedPrices = {
+            ...selectedPrices,
+            [buildKey]: hardware.price
+        };
+        setSelectedPrices(newSelectedPrices);
+        setTotalPrice(Object.values(newSelectedPrices).reduce((sum, price) => sum + price, 0));
+        
         setCurrentBuild(newBuild);
         const config = btoa(JSON.stringify(newBuild));
 
@@ -112,6 +123,26 @@ export default function BuilderContent() {
         router.push(`?${params.toString()}`);
 
         setShowPicker(false);
+    };
+
+    const handleSaveConfig = async () => {
+        // Ensure at least CPU, GPU, RAM, Storage, Motherboard, PSU, Case, and Cooling are selected
+        const requiredParts = ['cpu', 'gpu', 'ram', 'storage', 'motherboard', 'psu', 'case', 'cooling'];
+        const missingParts = requiredParts.filter(part => !currentBuild[part]);
+
+        if (missingParts.length > 0) {
+            alert(`Please select all required components: ${missingParts.join(', ')}`);
+            return;
+        }
+
+        try {
+            // Here you would typically call your backend API to save the configuration
+            // For now, we'll just show a success message
+            alert('Configuration saved successfully!');
+        } catch (error) {
+            console.error('Failed to save configuration:', error);
+            alert('Failed to save configuration. Please try again.');
+        }
     };
 
     const getCurrentConfigUrl = () => {
@@ -353,6 +384,30 @@ export default function BuilderContent() {
                     </div>
                 </motion.button>
             </motion.div>
+
+            <motion.div 
+                className="mt-8"
+                variants={buttonVariants}
+                custom={9}
+                initial="hidden"
+                animate="visible"
+            >
+                <div className="flex flex-row p-6 rounded-lg bg-light-terciary dark:bg-dark-terciary border-[7px] border-light-secondary dark:border-dark-secondary">
+                    <div className="flex-1 p-6">
+                        <h2 className="text-2xl font-semibold">Total Price</h2>
+                        <p className="text-lg mt-2">${totalPrice.toFixed(2)}</p>
+                    </div>
+                    <motion.button 
+                        className="flex-1 p-6 rounded-lg bg-green-500/30 hover:bg-green-500/50 border-[4px] border-green-500/80 font-semibold text-xl transition-colors"
+                        whileHover="hover"
+                        whileTap="tap"
+                        onClick={handleSaveConfig}
+                    >
+                        Save Configuration
+                    </motion.button>
+                </div>
+            </motion.div>
+
             {showPicker && selectedType && (
                 <HardwarePicker 
                     type={selectedType}
