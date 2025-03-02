@@ -1,24 +1,27 @@
 package com.pcbuilder.backend.models.hardware;
 
-public class Ram implements Hardware {
+public class Monitor implements Hardware {
     private int id;
     private String name;
     private String imageUrl;
-    private int speed;
-    private int size;
-    private String type;
+    private String resolution;
+    private int refreshRate;
+    private double size;
+    private String panelType;
     private float price;
 
-    public Ram(
+    public Monitor(
         int id, String name, String imageUrl, 
-        int speed, int size, String type, float price
+        String resolution, int refreshRate, double size, 
+        String panelType, float price
     ) {
         this.id = id;
         this.name = name;
         this.imageUrl = imageUrl;
-        this.speed = speed;
+        this.resolution = resolution;
+        this.refreshRate = refreshRate;
         this.size = size;
-        this.type = type;
+        this.panelType = panelType;
         this.price = price;
     }
 
@@ -42,15 +45,19 @@ public class Ram implements Hardware {
         return price;
     }
 
-    public int getSpeed() {
-        return speed;
+    public String getResolution() {
+        return resolution;
     }
 
-    public int getSize() {
+    public int getRefreshRate() {
+        return refreshRate;
+    }
+
+    public double getSize() {
         return size;
     }
 
-    public String getType() {
-        return type;
+    public String getPanelType() {
+        return panelType;
     }
 }

@@ -1,24 +1,20 @@
 package com.pcbuilder.backend.models.hardware;
 
-public class Gpu implements Hardware {
+public class Case implements Hardware {
     private int id;
     private String name;
     private String imageUrl;
-    private String chipset;
-    private int vram;
-    private int wattage;
+    private String size;
     private float price;
 
-    public Gpu(
-        int id, String name, String imageUrl, 
-        String chipset, int vram, int wattage, float price
+    public Case(
+        int id, String name, 
+        String imageUrl, String size, float price
     ) {
         this.id = id;
         this.name = name;
         this.imageUrl = imageUrl;
-        this.chipset = chipset;
-        this.vram = vram;
-        this.wattage = wattage;
+        this.size = size;
         this.price = price;
     }
 
@@ -42,15 +38,7 @@ public class Gpu implements Hardware {
         return price;
     }
 
-    public String getChipset() {
-        return chipset;
-    }
-
-    public int getVram() {
-        return vram;
-    }
-
-    public int getWattage() {
-        return wattage;
+    public String getSize() {
+        return size;
     }
 }

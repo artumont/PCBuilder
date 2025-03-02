@@ -13,25 +13,11 @@ CREATE TABLE Hardware.CPUs (
    INDEX idx_socket (socket)
 );
 
-CREATE TABLE Hardware.Chipsets (
-    id INT IDENTITY(1,1) PRIMARY KEY,
-    name VARCHAR(255) NOT NULL UNIQUE,
-    INDEX idx_chipset_name (name)
-);
-
-CREATE TABLE Hardware.CPUChipsetCompatibility (
-    cpu_id INT NOT NULL,
-    chipset_id INT NOT NULL,
-    PRIMARY KEY (cpu_id, chipset_id),
-    FOREIGN KEY (cpu_id) REFERENCES Hardware.CPUs(id),
-    FOREIGN KEY (chipset_id) REFERENCES Hardware.Chipsets(id)
-);
-
 CREATE TABLE Hardware.GPUs (
    id INT IDENTITY(1,1) PRIMARY KEY,
    name VARCHAR(255) NOT NULL,
    image_url VARCHAR(2048),
-   chipset VARCHAR(255) NOT NULL, -- @note: This is the GPU chipset, e.g. GTX 1080, RX 580, etc.
+   chipset VARCHAR(255) NOT NULL, -- @note: This is the GPU chipset, e.g. Navi 22, AD102, etc.
    vram INT NOT NULL, -- @note: This is in MB
    wattage INT NOT NULL, -- @note: This is in Watts
    price MONEY,
@@ -43,17 +29,16 @@ CREATE TABLE Hardware.Motherboards (
    image_url VARCHAR(2048),
    socket VARCHAR(255) NOT NULL,
    sata_storage_slots INT NOT NULL,
-   m_2_storage_slots INT NOT NULL,
+   m2_storage_slots INT NOT NULL,
    ram_slots INT NOT NULL,
    ram_type VARCHAR(255) NOT NULL, -- @note: This is DDR3, DDR4, etc.
    size VARCHAR(255) NOT NULL, -- @note: this is using the ATX, Micro-ATX, Mini-ITX, etc. standard
-   chipset_id INT NOT NULL, -- @note: This is a foreign key to the Chipsets table
-   FOREIGN KEY (chipset_id) REFERENCES Hardware.Chipsets(id),
+   chipset VARCHAR(255) NOT NULL, -- @note: This is the chipset of the motherboard, e.g. B450, Z590, etc.
    price MONEY,
    INDEX idx_socket (socket)
 );
 
-CREATE TABLE Hardware.RAM (
+CREATE TABLE Hardware.RAMs (
    id INT IDENTITY(1,1) PRIMARY KEY,
    name VARCHAR(255) NOT NULL,
    image_url VARCHAR(2048),
@@ -64,7 +49,7 @@ CREATE TABLE Hardware.RAM (
    INDEX idx_type (type)
 );
 
-CREATE TABLE Hardware.Storage (
+CREATE TABLE Hardware.Storages (
    id INT IDENTITY(1,1) PRIMARY KEY,
    name VARCHAR(255) NOT NULL,
    image_url VARCHAR(2048),
@@ -76,7 +61,7 @@ CREATE TABLE Hardware.Storage (
    INDEX idx_protocol (protocol)
 );
 
-CREATE TABLE Hardware.PSU (
+CREATE TABLE Hardware.PSUs (
    id INT IDENTITY(1,1) PRIMARY KEY,
    name VARCHAR(255) NOT NULL,
    image_url VARCHAR(2048),
@@ -94,28 +79,15 @@ CREATE TABLE Hardware.Cases (
    INDEX idx_size (size)
 );
 
-CREATE TABLE Hardware.Sockets (
-    id INT IDENTITY(1,1) PRIMARY KEY,
-    name VARCHAR(255) NOT NULL UNIQUE, -- @note: This is the name of the socket, e.g. LGA1151, AM4, etc.
-    INDEX idx_socket_name (name)
-);
-
 CREATE TABLE Hardware.Coolers (
     id INT IDENTITY(1,1) PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
+    socket VARCHAR(255) NOT NULL, -- @note: This is the socket that the cooler is compatible with (they are multiple but for the sake of my sanity I'm keeping it simple)
     image_url VARCHAR(2048),
     price MONEY
 );
 
-CREATE TABLE Hardware.CoolerSocketCompatibility (
-    cooler_id INT NOT NULL,
-    socket_id INT NOT NULL,
-    PRIMARY KEY (cooler_id, socket_id),
-    FOREIGN KEY (cooler_id) REFERENCES Hardware.Coolers(id),
-    FOREIGN KEY (socket_id) REFERENCES Hardware.Sockets(id)
-);
-
-CREATE TABLE Hardware.Monitor (
+CREATE TABLE Hardware.Monitors (
     id INT IDENTITY(1,1) PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
     image_url VARCHAR(2048),

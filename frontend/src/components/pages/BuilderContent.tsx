@@ -2,10 +2,11 @@
 
 import Image from "next/image"
 import { motion } from "motion/react"
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
+import HardwarePicker from "./overlays/HardwarePicker";
 
-type Build = {
+export type Build = {
     cpu: string,
     gpu: string,
     ram: string,
@@ -17,7 +18,30 @@ type Build = {
     monitor?: string
 }
 
+type HardwareType = 'cpu' | 'gpu' | 'ram' | 'storage' | 'motherboard' | 'psu' | 'case' | 'cooler' | 'monitor';
+
+export interface ConfigUrlInfo {
+    url: string;
+    config: string;
+    build: Build;
+}
+
+export function getConfigUrlInfo(build: Build): ConfigUrlInfo {
+    const config = btoa(JSON.stringify(build));
+    const url = `${window.location.origin}${window.location.pathname}?config=${config}`;
+    return { url, config, build };
+}
+
+interface Hardware {
+    name: string;
+    id: number;
+    price: number;
+    imageUrl: string;
+}
+
 export default function BuilderContent() {
+    const [selectedType, setSelectedType] = useState<HardwareType | null>(null);
+    const [showPicker, setShowPicker] = useState(false);
     const searchParams = useSearchParams();
     const router = useRouter();
 
@@ -45,7 +69,7 @@ export default function BuilderContent() {
         }
     }
 
-    const currentBuild: Build = {
+    const [currentBuild, setCurrentBuild] = useState<Build>({
         cpu: '',
         gpu: '',
         ram: '',
@@ -53,12 +77,53 @@ export default function BuilderContent() {
         motherboard: '',
         psu: '',
         case: '',
-        cooling: ''
-    };
+        cooling: '',
+        monitor: ''
+    });
 
     useEffect(() => {
         const config = searchParams.get("config")
-    })
+        if (config) {
+            try {
+                const build = JSON.parse(atob(config)) as Build;
+                setCurrentBuild(prev => ({
+                    ...prev,
+                    ...build
+                }));
+            } catch (e) {
+                console.error("Failed to parse config:", e);
+            }
+        }
+    }, [searchParams])
+
+    const handleSelect = (hardware: Hardware) => {
+        const buildKey = selectedType === 'cooler' ? 'cooling' : selectedType as string;
+        
+        const newBuild = {
+            ...currentBuild,
+            [buildKey]: hardware.name
+        };
+        
+        setCurrentBuild(newBuild);
+        const config = btoa(JSON.stringify(newBuild));
+
+        const params = new URLSearchParams(window.location.search);
+        params.set('config', config);
+        router.push(`?${params.toString()}`);
+
+        setShowPicker(false);
+    };
+
+    const getCurrentConfigUrl = () => {
+        const config = btoa(JSON.stringify(currentBuild));
+        const baseUrl = window.location.origin + window.location.pathname;
+        return `${baseUrl}?config=${config}`;
+    };
+
+    const handleOpenPicker = (type: HardwareType) => {
+        setSelectedType(type);
+        setShowPicker(true);
+    };
 
     return (
         <div className="w-full mt-32 lg:mt-5">
@@ -71,6 +136,7 @@ export default function BuilderContent() {
                     animate="visible"
                     whileHover="hover"
                     whileTap="tap"
+                    onClick={() => handleOpenPicker('cpu')}
                 >
                     <div className="flex items-center ml-10">
                         <Image 
@@ -95,6 +161,7 @@ export default function BuilderContent() {
                     animate="visible"
                     whileHover="hover"
                     whileTap="tap"
+                    onClick={() => handleOpenPicker('gpu')}
                 >
                     <div className="flex items-center ml-10">
                     <Image 
@@ -119,6 +186,7 @@ export default function BuilderContent() {
                     animate="visible"
                     whileHover="hover"
                     whileTap="tap"
+                    onClick={() => handleOpenPicker('ram')}
                 >
                     <div className="flex items-center ml-10">
                     <Image 
@@ -143,12 +211,13 @@ export default function BuilderContent() {
                     animate="visible"
                     whileHover="hover"
                     whileTap="tap"
+                    onClick={() => handleOpenPicker('storage')}
                 >
                     <div className="flex items-center ml-10">
                     <Image 
                         className="w-24 h-24 mr-5 brightness-0 dark:brightness-100 dark:invert" 
                         src="/assets/builder/ssd.svg" 
-                        alt="RAM" 
+                        alt="SSD" 
                         width={96} 
                         height={96} 
                     />
@@ -167,12 +236,13 @@ export default function BuilderContent() {
                     animate="visible"
                     whileHover="hover"
                     whileTap="tap"
+                    onClick={() => handleOpenPicker('motherboard')}
                 >
                     <div className="flex items-center ml-10">
                     <Image 
                         className="w-24 h-24 mr-5 brightness-0 dark:brightness-100 dark:invert" 
                         src="/assets/builder/mobo.svg" 
-                        alt="RAM" 
+                        alt="MOBO" 
                         width={96} 
                         height={96} 
                     />
@@ -191,12 +261,13 @@ export default function BuilderContent() {
                     animate="visible"
                     whileHover="hover"
                     whileTap="tap"
+                    onClick={() => handleOpenPicker('psu')}
                 >
                     <div className="flex items-center ml-10">
                     <Image 
                         className="w-24 h-24 mr-5 brightness-0 dark:brightness-100 dark:invert" 
                         src="/assets/builder/psu.svg" 
-                        alt="RAM" 
+                        alt="PSU" 
                         width={96} 
                         height={96} 
                     />
@@ -215,18 +286,19 @@ export default function BuilderContent() {
                     animate="visible"
                     whileHover="hover"
                     whileTap="tap"
+                    onClick={() => handleOpenPicker('cooler')}
                 >
                     <div className="flex items-center ml-10">
                     <Image 
                         className="w-24 h-24 mr-5 brightness-0 dark:brightness-100 dark:invert" 
                         src="/assets/builder/fan.svg" 
-                        alt="RAM" 
+                        alt="FAN" 
                         width={96} 
                         height={96} 
                     />
                         <div className="flex flex-col text-start">
                             <h1 className="text-4xl">Cooling</h1>
-                            <h2 className="text-sm">{currentBuild.psu || "Select a cooling system"}</h2>
+                            <h2 className="text-sm">{currentBuild.cooling || "Select a cooling system"}</h2>
                         </div>
                     </div>
                 </motion.button>
@@ -239,18 +311,19 @@ export default function BuilderContent() {
                     animate="visible"
                     whileHover="hover"
                     whileTap="tap"
+                    onClick={() => handleOpenPicker('case')}
                 >
                     <div className="flex items-center ml-10">
                     <Image 
                         className="w-24 h-24 mr-5 brightness-0 dark:brightness-100 dark:invert" 
                         src="/assets/builder/case.svg" 
-                        alt="RAM" 
+                        alt="CASE" 
                         width={96} 
                         height={96} 
                     />
                         <div className="flex flex-col text-start">
                             <h1 className="text-4xl">Case</h1>
-                            <h2 className="text-sm">{currentBuild.psu || "Select a case"}</h2>
+                            <h2 className="text-sm">{currentBuild.case || "Select a case"}</h2>
                         </div>
                     </div>
                 </motion.button>
@@ -263,22 +336,30 @@ export default function BuilderContent() {
                     animate="visible"
                     whileHover="hover"
                     whileTap="tap"
+                    onClick={() => handleOpenPicker('monitor')}
                 >
                     <div className="flex items-center ml-10">
                     <Image 
                         className="w-24 h-24 mr-5 brightness-0 dark:brightness-100 dark:invert" 
                         src="/assets/builder/monitor.svg" 
-                        alt="RAM" 
+                        alt="MONITOR" 
                         width={96} 
                         height={96} 
                     />
                         <div className="flex flex-col text-start">
                             <h1 className="text-4xl">Monitor</h1>
-                            <h2 className="text-sm">{currentBuild.psu || "Select a monitor (optional)"}</h2>
+                            <h2 className="text-sm">{currentBuild.monitor || "Select a monitor (optional)"}</h2>
                         </div>
                     </div>
                 </motion.button>
             </motion.div>
+            {showPicker && selectedType && (
+                <HardwarePicker 
+                    type={selectedType}
+                    onSelect={handleSelect}
+                    onClose={() => setShowPicker(false)}
+                />
+            )}
         </div>
     )
 }

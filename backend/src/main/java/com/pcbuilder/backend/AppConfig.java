@@ -4,6 +4,11 @@ import java.sql.Connection;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+import io.swagger.v3.oas.models.OpenAPI;
+import io.swagger.v3.oas.models.info.Info;
 
 import com.pcbuilder.backend.utils.Config;
 import com.pcbuilder.backend.utils.Crypto;
@@ -12,6 +17,33 @@ import com.pcbuilder.backend.utils.Logger;
 
 @Configuration
 public class AppConfig {
+    
+    @Bean
+    public WebMvcConfigurer corsConfigurer() {
+        return new WebMvcConfigurer() {
+            @Override
+            public void addCorsMappings(@SuppressWarnings("null") CorsRegistry registry) {
+                registry.addMapping("/**")
+                    .allowedOriginPatterns(
+                        "https://pcbuilder-black.vercel.app",
+                        "http://localhost:3000",
+                        "https://*.vercel.app"
+                    )
+                    .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
+                    .allowedHeaders("*")
+                    .allowCredentials(true);
+            }
+        };
+    }
+
+    @Bean
+    public OpenAPI openAPI() {
+        return new OpenAPI()
+            .info(new Info()
+                .title("PC Builder API")
+                .description("Backend API for PC Builder application")
+                .version("0.0.1"));
+    }
 
     @Bean
     public Logger logger() {
