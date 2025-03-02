@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import HardwarePicker from "./overlays/HardwarePicker";
 
-type Build = {
+export type Build = {
     cpu: string,
     gpu: string,
     ram: string,
@@ -19,6 +19,18 @@ type Build = {
 }
 
 type HardwareType = 'cpu' | 'gpu' | 'ram' | 'storage' | 'motherboard' | 'psu' | 'case' | 'cooler' | 'monitor';
+
+export interface ConfigUrlInfo {
+    url: string;
+    config: string;
+    build: Build;
+}
+
+export function getConfigUrlInfo(build: Build): ConfigUrlInfo {
+    const config = btoa(JSON.stringify(build));
+    const url = `${window.location.origin}${window.location.pathname}?config=${config}`;
+    return { url, config, build };
+}
 
 interface Hardware {
     name: string;
@@ -85,16 +97,27 @@ export default function BuilderContent() {
     }, [searchParams])
 
     const handleSelect = (hardware: Hardware) => {
+        const buildKey = selectedType === 'cooler' ? 'cooling' : selectedType as string;
+        
         const newBuild = {
             ...currentBuild,
-            [selectedType as string]: hardware.name
+            [buildKey]: hardware.name
         };
         
         setCurrentBuild(newBuild);
         const config = btoa(JSON.stringify(newBuild));
-        router.push(`?config=${config}`);
+
+        const params = new URLSearchParams(window.location.search);
+        params.set('config', config);
+        router.push(`?${params.toString()}`);
 
         setShowPicker(false);
+    };
+
+    const getCurrentConfigUrl = () => {
+        const config = btoa(JSON.stringify(currentBuild));
+        const baseUrl = window.location.origin + window.location.pathname;
+        return `${baseUrl}?config=${config}`;
     };
 
     const handleOpenPicker = (type: HardwareType) => {
