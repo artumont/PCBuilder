@@ -98,14 +98,14 @@ export default function HardwarePicker({ type, onSelect, onClose }: {
     return (
         <AnimatePresence>
             <motion.div 
-                className="fixed inset-0 bg-black bg-opacity-75 z-50 flex justify-center items-start backdrop-blur-sm"
+                className="fixed inset-0 bg-white dark:bg-black bg-opacity-75 dark:bg-opacity-75 z-50 flex justify-center items-start backdrop-blur-sm"
                 variants={overlayVariants}
                 initial="hidden"
                 animate="visible"
                 exit="exit"
             >
                 <motion.div 
-                    className="bg-light-primary dark:bg-dark-primary w-full max-w-7xl h-[90vh] mt-20 rounded-lg p-6 overflow-y-auto border-[7px] border-light-secondary dark:border-dark-secondary"
+                    className="bg-light-primary dark:bg-dark-primary w-[95%] sm:w-[90%] md:w-[85%] lg:max-w-5xl h-[90vh] mt-20 rounded-lg p-4 sm:p-6 overflow-y-auto border-[7px] border-light-secondary dark:border-dark-secondary"
                     variants={contentVariants}
                     initial="hidden"
                     animate="visible"
