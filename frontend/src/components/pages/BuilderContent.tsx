@@ -44,6 +44,7 @@ export default function BuilderContent() {
     const [selectedType, setSelectedType] = useState<HardwareType | null>(null);
     const [showPicker, setShowPicker] = useState(false);
     const [totalPrice, setTotalPrice] = useState(0);
+    const [isLoadingPrice, setIsLoadingPrice] = useState(false);
     const [selectedPrices, setSelectedPrices] = useState<Record<string, number>>({});
     const searchParams = useSearchParams();
     const router = useRouter();
@@ -86,6 +87,8 @@ export default function BuilderContent() {
 
     const fetchPricesForBuild = async (build: Build) => {
         if (Object.values(build).every(v => !v)) return;
+        
+        setIsLoadingPrice(true);
         const components: { type: HardwareType; name: string; }[] = [
             { type: 'cpu', name: build.cpu },
             { type: 'gpu', name: build.gpu },
@@ -104,22 +107,25 @@ export default function BuilderContent() {
         const newSelectedPrices: Record<string, number> = {};
         let total = 0;
 
-        for (const component of components) {
-            if (component.name) {
-                try {
-                    const hardware = await fetchHardwareByName(component.type, component.name);
-                    const key = component.type === 'cooler' ? 'cooling' : component.type;
-                    newSelectedPrices[key] = hardware.price;
-                    total += hardware.price;
-                } catch (error) {
-                    console.error(`Failed to fetch price for ${component.type}:`, error);
-                    return;
+        try {
+            for (const component of components) {
+                if (component.name) {
+                    try {
+                        const hardware = await fetchHardwareByName(component.type, component.name);
+                        const key = component.type === 'cooler' ? 'cooling' : component.type;
+                        newSelectedPrices[key] = hardware.price;
+                        total += hardware.price;
+                    } catch (error) {
+                        console.error(`Failed to fetch price for ${component.type}:`, error);
+                    }
                 }
             }
-        }
 
-        setSelectedPrices(newSelectedPrices);
-        setTotalPrice(total);
+            setSelectedPrices(newSelectedPrices);
+            setTotalPrice(total);
+        } finally {
+            setIsLoadingPrice(false);
+        }
     };
 
     useEffect(() => {
@@ -174,7 +180,6 @@ export default function BuilderContent() {
 
         try {
             alert('Configuration saved successfully!');
-            // @todo: Save configuration on database
         } catch (error) {
             console.error('Failed to save configuration:', error);
             alert('Failed to save configuration. Please try again.');
@@ -431,7 +436,19 @@ export default function BuilderContent() {
                 <div className="flex flex-row p-6 rounded-lg bg-light-terciary dark:bg-dark-terciary border-[7px] border-light-secondary dark:border-dark-secondary">
                     <div className="flex-1 p-6">
                         <h2 className="text-2xl font-semibold">Total Price</h2>
-                        <p className="text-lg mt-2">${totalPrice.toFixed(2)}</p>
+                        <p className="text-lg mt-2">
+                            {isLoadingPrice ? (
+                                <motion.span 
+                                    initial={{ opacity: 0.5 }}
+                                    animate={{ opacity: 1 }}
+                                    transition={{ repeat: Infinity, duration: 1, repeatType: "reverse" }}
+                                >
+                                    Loading...
+                                </motion.span>
+                            ) : (
+                                `$${totalPrice.toFixed(2)}`
+                            )}
+                        </p>
                     </div>
                     <motion.button 
                         className="flex-1 p-6 rounded-lg bg-green-500/30 hover:bg-green-500/50 border-[4px] border-green-500/80 font-semibold text-xl transition-colors"
