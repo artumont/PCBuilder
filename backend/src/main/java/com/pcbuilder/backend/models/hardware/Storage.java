@@ -10,8 +10,8 @@ public class Storage implements Hardware {
     private float price;
 
     public Storage(
-        int id, String name, String imageUrl, String format,
-        String protocol, int size, float price
+        int id, String name, String imageUrl, 
+        String format, String protocol, int size, float price
     ) {
         this.id = id;
         this.name = name;

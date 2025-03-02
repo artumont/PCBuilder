@@ -1,21 +1,19 @@
 package com.pcbuilder.backend.models.hardware;
 
-public class Psu implements Hardware {
+public class Case implements Hardware {
     private int id;
     private String name;
     private String imageUrl;
-    private int wattage;
     private String size;
     private float price;
 
-    public Psu(
-        int id, String name, String imageUrl, 
-        int wattage, String size, float price
+    public Case(
+        int id, String name, 
+        String imageUrl, String size, float price
     ) {
         this.id = id;
         this.name = name;
         this.imageUrl = imageUrl;
-        this.wattage = wattage;
         this.size = size;
         this.price = price;
     }
@@ -38,10 +36,6 @@ public class Psu implements Hardware {
     @Override
     public float getPrice() {
         return price;
-    }
-
-    public int getWattage() {
-        return wattage;
     }
 
     public String getSize() {

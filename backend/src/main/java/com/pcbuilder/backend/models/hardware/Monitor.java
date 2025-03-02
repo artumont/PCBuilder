@@ -1,22 +1,27 @@
 package com.pcbuilder.backend.models.hardware;
 
-public class Psu implements Hardware {
+public class Monitor implements Hardware {
     private int id;
     private String name;
     private String imageUrl;
-    private int wattage;
-    private String size;
+    private String resolution;
+    private int refreshRate;
+    private double size;
+    private String panelType;
     private float price;
 
-    public Psu(
+    public Monitor(
         int id, String name, String imageUrl, 
-        int wattage, String size, float price
+        String resolution, int refreshRate, double size, 
+        String panelType, float price
     ) {
         this.id = id;
         this.name = name;
         this.imageUrl = imageUrl;
-        this.wattage = wattage;
+        this.resolution = resolution;
+        this.refreshRate = refreshRate;
         this.size = size;
+        this.panelType = panelType;
         this.price = price;
     }
 
@@ -40,11 +45,19 @@ public class Psu implements Hardware {
         return price;
     }
 
-    public int getWattage() {
-        return wattage;
+    public String getResolution() {
+        return resolution;
     }
 
-    public String getSize() {
+    public int getRefreshRate() {
+        return refreshRate;
+    }
+
+    public double getSize() {
         return size;
+    }
+
+    public String getPanelType() {
+        return panelType;
     }
 }
