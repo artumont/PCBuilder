@@ -26,9 +26,8 @@ public class AppConfig {
                 registry.addMapping("/**")
                     .allowedOriginPatterns(
                         "https://pcbuilder-black.vercel.app",
-                        "https://pcbuilder-black-*.vercel.app",
-                        "https://pcbuilder-black-*-artus-projects-*.vercel.app",
-                        "http://localhost:3000"
+                        "http://localhost:3000",
+                        "https://*.vercel.app"
                     )
                     .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                     .allowedHeaders("*")
