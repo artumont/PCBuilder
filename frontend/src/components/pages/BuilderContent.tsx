@@ -169,7 +169,7 @@ export default function BuilderContent() {
         setShowPicker(false);
     };
 
-    const handleSaveConfig = async () => {
+    const handleShareConfig = async () => {
         const requiredParts = ['cpu', 'gpu', 'ram', 'storage', 'motherboard', 'psu', 'case', 'cooling'];
         const missingParts = requiredParts.filter(part => !currentBuild[part]);
 
@@ -179,7 +179,11 @@ export default function BuilderContent() {
         }
 
         try {
-            alert('Configuration saved successfully!');
+            const config = btoa(JSON.stringify(currentBuild));
+            const baseUrl = window.location.origin + window.location.pathname;
+            const url = `${baseUrl}?config=${config}`;
+            await navigator.clipboard.writeText(url);
+            alert('Configuration URL copied to clipboard!');
         } catch (error) {
             console.error('Failed to save configuration:', error);
             alert('Failed to save configuration. Please try again.');
@@ -458,9 +462,9 @@ export default function BuilderContent() {
                         className="w-full lg:flex-1 p-4 lg:p-6 rounded-lg bg-green-500/30 hover:bg-green-500/50 border-[4px] border-green-500/80 font-semibold text-lg lg:text-xl transition-colors"
                         whileHover="hover"
                         whileTap="tap"
-                        onClick={handleSaveConfig}
+                        onClick={handleShareConfig}
                     >
-                        Save Configuration
+                        Share Configuration
                     </motion.button>
                 </div>
             </motion.div>
