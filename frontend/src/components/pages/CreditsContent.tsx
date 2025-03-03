@@ -35,7 +35,7 @@ export default function CreditsContent() {
                 "Implemented core API functionality",
                 "Developed the frontend application",
             ],
-            tech: ["Next.js", "Java", "Photoshop"],
+            tech: ["Next.js", "SpringBoot", "SQL"],
             image: "/assets/pfps/artu.png",
             github: "https://github.com/artumont",
             icon: <Code2 className="w-6 h-6" />
