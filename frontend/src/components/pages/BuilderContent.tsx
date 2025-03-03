@@ -181,7 +181,7 @@ export default function BuilderContent() {
         try {
             const config = btoa(JSON.stringify(currentBuild));
             const baseUrl = window.location.origin + window.location.pathname;
-            const url = `${baseUrl}?config=${config}`;
+            const url = `${baseUrl}?tab=builder&config=${config}`;
             await navigator.clipboard.writeText(url);
             alert('Configuration URL copied to clipboard!');
         } catch (error) {
@@ -441,8 +441,8 @@ export default function BuilderContent() {
                 initial="hidden"
                 animate="visible"
             >
-                <div className="flex flex-col lg:flex-row gap-4 p-4 lg:p-6 rounded-lg bg-light-terciary dark:bg-dark-terciary border-[7px] border-light-secondary dark:border-dark-secondary">
-                    <div className="flex flex-row lg:flex-col justify-between items-center lg:items-start flex-1 p-4 lg:p-6">
+                <div className="flex flex-col gap-4 p-4 lg:p-6 rounded-lg bg-light-terciary dark:bg-dark-terciary border-[7px] border-light-secondary dark:border-dark-secondary">
+                    <div className="flex flex-row justify-between items-center lg:items-start flex-1 p-4 lg:p-6">
                         <h2 className="text-xl lg:text-2xl font-semibold">Total Price</h2>
                         <p className="text-lg lg:mt-2">
                             {isLoadingPrice ? (
