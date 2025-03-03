@@ -10,9 +10,10 @@ CREATE TABLE Users.Accounts (
    INDEX idx_email (email)
 );
 
-CREATE TABLE Users.Orders (
+CREATE TABLE Users.Configs (
    id INT IDENTITY(1,1) PRIMARY KEY,
    user_id INT NOT NULL,
-   order_date DATE NOT NULL,
+   config_data VARCHAR(1024) NOT NULL,
+   creation_date DATETIME DEFAULT GETDATE(),
    FOREIGN KEY (user_id) REFERENCES Users.Accounts(id)
 );

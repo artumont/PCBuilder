@@ -179,6 +179,13 @@ export default function BuilderContent() {
         }
 
         try {
+            const response = await fetch('/user/configurations', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(getConfigUrlInfo(currentBuild))
+            });
             alert('Configuration saved successfully!');
         } catch (error) {
             console.error('Failed to save configuration:', error);

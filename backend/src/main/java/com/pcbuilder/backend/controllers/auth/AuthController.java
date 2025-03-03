@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.pcbuilder.backend.dto.auth.AuthResponse;
 import com.pcbuilder.backend.dto.auth.LoginRequest;
+import com.pcbuilder.backend.dto.auth.RefreshRequest;
 import com.pcbuilder.backend.dto.auth.RegisterRequest;
 import com.pcbuilder.backend.utils.Crypto;
 import com.pcbuilder.backend.utils.Logger;
@@ -235,6 +236,89 @@ public class AuthController {
         }
         catch (Exception e) {
             logger.error("Auth.register", e.getMessage());
+            return ResponseEntity.status(500).body(null);
+        }
+    }
+
+    @PostMapping("/refresh")
+    public ResponseEntity<AuthResponse> refresh(@RequestBody RefreshRequest refreshRequest, HttpServletRequest request) {
+        try {
+            logger.info("Auth.refresh", "Received refresh request.");
+            String clientIp = request.getRemoteAddr();
+            if (request.getHeader("X-Forwarded-For") != null) {
+                clientIp = request.getHeader("X-Forwarded-For");
+            }
+            String userAgent = request.getHeader("User-Agent");
+            String method = request.getMethod();
+            String requestURI = request.getRequestURI();
+            String protocol = request.getProtocol();
+
+            // @note: Log request details
+            logger.info("Auth.refresh", String.format(
+                "Request details - IP: %s, User-Agent: %s, Method: %s, URI: %s, Protocol: %s",
+                clientIp,
+                userAgent,
+                method,
+                requestURI,
+                protocol
+            ));
+
+            String refreshToken = refreshRequest.refreshToken();
+
+            // @note: Check if refresh token is null
+            if (refreshToken == null) {
+                AuthResponse response = new AuthResponse(
+                    "error",
+                    "Invalid request", 
+                    null, 
+                    null
+                );
+                logger.info("Auth.RefreshOperation", "Invalid request");
+                return ResponseEntity.status(400).body(response);
+            }
+            logger.info("Auth.refresh", String.format("Refresh request - Refresh token: %s", refreshToken));
+
+            // @note: Verify refresh token
+            var claims = crypto.verifyToken(refreshToken, "regen");
+            if (claims == null) {
+                AuthResponse response = new AuthResponse(
+                    "error",
+                    "Invalid refresh token", 
+                    null, 
+                    null
+                );
+                logger.info("Auth.RefreshOperation", "Invalid refresh token");
+                return ResponseEntity.status(401).body(response);
+            }
+            logger.info("Auth.refresh", "Refresh token verified");
+
+            String username = claims.getId();
+            String password = claims.getIssuer();
+
+            // @note: Generate new auth token
+            String authToken = crypto.generateToken(username, password, "auth", 5000 * 60);
+            if (authToken == null) {
+                AuthResponse response = new AuthResponse(
+                    "error",
+                    "Failed to generate new auth token, please try again in a few minutes", 
+                    null, 
+                    null
+                );
+                logger.error("Auth.refresh", "Failed to generate new auth token");
+                return ResponseEntity.status(500).body(response);
+            }
+            logger.info("Auth.refresh", "Generated new auth token");
+
+            AuthResponse response = new AuthResponse(
+                "success",
+                "Token refreshed", 
+                authToken, 
+                refreshToken
+            );
+            return ResponseEntity.ok(response);
+        }
+        catch (Exception e) {
+            logger.error("Auth.refresh", e.getMessage());
             return ResponseEntity.status(500).body(null);
         }
     }
