@@ -209,112 +209,64 @@ export default function HomeContent() {
             </section>
 
             <section className="relative py-5 px-4">
-            <motion.h2 
+                <motion.h2 
                     initial={{opacity: 0, y: 20}}
                     animate={{opacity: 1, y: 0}}
                     transition={{duration: 0.5}}
                     className="text-3xl font-bold text-center mb-10"
                 >
-                    Developer Team
+                    Why Choose PC Builder?
                 </motion.h2>
-                <TeamMembers />
+                <motion.div 
+                    className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto"
+                    variants={containerVariants}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true }}
+                >
+                    <motion.div
+                        className="p-6 rounded-lg gl-1 text-center"
+                        variants={featureVariants}
+                        whileHover={{ y: -10, transition: { duration: 0.2 } }}
+                    >
+                        <div className="w-16 h-16 mx-auto mb-6 bg-light-secondary dark:bg-dark-secondary rounded-full flex items-center justify-center">
+                            <Cpu className="w-8 h-8" />
+                        </div>
+                        <h3 className="text-xl font-bold mb-4">Smart Compatibility</h3>
+                        <p className="text-gray-600 dark:text-gray-400">
+                            Our intelligent system ensures all your chosen components work perfectly together, eliminating compatibility concerns.
+                        </p>
+                    </motion.div>
+
+                    <motion.div
+                        className="p-6 rounded-lg gl-1 text-center"
+                        variants={featureVariants}
+                        whileHover={{ y: -10, transition: { duration: 0.2 } }}
+                    >
+                        <div className="w-16 h-16 mx-auto mb-6 bg-light-secondary dark:bg-dark-secondary rounded-full flex items-center justify-center">
+                            <Notebook className="w-8 h-8" />
+                        </div>
+                        <h3 className="text-xl font-bold mb-4">Expert Guidance</h3>
+                        <p className="text-gray-600 dark:text-gray-400">
+                            Access detailed build guides and expert recommendations to create the perfect PC for your needs and budget.
+                        </p>
+                    </motion.div>
+
+                    <motion.div
+                        className="p-6 rounded-lg gl-1 text-center"
+                        variants={featureVariants}
+                        whileHover={{ y: -10, transition: { duration: 0.2 } }}
+                    >
+                        <div className="w-16 h-16 mx-auto mb-6 bg-light-secondary dark:bg-dark-secondary rounded-full flex items-center justify-center">
+                            <Memory className="w-8 h-8" />
+                        </div>
+                        <h3 className="text-xl font-bold mb-4">Real-time Updates</h3>
+                        <p className="text-gray-600 dark:text-gray-400">
+                            Stay informed with live pricing and availability updates for all components in your build.
+                        </p>
+                    </motion.div>
+                </motion.div>
             </section>
         </div>
-    )
-}
-
-export function TeamMembers() {
-    const teamMembers = [
-        {
-            name: "Artu (@artumont)",
-            role: "Lead Developer & Backend Specialist",
-            image: "/assets/pfps/artu.png",
-            github: "https://github.com/artumont",
-        },
-        {
-            name: "Luis (@prodanyboy)",
-            role: "Database Specialist",
-            image: "/assets/pfps/luis.png",
-            github: "https://github.com/prodanyboy",
-        },
-        {
-            name: "Gilberto (@GilPeCa)",
-            role: "Junior Developer",
-            image: "/assets/pfps/gilberto.jpg",
-            github: "https://github.com/GilPeCa",
-        },
-        {
-            name: "Gerardo (@SONRIXMX)",
-            role: "Junior Developer",
-            image: "/assets/pfps/gerardo.png",
-            github: "https://github.com/SONRIXMX",
-        },
-        {
-            name: "Emmanuel (@Ultimateknight143)",
-            role: "Junior Developer",
-            image: "/assets/pfps/emmanuel.png",
-            github: "https://github.com/Ultimateknight143",
-        },
-        {
-            name: "Jesus (@Jesus-Mendoza21)",
-            role: "Junior Developer",
-            image: "/assets/pfps/jesus.jpg",
-            github: "https://github.com/Jesus-Mendoza21",
-        },
-        {
-            name: "Guajardo (@IngGuajardo)",
-            role: "Junior Developer",
-            image: "/assets/pfps/guajardo.png",
-            github: "https://github.com/IngGuajardo",
-        },
-        {
-            name: "Alan (@Alanhhdz)",
-            role: "Junior Developer",
-            image: "/assets/pfps/alan.png",
-            github: "https://github.com/Alanhhdz",
-        }
-    ]
-
-    return (
-        <motion.div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
-        >
-            {teamMembers.map((member) => (
-                <motion.div
-                    key={member.name}
-                    className="bg-light dark:bg-dark rounded-lg overflow-hidden gl-1"
-                    variants={featureVariants}
-                    whileHover={{ y: -10, transition: { duration: 0.2 } }}
-                >
-                    <div className="relative h-64">
-                        <Image
-                            src={member.image || "/placeholder.svg"}
-                            alt={member.name}
-                            fill
-                            className="object-cover transition-transform duration-300 hover:scale-110"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-dark-secondary to-transparent opacity-70"></div>
-                    </div>
-                    <div className="p-6 h-auto min-h-[132px]">
-                        <h3 className="text-xl font-semibold mb-1 ">
-                            {member.name}
-                        </h3>
-                        <p>{member.role}</p>
-                    </div>
-                    <div className="flex justify-center space-x-4 self-end p-4">
-                        <a
-                            href={member.github}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="hover:text-dark-secondary hover:dark:text-light-secondary transition-colors"
-                        >
-                            <Github className="w-6 h-6" />
-                        </a>
-                    </div>
-                </motion.div>
-            ))}
-        </motion.div>
     )
 }
