@@ -55,7 +55,7 @@ export default function CreditsContent() {
         },
         {
             name: "Gilberto (@GilPeCa)",
-            role: "Frontend Developer",
+            role: "Junior Developer",
             contributions: [
                 "Made guides for PCBuilder",
                 "Created documentation for the project"
@@ -67,7 +67,7 @@ export default function CreditsContent() {
         },
         {
             name: "Gerardo (@SONRIXMX)",
-            role: "Full Stack Developer",
+            role: "Junior Developer",
             contributions: [
                 "Made guides for PCBuilder",
                 "Created documentation for the project"
@@ -79,7 +79,7 @@ export default function CreditsContent() {
         },
         {
             name: "Emmanuel (@Ultimateknight143)",
-            role: "Frontend Developer",
+            role: "Junior Developer",
             contributions: [
                 "Made guides for PCBuilder",
             ],
@@ -90,7 +90,7 @@ export default function CreditsContent() {
         },
         {
             name: "Jesus (@Jesus-Mendoza21)",
-            role: "Backend Developer",
+            role: "Junior Developer",
             contributions: [
                 "Made guides for PCBuilder",
             ],
@@ -101,7 +101,7 @@ export default function CreditsContent() {
         },
         {
             name: "Guajardo (@IngGuajardo)",
-            role: "Full Stack Developer",
+            role: "Junior Developer",
             contributions: [
                 "Made guides for PCBuilder",
             ],
@@ -112,7 +112,7 @@ export default function CreditsContent() {
         },
         {
             name: "Alan (@Alanhhdz)",
-            role: "Frontend Developer",
+            role: "Junior Developer",
             contributions: [
                 "Made guides for PCBuilder",
             ],
