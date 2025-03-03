@@ -1,0 +1,9 @@
+TRUNCATE TABLE Hardware.Monitors;
+TRUNCATE TABLE Hardware.Coolers;
+TRUNCATE TABLE Hardware.Cases;
+TRUNCATE TABLE Hardware.PSUs;
+TRUNCATE TABLE Hardware.Storages;
+TRUNCATE TABLE Hardware.RAMs;
+TRUNCATE TABLE Hardware.Motherboards;
+TRUNCATE TABLE Hardware.GPUs;
+TRUNCATE TABLE Hardware.CPUs;
