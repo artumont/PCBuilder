@@ -223,7 +223,7 @@ export default function HomeContent() {
     )
 }
 
-function TeamMembers() {
+export function TeamMembers() {
     const teamMembers = [
         {
             name: "Artu (@artumont)",

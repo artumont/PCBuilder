@@ -1,7 +1,7 @@
 'use client'
 
 import { useNavigation } from '@/context/NavContext';
-import AccountContent from './pages/AccountContent';
+import CreditsContent from './pages/CreditsContent';
 import BuilderContent from './pages/BuilderContent';
 import HomeContent from './pages/HomeContent';
 import GuidesContent from './pages/GuidesContent';
@@ -17,8 +17,8 @@ export default function NavSelector() {
                 return <BuilderContent />;
             case 'guides':
                 return <GuidesContent />;
-            case 'account':
-                return <AccountContent />;
+            case 'credits':
+                return <CreditsContent />;
             default:
                 return <HomeContent />;
         }

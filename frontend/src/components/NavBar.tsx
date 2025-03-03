@@ -155,18 +155,18 @@ export default function NavBar() {
                     <div className='flex lg:hidden'>
                         <motion.button
                             variants={buttonVariants}
-                            animate={activeButton === 'account' ? 'active' : 'initial'}
+                            animate={activeButton === 'credits' ? 'active' : 'initial'}
                             onClick={() => {
-                                if (activeButton !== 'account') {
-                                    setActiveButton('account');
+                                if (activeButton !== 'credits') {
+                                    setActiveButton('credits');
                                 }
                             }}
                             initial="initial"
-                            whileHover={activeButton === 'account' ? undefined : 'initial'}
+                            whileHover={activeButton === 'credits' ? undefined : 'initial'}
                             whileTap="tap"
                             className='relative p-5 py-1 pt-5 mx-5 text-left text-lg md:text-xl lg:text-xl'
                         >
-                            <span>Account</span>
+                            <span>Credits</span>
                             <motion.div
                                 variants={underlineVariants}
                                 className='hidden lg:block'
@@ -183,18 +183,18 @@ export default function NavBar() {
                 <div className='hidden lg:flex lg:ml-auto z-[1]'>
                     <motion.button
                         variants={buttonVariants}
-                        animate={activeButton === 'account' ? 'active' : 'initial'}
+                        animate={activeButton === 'credits' ? 'active' : 'initial'}
                         onClick={() => {
-                            if (activeButton !== 'account') {
-                                setActiveButton('account');
+                            if (activeButton !== 'credits') {
+                                setActiveButton('credits');
                             }
                         }}
                         initial="initial"
-                        whileHover={activeButton === 'account' ? undefined : 'initial'}
+                        whileHover={activeButton === 'credits' ? undefined : 'initial'}
                         whileTap="tap"
                         className='relative px-2 py-5 mx-0 text-left text-lg md:text-xl lg:text-xl'
                     >
-                        <span>Account</span>
+                        <span>Credits</span>
                         <motion.div
                             variants={underlineVariants}
                             className='hidden lg:block'
