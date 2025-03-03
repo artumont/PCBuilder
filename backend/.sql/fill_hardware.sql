@@ -90,33 +90,33 @@ INSERT INTO Hardware.PSUs (name, image_url, wattage, size, price) VALUES
 
 -- Insert Cases
 INSERT INTO Hardware.Cases (name, image_url, size, price) VALUES
-('Lian Li O11 Dynamic EVO', 'https://m.media-amazon.com/images/I/61OeOaBlAIL._AC_UY218_.jpg', 'ATX', 169.99),
+('Lian Li O11 Dynamic EVO', 'https://m.media-amazon.com/images/I/71yqaSpUmnL._AC_UL320_.jpg', 'ATX', 169.99),
 ('Fractal Design Meshify 2', 'https://m.media-amazon.com/images/I/91JfXda95sL._AC_UY218_.jpg', 'ATX', 149.99),
-('NZXT H510 Flow', 'https://m.media-amazon.com/images/I/71SIs5kxpYL._AC_UL320_.jpg', 'ATX', 89.99),
-('Phanteks Eclipse P300A', 'https://m.media-amazon.com/images/I/71J4iohAlaL._AC_UY218_.jpg', 'ATX', 69.99),
-('Corsair 5000D Airflow', 'https://m.media-amazon.com/images/I/71XO-m7qldL._AC_UY218_.jpg', 'ATX', 174.99),
+('NZXT H510 Flow', 'https://m.media-amazon.com/images/I/61moA9MB8mL._AC_UY218_.jpg', 'ATX', 89.99),
+('Phanteks Eclipse P300A', 'https://m.media-amazon.com/images/I/813M1+AB6kL._AC_UY218_.jpg', 'ATX', 69.99),
+('Corsair 5000D Airflow', 'https://m.media-amazon.com/images/I/81fki2HcyeL._AC_UY218_.jpg', 'ATX', 174.99),
 ('be quiet! Pure Base 500DX', 'https://m.media-amazon.com/images/I/61YQafwg6gL._AC_UY218_.jpg', 'ATX', 109.99),
 ('Cooler Master TD500 Mesh', 'https://m.media-amazon.com/images/I/81mlDtLolEL._AC_UY218_.jpg', 'ATX', 99.99),
-('Lian Li LANCOOL III', 'https://m.media-amazon.com/images/I/51sVCkaP4QL._AC_UY218_.jpg', 'ATX', 159.99),
+('Lian Li LANCOOL III', 'https://m.media-amazon.com/images/I/713s1Un5TDL._AC_UL320_.jpg', 'ATX', 159.99),
 ('Phanteks Eclipse G360A', 'https://m.media-amazon.com/images/I/813M1+AB6kL._AC_UY218_.jpg', 'ATX', 99.99),
-('Fractal Design Pop Air', 'https://m.media-amazon.com/images/I/71J4iohAlaL._AC_UY218_.jpg', 'ATX', 89.99),
+('Fractal Design Pop Air', 'https://m.media-amazon.com/images/I/813M1+AB6kL._AC_UY218_.jpg', 'ATX', 89.99),
 ('NZXT H7 Flow', 'https://m.media-amazon.com/images/I/51rOo9MITKL._AC_UY218_.jpg', 'ATX', 129.99),
-('Corsair 4000D', 'https://m.media-amazon.com/images/I/71J4iohAlaL._AC_UY218_.jpg', 'ATX', 94.99);
+('Corsair 4000D', 'https://m.media-amazon.com/images/I/813M1+AB6kL._AC_UY218_.jpg', 'ATX', 94.99);
 
 -- Insert Coolers
 INSERT INTO Hardware.Coolers (name, socket, image_url, price) VALUES
-('NZXT Kraken X73', 'LGA1700', 'https://m.media-amazon.com/images/I/71RVYwj2r-L._AC_UY218_.jpg', 199.99),
-('be quiet! Dark Rock Pro 4', 'AM5', 'https://m.media-amazon.com/images/I/81ogi-krqkL._AC_UY218_.jpg', 89.99),
-('Noctua NH-D15', 'AM4', 'https://m.media-amazon.com/images/I/81Ni+xrVXeL._AC_UY218_.jpg', 99.99),
-('Corsair iCUE H150i ELITE', 'LGA1700', 'https://m.media-amazon.com/images/I/71RVYwj2r-L._AC_UY218_.jpg', 189.99),
-('Arctic Liquid Freezer II 360', 'AM5', 'https://m.media-amazon.com/images/I/81ogi-krqkL._AC_UY218_.jpg', 139.99),
-('Deepcool AK620', 'LGA1700', 'https://m.media-amazon.com/images/I/71RVYwj2r-L._AC_UY218_.jpg', 69.99),
-('NZXT Kraken Z73', 'AM4', 'https://m.media-amazon.com/images/I/81Ni+xrVXeL._AC_UY218_.jpg', 299.99),
-('Lian Li Galahad 360', 'AM5', 'https://m.media-amazon.com/images/I/81ogi-krqkL._AC_UY218_.jpg', 159.99),
-('Scythe Fuma 2', 'LGA1700', 'https://m.media-amazon.com/images/I/71RVYwj2r-L._AC_UY218_.jpg', 59.99),
-('EK AIO Elite 360', 'AM5', 'https://m.media-amazon.com/images/I/81ogi-krqkL._AC_UY218_.jpg', 189.99),
-('Noctua NH-U12A', 'AM4', 'https://m.media-amazon.com/images/I/81Ni+xrVXeL._AC_UY218_.jpg', 109.99),
-('be quiet! Pure Rock 2', 'LGA1700', 'https://m.media-amazon.com/images/I/71RVYwj2r-L._AC_UY218_.jpg', 44.99);
+('NZXT Kraken X73', 'LGA1700', 'https://m.media-amazon.com/images/I/41+WrtYjIWL._AC_UY218_.jpg', 199.99),
+('be quiet! Dark Rock Pro 4', 'AM5', 'https://m.media-amazon.com/images/I/71u2qQdegUL._AC_UY218_.jpg', 89.99),
+('Noctua NH-D15', 'AM4', 'https://m.media-amazon.com/images/I/81i9YOlnPEL._AC_UY218_.jpg', 99.99),
+('Corsair iCUE H150i ELITE', 'LGA1700', 'https://m.media-amazon.com/images/I/61AEH5bP0EL._AC_UY218_.jpg', 189.99),
+('Arctic Liquid Freezer II 360', 'AM5', 'https://m.media-amazon.com/images/I/71YEUVIlERL._AC_UY218_.jpg', 139.99),
+('Deepcool AK620', 'LGA1700', 'https://m.media-amazon.com/images/I/71sCpfqixzL._AC_UY218_.jpg', 69.99),
+('NZXT Kraken Z73', 'AM4', 'https://m.media-amazon.com/images/I/41Yat2-orIL._AC_UY218_.jpg', 299.99),
+('Lian Li Galahad 360', 'AM5', 'https://m.media-amazon.com/images/I/71lCDqz257L._AC_UY218_.jpg', 159.99),
+('Scythe Fuma 2', 'LGA1700', 'https://m.media-amazon.com/images/I/71XkFph15GL._AC_UY218_.jpg', 59.99),
+('EK AIO Elite 360', 'AM5', 'https://m.media-amazon.com/images/I/41K2nMA4QZL._AC_UY218_.jpg', 189.99),
+('Noctua NH-U12A', 'AM4', 'https://m.media-amazon.com/images/I/81i9YOlnPEL._AC_UY218_.jpg', 109.99),
+('be quiet! Pure Rock 2', 'LGA1700', 'https://m.media-amazon.com/images/I/71pJ93JSw9L._AC_UY218_.jpg', 44.99);
 
 -- Insert Monitors
 INSERT INTO Hardware.Monitors (name, image_url, resolution, refresh_rate, size, panel_type, price) VALUES
