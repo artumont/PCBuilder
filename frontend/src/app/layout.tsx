@@ -3,6 +3,7 @@ import { Poppins } from "next/font/google";
 import { ThemeProvider } from 'next-themes';
 import ThemeToggle from '@/components/ThemeToggle';
 import { NavigationProvider } from '@/context/NavContext';
+import { AuthProvider } from '@/context/AuthContext';
 import "./globals.css";
 
 const poppins = Poppins({
@@ -73,17 +74,19 @@ export default function RootLayout({
             <body
                 className={`${poppins.variable} antialiased min-h-screen`}
             >
-                <NavigationProvider>
-                    <ThemeProvider 
-                        attribute="class"
-                        defaultTheme="system"
-                        enableSystem={true}
-                        storageKey="theme"
-                    >
-                        {children}
-                        <ThemeToggle />
-                    </ThemeProvider>
-                </NavigationProvider>
+                <AuthProvider>
+                    <NavigationProvider>
+                        <ThemeProvider 
+                            attribute="class"
+                            defaultTheme="system"
+                            enableSystem={true}
+                            storageKey="theme"
+                        >
+                            {children}
+                            <ThemeToggle />
+                        </ThemeProvider>
+                    </NavigationProvider>
+                </AuthProvider>
             </body>
         </html>
     );

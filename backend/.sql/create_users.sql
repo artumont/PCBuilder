@@ -6,11 +6,12 @@ CREATE TABLE Users.Accounts (
    email VARCHAR(255) NOT NULL UNIQUE,
    username VARCHAR(255) NOT NULL UNIQUE,
    password CHAR(64) NOT NULL,
+   join_date DATETIME DEFAULT GETDATE(),
    INDEX idx_username (username),
    INDEX idx_email (email)
 );
 
-CREATE TABLE Users.Configs (
+CREATE TABLE Users.Builds (
    id INT IDENTITY(1,1) PRIMARY KEY,
    user_id INT NOT NULL,
    config_data VARCHAR(1024) NOT NULL,

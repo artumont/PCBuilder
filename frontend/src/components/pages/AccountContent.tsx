@@ -1,9 +1,43 @@
 'use client'
 
+import { useState } from 'react'
+import { useAuth } from '@/context/AuthContext'
+import DashboardPage from './account/DashboardPage'
+import LoginPage from './account/LoginPage'
+import RegisterPage from './account/RegisterPage'
+
 export default function AccountContent() {
-    return (
-        <div className="w-full mt-32 lg:mt-5">
-            Account Content
-        </div>
-    )
+    const [currentPage, setCurrentPage] = useState<'login' | 'register' | 'dashboard'>('login')
+    const { isAuthenticated } = useAuth()
+
+    const handleLoginSuccess = () => {
+        setCurrentPage('dashboard')
+    }
+
+    const handleRegisterSuccess = () => {
+        setCurrentPage('login')
+    }
+
+    const handleLogout = () => {
+        setCurrentPage('login')
+    }
+
+    if (!isAuthenticated) {
+        if (currentPage === 'login') {
+            return (
+                <LoginPage
+                    onLoginSuccess={handleLoginSuccess}
+                    onRegisterClick={() => setCurrentPage('register')}
+                />
+            )
+        }
+        return (
+            <RegisterPage
+                onRegisterSuccess={handleRegisterSuccess}
+                onLoginClick={() => setCurrentPage('login')}
+            />
+        )
+    }
+
+    return <DashboardPage onLogout={handleLogout} />
 }

@@ -179,14 +179,28 @@ export default function BuilderContent() {
         }
 
         try {
-            const response = await fetch('/user/configurations', {
+            if (!localStorage.getItem('authToken')) {
+                alert('Please log in to save your configuration.');
+                return;
+            }
+
+            const response = await fetch('/user/add/config', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(getConfigUrlInfo(currentBuild))
+                body: JSON.stringify({
+                    config: JSON.stringify(currentBuild),
+                    authToken: localStorage.getItem('authToken') || ''
+                })
             });
-            alert('Configuration saved successfully!');
+            if (response.ok) {
+                alert('Configuration saved successfully!');
+            }
+            else {
+                console.error('Failed to save configuration:', response.statusText);
+                alert('Failed to save configuration. Please try again.');
+            }
         } catch (error) {
             console.error('Failed to save configuration:', error);
             alert('Failed to save configuration. Please try again.');
