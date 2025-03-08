@@ -1,4 +1,4 @@
-# PCBuilder
+# 🖥 PCBuilder
 
 A comprehensive web application for building and customizing PC configurations with real-time compatibility checking and price comparisons.
 
